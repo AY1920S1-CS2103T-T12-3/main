@@ -22,10 +22,12 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#training-attendance-feature">3.1. Training &amp; Attendance feature</a></li>
+<li><a href="#filter-feature">3.2. Filter feature</a></li>
+<li><a href="#proposed-undo-redo-feature">3.3. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -33,18 +35,7 @@
 <li><a href="#dev-ops">6. Dev Ops</a></li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
 <li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a>
-<ul class="sectlevel2">
-<li><a href="#use-case-uc1-marking-attendance-of-players">C.1. Use case: UC1 - Marking attendance of players</a></li>
-<li><a href="#actor-user">C.2. Actor: User</a></li>
-<li><a href="#actor-user-2">C.3. Actor: User</a></li>
-<li><a href="#actor-user-3">C.4. Actor: User</a></li>
-<li><a href="#actor-user-4">C.5. Actor: User</a></li>
-<li><a href="#actor-user-5">C.6. Actor: User</a></li>
-<li><a href="#actor-user-6">C.7. Actor: User</a></li>
-<li><a href="#actor-user-7">C.8. Actor: User</a></li>
-</ul>
-</li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
 <li><a href="#product-survey">Appendix F: Product Survey</a></li>
@@ -341,9 +332,159 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="training-attendance-feature"><a class="link" href="#training-attendance-feature">3.1. Training &amp; Attendance feature</a></h3>
+<div class="paragraph">
+<p>To facilitate management of training sessions, the <code>Model</code> stores the <code>Attendance</code> of training sessions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/attendance_class_diagram.png" alt="attendance class diagram">
+</div>
+</div>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
+<h4 id="attendance"><a class="link" href="#attendance">3.1.1. Attendance</a></h4>
+<div class="paragraph">
+<p>The attendance of players is managed using an <code>Attendance</code> class.
+<code>Attendance</code> contains a list of training sessions as it is used to calculate the attendance rate of an individual by looking at all trainings.
+Whenever a training is added, the model adds this training to the <code>Attendance</code> using a <code>TrainingCommand</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="training"><a class="link" href="#training">3.1.2. Training</a></h4>
+<div class="paragraph">
+<p>The Training class contains a date, as well as a HashMap.
+The date in the training class represents the date of training session and the HashMap is used to check the attendance of a Person.</p>
+</div>
+<div class="paragraph">
+<p>We used a <code>DateTime</code> class to represent a date of training.
+This class is shared across both the <code>Ui</code> and backend, allowing us to port training data into the <code>view calendar</code> function.</p>
+</div>
+<div class="paragraph">
+<p>The HashMap uses <code>Person</code> objects as keys and a boolean as it’s value.
+This is used to check whether a <code>Person</code> has attended a training session, indicated by the boolean value attached to a <code>Person</code> key.
+If a <code>Person</code> attended a training session on that day, the value associated with the key will be true, and false if he did not attend.
+There were a few design considerations we had in mind for checking attendance of a <code>Person</code> but we ultimately decided that using a HashMap was the best solution due to the following requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Our application allows us to check for the attendance rate of a <code>Person</code>. As such, we needed to track both trainings attended and trainings missed.</p>
+</li>
+<li>
+<p>As a person could be added into the team after some trainings have taken place,
+using trainings attended / total trainings would not give an accurate reflection of a <code>Person</code> 's training attendance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Also, our <code>select</code> function shows attendance rate of a <code>Person</code> and a HashMap provides the fastest access time to check whether a <code>Person</code> attended a training session.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filter-feature"><a class="link" href="#filter-feature">3.2. Filter feature</a></h3>
+<div class="paragraph">
+<p>The filter command enables filtering of athletes based on their tags.
+Currently, only filtering by one tag is supported.
+Filtering by multiple tags will be available by <code>v1.2</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Filter makes use of a <code>TagMatchesPredicate</code> class to determine if the athlete has tags matching the user input.
+Given below is the Sequence Diagram to show how filter works, with an example input of filter captain.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter_sequence_diagram.png" alt="filter sequence diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Once filtering by multiple tags is implemented, the parsing of tag from <code>AddressBookParser</code> to <code>FilterCommandParser</code> will involve splitting them by spaces and storing the tag queries in a list.
+Thereafter, each tag query will be compared against every athlete’s tags to determine if the athlete should be filtered.</p>
+</div>
+<div class="paragraph">
+<p>However, since currently only filtering by one tag is supported,
+the parsing of tag simply involves trimming the tag of white spaces.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the list shown to the user is updated through <code>Model#updateFilteredPersonsList()</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-a-tag-match-is-determined"><a class="link" href="#aspect-how-a-tag-match-is-determined">Aspect: How a tag match is determined</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Case-insensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More user-friendly.</p>
+</li>
+<li>
+<p>Cons: Requires converting tags to lower-case on the back-end.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Case-sensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for more accurate filtering.</p>
+</li>
+<li>
+<p>Cons: Difficult for users to search, as generally filtering and searching are case-insensitive.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-matches-for-multiple-tags-are-determined"><a class="link" href="#aspect-how-matches-for-multiple-tags-are-determined">Aspect: How matches for multiple tags are determined</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Exclusive matching.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for more accurate filtering.</p>
+</li>
+<li>
+<p>Cons: Users get fewer filter results.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Optional matching.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for more flexible searching.</p>
+</li>
+<li>
+<p>Cons: Users may get results that they are not interested in.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.3. [Proposed] Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.3.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -485,7 +626,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -555,20 +696,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -599,7 +740,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -735,12 +876,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>(For all use cases below, the <strong>System</strong> is  <code>Athletick</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
 <h3 id="system-athletick" class="discrete">System: Athletick</h3>
-<div class="sect2">
-<h3 id="use-case-uc1-marking-attendance-of-players"><a class="link" href="#use-case-uc1-marking-attendance-of-players">C.1. Use case: UC1 - Marking attendance of players</a></h3>
-
+<h3 id="uc1-marking-attendance-of-players" class="discrete">UC1 - Marking attendance of players</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user"><a class="link" href="#actor-user">C.2. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -789,10 +928,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc2-delete-person" class="discrete">Use case: UC2 - Delete person</h3>
+<h3 id="uc2-delete-person" class="discrete">UC2 - Delete person</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-2"><a class="link" href="#actor-user-2">C.3. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -841,10 +980,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc3-key-in-performance-of-a-player" class="discrete">Use case: UC3 - Key in Performance of a Player</h3>
+<h3 id="uc3-key-in-performance-of-a-player" class="discrete">UC3 - Key in Performance of a Player</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-3"><a class="link" href="#actor-user-3">C.4. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -913,10 +1052,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc4-view-a-player-s-profile" class="discrete">Use case: UC4 - View a player’s profile</h3>
+<h3 id="uc4-view-a-player-s-profile" class="discrete">UC4 - View a player’s profile</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-4"><a class="link" href="#actor-user-4">C.5. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -965,10 +1104,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc5-add-a-person" class="discrete">Use case: UC5 - Add a person</h3>
+<h3 id="uc5-add-a-person" class="discrete">UC5 - Add a person</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-5"><a class="link" href="#actor-user-5">C.6. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -988,8 +1127,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none">
-<ul class="none">
+<div class="ulist">
+<ul>
 <li>
 <p>1a. Details are invalid (eg. not all fields are filled up)</p>
 <div class="ulist none">
@@ -1018,10 +1157,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc6-undo-a-command" class="discrete">Use case: UC6 - Undo a command</h3>
+<h3 id="uc6-undo-a-command" class="discrete">UC6 - Undo a command</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-6"><a class="link" href="#actor-user-6">C.7. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -1041,8 +1180,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none">
-<ul class="none">
+<div class="ulist">
+<ul>
 <li>
 <p>1a. There are no tasks to be undone.</p>
 <div class="ulist none">
@@ -1062,33 +1201,6 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>1b1. Athletick shows the most recent command that can be undone and undo</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. There are no tasks to be undone.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>Athletick shows an error message</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>1b. The most recent command cannot be undone</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1b1. Athletick shows the most recent command that can be undone and undo</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1098,10 +1210,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-uc7-redo-a-command" class="discrete">Use Case: UC7 - Redo a command</h3>
+<h3 id="uc7-redo-a-command" class="discrete">UC7 - Redo a command</h3>
+<div class="paragraph">
+<p>Actor: User</p>
 </div>
-<div class="sect2">
-<h3 id="actor-user-7"><a class="link" href="#actor-user-7">C.8. Actor: User</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -1138,10 +1250,6 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1159,9 +1267,6 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -1332,4 +1437,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 16:59:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 07:05:41 UTC</div></div></div></body></html>
