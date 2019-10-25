@@ -25,9 +25,10 @@
 <li><a href="#training-attendance-feature">3.1. Training &amp; Attendance feature</a></li>
 <li><a href="#filter-feature">3.2. Filter feature</a></li>
 <li><a href="#proposed-undo-redo-feature">3.3. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#select-feature">3.4. Select feature</a></li>
+<li><a href="#adding-editing-photo-feature">3.5. Adding/editing photo feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -696,20 +697,209 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="select-feature"><a class="link" href="#select-feature">3.4. Select feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>The select feature is facilitated by <code>SelectCommand</code> class. It extends <code>Command</code> and parses the arguments using
+<code>SelectCommandParser</code>. It implements the one operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandResult#execute()</code> - Executes the selectCommand which returns the person selected to be displayed in the UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other operations that were implemented to aid the <code>SelectCommand</code> feature are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#selectPerson()</code>&#8201;&#8212;&#8201;Returns the person that was stored.</p>
+</li>
+<li>
+<p><code>Model#storePerson(Person)</code>&#8201;&#8212;&#8201;Stores the person that was selected.</p>
+</li>
+<li>
+<p><code>Logic#getPerson()</code>&#8201;&#8212;&#8201;Retrieves the person that was selected to display their personal information in the UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the Model interface as <code>Model#selectPerson()</code> and <code>Model#storePerson
+(Person)</code> and in the Logic interface as <code>Logic#getPerson()</code>.</p>
+</div>
+<div class="paragraph">
+<p>An example usage scenario is given below which elaborates how the select command works at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes the <code>select 3</code> command to display the personal information of the 3rd person in the address
+book. When the command is executed, the person selected at the specified index will be stored in ModelManager as
+<code>selectedPerson</code> using the operation <code>Model#storePerson(Person)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. After the command has been executed, the selected person is retrieved in the MainWindow class. It checks
+whether a person has been selected and displays the selected person&#8217;s personal information.</p>
+</div>
+<div class="paragraph">
+<p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
+Firstly, the Ui component takes in the input from the user and allows the Logic component to parse the argument.
+After the argument has been parsed, the person is stored in the Model component which houses most of the data of the
+app. The Ui listens for any changes made to the Model data, and updates the Ui to display the selected person.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed"><a class="link" href="#aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed">Aspect: In what way is the personal information of the selected person going to be displayed</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Displaying it in a feature box.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Minimises the use of mouse and is in line with the other features that is utilizing the feature box.</p>
+</li>
+<li>
+<p>Cons: Aesthetic is not as good compared to the other alternatives.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Displaying it in a tab form.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Looks more organised compared to the other alternatives</p>
+</li>
+<li>
+<p>Cons: Not as intuitive to use as mouse has to be used to switch around tabs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 3: Displaying via a pop-up.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Looks neater and organised.</p>
+</li>
+<li>
+<p>Cons: Increase the use of mouse to close the window and may be distracting to user.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-how-to-select-a-person"><a class="link" href="#aspect-how-to-select-a-person">3.4.3. Aspect: How to select a person</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Choosing by the index number.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Intuitive to use and can be used with other commands such as <code>FindCommand</code> and <code>FilterCommand</code> to narrow
+down the list of people.</p>
+</li>
+<li>
+<p>Cons: Additional step of filtering before selecting a person.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Choosing by name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Can omit the filtering step and select the person directly.</p>
+</li>
+<li>
+<p>Cons: There may be 2 people with the same name and thus result in an error.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">3.5. Adding/editing photo feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.5.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The sub feature of <code>AddCommand</code> and <code>EditCommand</code> allows the inclusion of photo for a person. The sub feature is
+facilitated by <code>Photo</code>.</p>
+</div>
+<div class="paragraph">
+<p>This sub feature is similar to the other features such as <code>Name</code> and <code>Phone</code> which has a prefix <code>i/</code> followed by the
+file name (e.g. <code>i/default.png</code>). Prior to adding the photo of a person, the image file that is going to be used has to
+be in the <code>\src\main\resources\images</code> directory. <code>Photo</code> takes in the file name as a <code>String</code> and retrieves the
+photo to be added or edited from the directory that was mentioned previously.</p>
+</div>
+<div class="paragraph">
+<p><strong>File name restriction</strong>
+The file name of the images is restricted to alphanumerics only and the file format that will be used is <code>.png</code>. This
+is done to keep the file name simple.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.5.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-regular-expression-for-the-file-name"><a class="link" href="#aspect-regular-expression-for-the-file-name">Aspect: Regular expression for the file name</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): To use alphanumerics only.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Keeps it simple without the confusion of special characters.</p>
+</li>
+<li>
+<p>Cons:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Alphanumerics and special characters.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros</p>
+</li>
+<li>
+<p>Cons</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -740,7 +930,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1437,4 +1627,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 07:05:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 07:22:56 UTC</div></div></div></body></html>
