@@ -53,23 +53,16 @@ If you can type fast, Athletick can get your team management tasks done faster t
 <div class="paragraph">
 <p>Note the following symbols and formatting used in this document</p>
 </div>
-<div class="hdlist">
+<div class="admonitionblock important">
 <table>
 <tr>
-<td class="hdlist1">
-IMPORTANT
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
 </td>
-<td class="hdlist2">
-<p>This symbol indicates important information</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<code>mark-up</code>
-</td>
-<td class="hdlist2">
-<p>A grey highlight (called a mark-up) indicates that this is a command that can be typed into the
-command line and executed by the application.</p>
+<td class="content">
+This symbol indicates important information
+<code>mark-up</code>:: A grey highlight (called a mark-up) indicates that this is a command that can be typed into the
+command line and executed by the application.
 </td>
 </tr>
 </table>
@@ -112,6 +105,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">4. Features</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section explains how you can use the features in <strong>Athletick</strong>.
+The features are segregated by their main functions.</p>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -130,6 +127,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+</li>
+<li>
+<p><code>INDEX</code> refers to the athlete&#8217;s position in the active list.
+As the index can change depending on what filters are applied, refer to the current index on the sidebar.</p>
 </li>
 </ul>
 </div>
@@ -371,22 +372,35 @@ You can remove all the person’s tags by typing <code>t/</code> without specify
 </div>
 <div class="sect2">
 <h3 id="performance"><a class="link" href="#performance">4.3. Performance</a></h3>
+<div class="paragraph">
+<p>To help you keep track of your team&#8217;s performance,
+Athletick has a built-in performance tracker for you record and analyse your team&#8217;s performance.</p>
+</div>
+<div class="paragraph">
+<p>All you have to is add an event (see <a href="#adding-an-event-code-event-code">Section 4.3.1, &#8220;Adding an event : <code>event</code>&#8221;</a>),
+and then add records from timed trials under the event
+(see <a href="#recording-an-athlete-s-performance-code-performance-code">Section 4.3.2, &#8220;Recording an athlete’s performance : <code>performance</code>&#8221;</a>.</p>
+</div>
 <div class="sect3">
 <h4 id="adding-an-event-code-event-code"><a class="link" href="#adding-an-event-code-event-code">4.3.1. Adding an event : <code>event</code></a></h4>
 <div class="paragraph">
-<p>This command adds an event to Athletick, and will be used for storing your athletes’ performances.</p>
+<p>This command adds an event to <strong>Athletick</strong>, and will be used for storing your athletes’ performances.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type the event command in the following format.</p>
+<p>Let&#8217;s say that you want to start recording performances for the freestyle 50m.
+You will need to add the freestyle 50m event to <strong>Athletick</strong> first.</p>
+</div>
+<div class="paragraph">
+<p>Type the event command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>event NAME_OF_EVENT</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>event 50m freestyle</code></p>
+<p>Example: <code>event freestyle 50m</code></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -395,7 +409,8 @@ You can remove all the person’s tags by typing <code>t/</code> without specify
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Event names are case-insensitive (eg. <code>50m freestyle</code> and <code>50M freestyle</code> are considered the same
+Event names are case-insensitive (eg. <code>50<strong>m</strong> freestyle</code> and <code>50<strong>M</strong> freestyle</code> are considered
+the same
 events)
 </td>
 </tr>
@@ -406,32 +421,20 @@ events)
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addevent.png" alt="addevent" width="790">
+<img src="images/addevent.png" alt="addevent" width="250">
 </div>
 </div>
 <div class="paragraph">
-<p>If successfully added, the event name will be displayed in the result box.</p>
+<p>If successfully added, the result box will display the event name as shown above.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="recording-an-athlete-s-performance-code-performance-code"><a class="link" href="#recording-an-athlete-s-performance-code-performance-code">4.3.2. Recording an athlete’s performance : <code>performance</code></a></h4>
 <div class="paragraph">
-<p>This command adds your athlete’s performance for a certain event, on a certain day, to Athletick.</p>
+<p>This command records your athlete’s performance for a certain event, on a certain day, to <strong>Athletick</strong>.</p>
 </div>
 <div class="paragraph">
 <p>You will need the event name, athlete’s index, date of performance and timing of performance.</p>
-</div>
-<div class="paragraph">
-<p><strong>What you should do</strong></p>
-</div>
-<div class="paragraph">
-<p>Type in the command in the following format.</p>
-</div>
-<div class="paragraph">
-<p>Format : <code>performance INDEX e/EVENT_NAME d/DDMMYYYY t/TIMING</code></p>
-</div>
-<div class="paragraph">
-<p>Example : <code>event 5 e/50m freestyle d/22102019 t/24s</code></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -446,15 +449,76 @@ The event has to be created first. Otherwise, Athletick will prompt you to creat
 </table>
 </div>
 <div class="paragraph">
-<p><strong>What you should see</strong></p>
+<p>Let&#8217;s say you took a timed trial for Irfan on 22nd October 2019 under the freestyle 50m event,
+and he took 23.47 seconds to complete it. Now you want to store this record in <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>As seen in the yellow mark-up in the diagram below, Irfan is located at index 5 in the active list.</p>
+</div>
+<div class="paragraph">
+<p>Type in the command below, like so in the red mark-up in the same diagram, and press <code>Enter</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>performance INDEX e/EVENT_NAME d/DDMMYYYY t/TIMING</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>performance 5 e/freestyle 50m d/02102019 t/23.47</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addperformance.png" alt="addperformance" width="790">
+<img src="images/addperformance_wysd.png" alt="addperformance wysd" width="395">
 </div>
 </div>
 <div class="paragraph">
-<p>The performance details will be displayed in the result box.</p>
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully added, the performance details will be displayed in the result box (red mark-up).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addperformance_wyss.png" alt="addperformance wyss" width="395">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.3.3. Viewings events : <code>view performance</code></a></h4>
+<div class="paragraph">
+<p>This command gives you an overview of what events you have stored in <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you want to know what events you have added to <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type <code>view performance</code> in the command box, and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>view performance</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewperformance_wysd.png" alt="viewperformance wysd" width="220">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully executed, the success message will be displayed in the result box (red mark-up).</p>
+</div>
+<div class="paragraph">
+<p>The feature box (green mark-up) will display all your events saved in <strong>Athletick</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewperformance_wyss.png" alt="viewperformance wyss" width="395">
+</div>
 </div>
 </div>
 </div>
@@ -584,18 +648,6 @@ This command will change your athletes’ index numbers.
 <div class="paragraph">
 <p>This command filters your athletes based on their tags.</p>
 </div>
-<div class="paragraph">
-<p><strong>What you should do</strong></p>
-</div>
-<div class="paragraph">
-<p>Type in the filter command, followed by the tag that you want to filter by.</p>
-</div>
-<div class="paragraph">
-<p>Format : <code>filter TAG</code></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>filter butterfly</code></p>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -603,7 +655,7 @@ This command will change your athletes’ index numbers.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This command will change your athletes’ index numbers.
+This command will change your athletes’ <code>INDEX</code>.
 </td>
 </tr>
 </table>
@@ -621,15 +673,61 @@ This command is case-insensitive, so filtering by <code>captain</code> and <code
 </table>
 </div>
 <div class="paragraph">
-<p><strong>What you should see</strong></p>
+<p>Let&#8217;s say you want to see which athletes are butterfly swimmers
+(ie. you want to filter by the <code>butterfly</code> tag).</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the following command and press <code>Enter</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>filter TAG [TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>filter butterfly</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/filter.png" alt="filter" width="790">
+<img src="images/filter_wysd.png" alt="filter wysd" width="190">
 </div>
 </div>
 <div class="paragraph">
-<p>The athlete list in the left sidebar should only display athletes that contain the specified tag.</p>
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully executed,
+the success message with the number of athletes that contain your specified tag will be displayed in the result box (red mark-up).
+In the example given below, there are 3 athletes that have the <code>butterfly</code> tag.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter_wyss.png" alt="filter wyss" width="220">
+</div>
+</div>
+<div class="paragraph">
+<p>The diagram below shows the change in the active list when the filter is applied.
+Notice that the <code>INDEX</code> of the athletes have changed (eg. David has changed from 4 to 2).</p>
+</div>
+<div class="paragraph">
+<p>Subsequent commands that require <code>INDEX</code> will use the updated <code>INDEX</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter_change.png" alt="filter change" width="395">
+</div>
+</div>
+<div class="paragraph">
+<p>You are also able to filter by multiple tags.</p>
+</div>
+<div class="paragraph">
+<p>The diagram below shows the change in the active list with <code>filter butterfly freestyle</code> is applied.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter_change2.png" alt="filter change2" width="385">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1058,4 +1156,4 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 13:20:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 15:00:31 UTC</div></div></div></body></html>
