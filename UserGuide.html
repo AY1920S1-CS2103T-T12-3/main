@@ -16,12 +16,13 @@
 <ul class="sectlevel2">
 <li><a href="#team-data-entry">4.1. Team Data Entry</a></li>
 <li><a href="#training">4.2. Training</a></li>
-<li><a href="#performance">4.3. Performance</a></li>
-<li><a href="#calendar">4.4. Calendar</a></li>
-<li><a href="#athlete-management">4.5. Athlete Management</a></li>
-<li><a href="#miscellaneous">4.6. Miscellaneous</a></li>
-<li><a href="#upcoming-features">4.7. Upcoming features</a></li>
-<li><a href="#saving-the-data">4.8. Saving the data</a></li>
+<li><a href="#attendance">4.3. Attendance</a></li>
+<li><a href="#performance">4.4. Performance</a></li>
+<li><a href="#calendar">4.5. Calendar</a></li>
+<li><a href="#athlete-management">4.6. Athlete Management</a></li>
+<li><a href="#miscellaneous">4.7. Miscellaneous</a></li>
+<li><a href="#upcoming-features">4.8. Upcoming features</a></li>
+<li><a href="#saving-the-data">4.9. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -327,62 +328,157 @@ You can remove all the person’s tags by typing <code>t/</code> without specify
 </div>
 <div class="sect2">
 <h3 id="training"><a class="link" href="#training">4.2. Training</a></h3>
+<div class="paragraph">
+<p>Athletick allows you to record your team&#8217;s training sessions, so that you can track your team&#8217;s attendance and look
+at past training records.</p>
+</div>
+<div class="paragraph">
+<p>Add a training session by indicating members present (see
+<a href="#taking-attendance-of-a-training-session-by-athletes-present-code-training-code">Section 4.2.1, &#8220;Taking attendance of a training session by athletes present : <code>training</code>&#8221;</a>) or by indicating absent members
+(see <a href="#taking-attendance-of-a-training-session-by-members-absent-code-training-a-code">Section 4.2.2, &#8220;Taking attendance of a training session by members absent : <code>training -a</code>&#8221;</a>)</p>
+</div>
+<div class="paragraph">
+<p>After adding a training session, you can look at past trainings to check attendance on that date.</p>
+</div>
 <div class="sect3">
 <h4 id="taking-attendance-of-a-training-session-by-athletes-present-code-training-code"><a class="link" href="#taking-attendance-of-a-training-session-by-athletes-present-code-training-code">4.2.1. Taking attendance of a training session by athletes present : <code>training</code></a></h4>
 <div class="paragraph">
-<p>This command adds a training session on the specified day to Athletick.</p>
+<p>This command saves a training session to Athletick, and marks the team members indicated as attended.</p>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong></p>
+<p><strong>What you should do</strong>
+Let&#8217;s say you want to record a training session that took place on the 20th of October 2019 and only Alex and David
+attended. Type in the training command, date and the indexes of athletes who attended in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Type in the training command, followed by the indexes of athletes who attended.</p>
+<p>Format : <code>training [d/DDMMYYYY] #/INDEX [INDEX] [INDEX ] …</code></p>
 </div>
 <div class="paragraph">
-<p>Format : <code>attendance INDEX [INDEX] [INDEX ] …</code></p>
+<p>Examples : <code>training d/20102019 #/1 4</code> or <code>training #/1 3 4 7</code></p>
 </div>
-<div class="paragraph">
-<p>Examples : <code>training 1 2 3 5 9</code></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If no date is entered, the training will be recorded under today&#8217;s date.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/training_without_flag.png" alt="width:&quot;250">
+</div>
+</div>
+<div class="paragraph">
+<p>If successfully added, the result box will display the following result.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="taking-attendance-of-a-training-session-by-members-absent-code-training-a-code"><a class="link" href="#taking-attendance-of-a-training-session-by-members-absent-code-training-a-code">4.2.2. Taking attendance of a training session by members absent : <code>training -a</code></a></h4>
 <div class="paragraph">
-<p>This command adds a training session on the specified day to Athletick.</p>
+<p>This command saves a training session to Athletick, and marks the team members indicated as absent.</p>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong></p>
+<p><strong>What you should do</strong>
+Let&#8217;s say you want to record a training session that took place today and everyone attended except Charlotte. Type in
+the training command, the absent flag, date and the indexes of athletes who were absent in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Type in the training command, followed by the indexes of players who were absent.</p>
+<p>Format : <code>training -a [d/DDMMYYYY] #/INDEX [INDEX] [INDEX ] …</code></p>
 </div>
 <div class="paragraph">
-<p>Format : <code>attendance -a INDEX [INDEX] [INDEX ] …​</code></p>
+<p>Examples : <code>training -a d/23112019 #/3 6</code> or <code>training -a #/2</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If no date is entered, the training will be recorded under today&#8217;s date.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Examples : <code>training -a 2 4</code></p>
+<p><strong>What you should see</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/training_with_flag.png" alt="width:&quot;250">
+</div>
 </div>
 <div class="paragraph">
-<p><strong>What you will see</strong></p>
+<p>If successfully added, the result box will display the following result.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="performance"><a class="link" href="#performance">4.3. Performance</a></h3>
+<h3 id="attendance"><a class="link" href="#attendance">4.3. Attendance</a></h3>
+<div class="paragraph">
+<p>To save you the trouble of manually checking your team member&#8217;s attendance, Athletick has an attendance tracker that
+checks your team&#8217;s overall attendance rate.</p>
+</div>
+<div class="paragraph">
+<p>Check the attendance of an athlete (see <a href="#check-attendance-of-an-athlete-code-attendance-code">Section 4.3.1, &#8220;Check attendance of an athlete : <code>attendance</code>&#8221;</a>) or check overall team
+attendance (see: &lt;&lt;&gt;&gt;)</p>
+</div>
+<div class="sect3">
+<h4 id="check-attendance-of-an-athlete-code-attendance-code"><a class="link" href="#check-attendance-of-an-athlete-code-attendance-code">4.3.1. Check attendance of an athlete : <code>attendance</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to check the attendance of an Athlete.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong>
+Let&#8217;s say you notice that Alex hasn&#8217;t been attending recent trainings and would like to check on his overall
+attendance rate. Type the attendance command, athlete index and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>attendance INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples: <code>attendance 1</code></p>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/attendance_alex.png" alt="width:&quot;250">
+</div>
+</div>
+<div class="paragraph">
+<p>If the command is successful, the athlete&#8217;s name and attendance will be displayed in the result box.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="check-overall-attendance-of-team-view-attendance-code-coming-in-v1-4-code"><a class="link" href="#check-overall-attendance-of-team-view-attendance-code-coming-in-v1-4-code">4.3.2. Check overall attendance of team : ` view attendance` <code>Coming in v1.4</code></a></h4>
+<div class="paragraph">
+<p>Coming in v1.4</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="performance"><a class="link" href="#performance">4.4. Performance</a></h3>
 <div class="paragraph">
 <p>To help you keep track of your team&#8217;s performance,
 Athletick has a built-in performance tracker for you record and analyse your team&#8217;s performance.</p>
 </div>
 <div class="paragraph">
-<p>All you have to is add an event (see <a href="#adding-an-event-code-event-code">Section 4.3.1, &#8220;Adding an event : <code>event</code>&#8221;</a>),
+<p>All you have to is add an event (see <a href="#adding-an-event-code-event-code">Section 4.4.1, &#8220;Adding an event : <code>event</code>&#8221;</a>),
 and then add records from timed trials under the event
-(see <a href="#recording-an-athlete-s-performance-code-performance-code">Section 4.3.2, &#8220;Recording an athlete’s performance : <code>performance</code>&#8221;</a>.</p>
+(see <a href="#recording-an-athlete-s-performance-code-performance-code">Section 4.4.2, &#8220;Recording an athlete’s performance : <code>performance</code>&#8221;</a>).</p>
 </div>
 <div class="sect3">
-<h4 id="adding-an-event-code-event-code"><a class="link" href="#adding-an-event-code-event-code">4.3.1. Adding an event : <code>event</code></a></h4>
+<h4 id="adding-an-event-code-event-code"><a class="link" href="#adding-an-event-code-event-code">4.4.1. Adding an event : <code>event</code></a></h4>
 <div class="paragraph">
 <p>This command adds an event to <strong>Athletick</strong>, and will be used for storing your athletes’ performances.</p>
 </div>
@@ -429,7 +525,7 @@ events)
 </div>
 </div>
 <div class="sect3">
-<h4 id="recording-an-athlete-s-performance-code-performance-code"><a class="link" href="#recording-an-athlete-s-performance-code-performance-code">4.3.2. Recording an athlete’s performance : <code>performance</code></a></h4>
+<h4 id="recording-an-athlete-s-performance-code-performance-code"><a class="link" href="#recording-an-athlete-s-performance-code-performance-code">4.4.2. Recording an athlete’s performance : <code>performance</code></a></h4>
 <div class="paragraph">
 <p>This command records your athlete’s performance for a certain event, on a certain day, to <strong>Athletick</strong>.</p>
 </div>
@@ -485,7 +581,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.3.3. Viewings events : <code>view performance</code></a></h4>
+<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.4.3. Viewings events : <code>view performance</code></a></h4>
 <div class="paragraph">
 <p>This command gives you an overview of what events you have stored in <strong>Athletick</strong>.</p>
 </div>
@@ -523,9 +619,9 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 </div>
 <div class="sect2">
-<h3 id="calendar"><a class="link" href="#calendar">4.4. Calendar</a></h3>
+<h3 id="calendar"><a class="link" href="#calendar">4.5. Calendar</a></h3>
 <div class="sect3">
-<h4 id="viewing-calendar-displaying-training-and-performance-entries-code-view-calendar-code"><a class="link" href="#viewing-calendar-displaying-training-and-performance-entries-code-view-calendar-code">4.4.1. Viewing calendar displaying training and performance entries : <code>view calendar</code></a></h4>
+<h4 id="viewing-calendar-displaying-training-and-performance-entries-code-view-calendar-code"><a class="link" href="#viewing-calendar-displaying-training-and-performance-entries-code-view-calendar-code">4.5.1. Viewing calendar displaying training and performance entries : <code>view calendar</code></a></h4>
 <div class="paragraph">
 <p>This command displays calendar which indicates days with training or performance entries.</p>
 </div>
@@ -564,9 +660,9 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 </div>
 <div class="sect2">
-<h3 id="athlete-management"><a class="link" href="#athlete-management">4.5. Athlete Management</a></h3>
+<h3 id="athlete-management"><a class="link" href="#athlete-management">4.6. Athlete Management</a></h3>
 <div class="sect3">
-<h4 id="viewing-more-details-of-a-team-member-code-select-code"><a class="link" href="#viewing-more-details-of-a-team-member-code-select-code">4.5.1. Viewing more details of a team member : <code>select</code></a></h4>
+<h4 id="viewing-more-details-of-a-team-member-code-select-code"><a class="link" href="#viewing-more-details-of-a-team-member-code-select-code">4.6.1. Viewing more details of a team member : <code>select</code></a></h4>
 <div class="paragraph">
 <p>This command shows you details of a specific athlete.</p>
 </div>
@@ -599,7 +695,7 @@ person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-athletes-alphabetically-code-sort-code"><a class="link" href="#sorting-athletes-alphabetically-code-sort-code">4.5.2. Sorting athletes alphabetically : <code>sort</code></a></h4>
+<h4 id="sorting-athletes-alphabetically-code-sort-code"><a class="link" href="#sorting-athletes-alphabetically-code-sort-code">4.6.2. Sorting athletes alphabetically : <code>sort</code></a></h4>
 <div class="paragraph">
 <p>This command sorts your athletes alphabetically by their name.</p>
 </div>
@@ -644,7 +740,7 @@ This command will change your athletes’ index numbers.
 </div>
 </div>
 <div class="sect3">
-<h4 id="filtering-athletes-by-their-tags-code-filter-code"><a class="link" href="#filtering-athletes-by-their-tags-code-filter-code">4.5.3. Filtering athletes by their tags : <code>filter</code></a></h4>
+<h4 id="filtering-athletes-by-their-tags-code-filter-code"><a class="link" href="#filtering-athletes-by-their-tags-code-filter-code">4.6.3. Filtering athletes by their tags : <code>filter</code></a></h4>
 <div class="paragraph">
 <p>This command filters your athletes based on their tags.</p>
 </div>
@@ -731,7 +827,7 @@ Notice that the <code>INDEX</code> of the athletes have changed (eg. David has c
 </div>
 </div>
 <div class="sect3">
-<h4 id="finding-athletes-by-their-name-code-find-code"><a class="link" href="#finding-athletes-by-their-name-code-find-code">4.5.4. Finding athletes by their name : <code>find</code></a></h4>
+<h4 id="finding-athletes-by-their-name-code-find-code"><a class="link" href="#finding-athletes-by-their-name-code-find-code">4.6.4. Finding athletes by their name : <code>find</code></a></h4>
 <div class="paragraph">
 <p>This command find athletes whose name contains any of the given keywords.</p>
 </div>
@@ -785,9 +881,9 @@ This command is case-insensitive, so finding by <code>Irfan</code> and <code>irf
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous"><a class="link" href="#miscellaneous">4.6. Miscellaneous</a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">4.7. Miscellaneous</a></h3>
 <div class="sect3">
-<h4 id="clear-all-data-code-clear-code"><a class="link" href="#clear-all-data-code-clear-code">4.6.1. Clear all data : <code>clear</code></a></h4>
+<h4 id="clear-all-data-code-clear-code"><a class="link" href="#clear-all-data-code-clear-code">4.7.1. Clear all data : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>This command clears all the existing data in Athletick.</p>
 </div>
@@ -811,7 +907,7 @@ This command is case-insensitive, so finding by <code>Irfan</code> and <code>irf
 </div>
 </div>
 <div class="sect3">
-<h4 id="get-help-on-how-to-use-athletick-code-help-code"><a class="link" href="#get-help-on-how-to-use-athletick-code-help-code">4.6.2. Get help on how to use Athletick: <code>help</code></a></h4>
+<h4 id="get-help-on-how-to-use-athletick-code-help-code"><a class="link" href="#get-help-on-how-to-use-athletick-code-help-code">4.7.2. Get help on how to use Athletick: <code>help</code></a></h4>
 <div class="paragraph">
 <p>This command provides a user guide for Athletick.</p>
 </div>
@@ -837,7 +933,7 @@ This command is case-insensitive, so finding by <code>Irfan</code> and <code>irf
 </div>
 </div>
 <div class="sect3">
-<h4 id="undoing-a-previous-command-code-undo-code"><a class="link" href="#undoing-a-previous-command-code-undo-code">4.6.3. Undoing a previous command : <code>undo</code></a></h4>
+<h4 id="undoing-a-previous-command-code-undo-code"><a class="link" href="#undoing-a-previous-command-code-undo-code">4.7.3. Undoing a previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>This command restores Athletick to the state before the previous command was executed.</p>
 </div>
@@ -923,7 +1019,7 @@ Since <code>list</code> command is not an undoable command, executing <code>undo
 </div>
 </div>
 <div class="sect3">
-<h4 id="redoing-an-code-undo-code-command-code-redo-code"><a class="link" href="#redoing-an-code-undo-code-command-code-redo-code">4.6.4. Redoing an <code>undo</code> command : <code>redo</code></a></h4>
+<h4 id="redoing-an-code-undo-code-command-code-redo-code"><a class="link" href="#redoing-an-code-undo-code-command-code-redo-code">4.7.4. Redoing an <code>undo</code> command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>This command reverses the most recent <code>undo</code> command.</p>
 </div>
@@ -984,26 +1080,26 @@ Executing the <code>redo</code> command again will reverse the second-last <code
 </div>
 </div>
 <div class="sect2">
-<h3 id="upcoming-features"><a class="link" href="#upcoming-features">4.7. Upcoming features</a></h3>
+<h3 id="upcoming-features"><a class="link" href="#upcoming-features">4.8. Upcoming features</a></h3>
 <div class="sect3">
-<h4 id="team-roster-coming-in-v2-0"><a class="link" href="#team-roster-coming-in-v2-0">4.7.1. Team roster [coming in v2.0]</a></h4>
+<h4 id="team-roster-coming-in-v2-0"><a class="link" href="#team-roster-coming-in-v2-0">4.8.1. Team roster [coming in v2.0]</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="performance-tracker-coming-in-v2-0"><a class="link" href="#performance-tracker-coming-in-v2-0">4.7.2. Performance tracker [coming in v2.0]</a></h4>
+<h4 id="performance-tracker-coming-in-v2-0"><a class="link" href="#performance-tracker-coming-in-v2-0">4.8.2. Performance tracker [coming in v2.0]</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="importing-data-code-import-code-coming-in-v2-0"><a class="link" href="#importing-data-code-import-code-coming-in-v2-0">4.7.3. Importing data : <code>import</code> [coming in v2.0]</a></h4>
+<h4 id="importing-data-code-import-code-coming-in-v2-0"><a class="link" href="#importing-data-code-import-code-coming-in-v2-0">4.8.3. Importing data : <code>import</code> [coming in v2.0]</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="exporting-data-code-export-code-coming-in-v2-0"><a class="link" href="#exporting-data-code-export-code-coming-in-v2-0">4.7.4. Exporting data : <code>export</code> [coming in v2.0]</a></h4>
+<h4 id="exporting-data-code-export-code-coming-in-v2-0"><a class="link" href="#exporting-data-code-export-code-coming-in-v2-0">4.8.4. Exporting data : <code>export</code> [coming in v2.0]</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.8. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.9. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1156,4 +1252,4 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 09:59:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 14:40:35 UTC</div></div></div></body></html>
