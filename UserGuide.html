@@ -841,29 +841,6 @@ This command is case-insensitive, so finding by <code>Irfan</code> and <code>irf
 <div class="paragraph">
 <p>This command restores Athletick to the state before the previous command was executed.</p>
 </div>
-<div class="paragraph">
-<p>Let’s say you have accidentally deleted an athlete’s contact (Mohamad Ali) from your list.</p>
-</div>
-<div class="paragraph">
-<p>Instead of having to re-enter Mohamad Ali’s contact information all over again,
-you can easily restore all of Mohamad Ali’s details by <code>undo</code>-ing the <code>delete</code> command that you have just entered.</p>
-</div>
-<div class="paragraph">
-<p><strong>What you should do</strong></p>
-</div>
-<div class="paragraph">
-<p>Type undo into the command box, and press Enter to execute it.</p>
-</div>
-<div class="paragraph">
-<p>Format : <code>undo</code></p>
-</div>
-<div class="paragraph">
-<p><strong>What you should see</strong></p>
-</div>
-<div class="paragraph">
-<p>The result box will display the message “Undo Command Success!” and you can check that Mohamad Ali’s
-contact information is visible in the list again!</p>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -871,7 +848,7 @@ contact information is visible in the list again!</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Take note that the undo feature only applies to undoable commands.
+Take note that the <code>undo</code> feature only applies to undoable commands.
 Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code>, <code>attendance</code> and <code>training</code>.
 </td>
 </tr>
@@ -885,8 +862,8 @@ Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</co
 </td>
 <td class="content">
 The <code>undo</code> command will not be able to undo commands that cannot be undone.
-Let’s say you have executed a list command to list out all the athletes information in Athletick.
-If you were to execute the <code>undo</code> command now, the <code>undo</code> command will fail because list is not an undoable command,
+Let’s say you have executed a <code>list</code> command to list out all the athletes information in Athletick.
+If you were to execute the <code>undo</code> command now, the <code>undo</code> command will fail because <code>list</code> is not an undoable command,
 and that no doable commands were executed before this.
 </td>
 </tr>
@@ -921,34 +898,44 @@ Since <code>list</code> command is not an undoable command, executing <code>undo
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="redoing-an-code-undo-code-command-code-redo-code"><a class="link" href="#redoing-an-code-undo-code-command-code-redo-code">4.6.4. Redoing an <code>undo</code> command : <code>redo</code></a></h4>
 <div class="paragraph">
-<p>This command reverses the most recent <code>undo</code> command.</p>
+<p>Let’s say you have accidentally deleted an athlete’s contact (Mohamad Ali) from your list.</p>
 </div>
 <div class="paragraph">
-<p>Let’s say you have executed the <code>delete</code> command to delete Mohamad Ali from your list.
-You may undo this action and restore Mohamad Ali’s information by executing the <code>undo</code> command. (See Undoing a previous command.)</p>
-</div>
-<div class="paragraph">
-<p>Then, if you decide that you want the contact to remain deleted after all,
-you may very quickly do so by executing the <code>redo</code> command to reverse the <code>undo</code> command that you had just executed.</p>
+<p>Instead of having to re-enter Mohamad Ali’s contact information all over again,
+you can easily restore all of Mohamad Ali’s details by <code>undo</code>-ing the <code>delete</code> command that you have just entered.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type redo into the command box, and press Enter to execute it.</p>
+<p>Type <code>undo</code> into the command box, and press Enter to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>redo</code></p>
+<p>Format : <code>undo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undo.png" alt="undo" width="790">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>The result box will display the message “Redo success!” and Mohamad Ali is once again gone from the list!</p>
+<p>The result box will display the message “Undo Command Success” and you can check that Mohamad Ali’s
+contact information is visible in the list again!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/afterUndo.png" alt="afterUndo" width="790">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-an-code-undo-code-command-code-redo-code"><a class="link" href="#redoing-an-code-undo-code-command-code-redo-code">4.6.4. Redoing an <code>undo</code> command : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>This command reverses the most recent <code>undo</code> command.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -975,11 +962,44 @@ The <code>redo</code> command reverses previous <code>undo</code> commands in re
 Let’s say that you have executed the <code>clear</code> command, followed by the <code>add</code> command.
 Executing the <code>undo</code> command now will reverse the <code>add</code> command.
 Executing the <code>undo</code> command again will reverse the <code>clear</code> command as well.
-Following this, executing the <code>redo</code> command will reverse the last <code>undo</code> command and reapply the <code>clear</code> command.
-Executing the <code>redo</code> command again will reverse the second-last <code>undo</code> command and reapply the <code>add</code> command.
+Following this, executing the <code>redo</code> command will reverse the last <code>undo</code> command and re-execute the <code>clear</code> command.
+Executing the <code>redo</code> command again will reverse the second-last <code>undo</code> command and re-execute the <code>add</code> command.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Let’s say you have executed the <code>delete</code> command to delete Mohamad Ali from your list.
+You may undo this action and restore Mohamad Ali’s information by executing the <code>undo</code> command. (See Undoing a previous command.)</p>
+</div>
+<div class="paragraph">
+<p>Then, if you decide that you want the contact to remain deleted after all,
+you may very quickly do so by executing the <code>redo</code> command to reverse the <code>undo</code> command that you had just executed.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type <code>redo</code> into the command box, and press Enter to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>redo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/redo.png" alt="redo" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>The result box will display the message “Redo Command Success” and Mohamad Ali is once again gone from the list!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/afterUndo.png" alt="afterUndo" width="790">
+</div>
 </div>
 </div>
 </div>
@@ -1156,4 +1176,4 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 09:28:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 09:31:06 UTC</div></div></div></body></html>
