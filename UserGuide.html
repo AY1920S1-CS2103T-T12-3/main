@@ -145,30 +145,65 @@ As the index can change depending on what filters are applied, refer to the curr
 <p>This command adds an athlete to Athletick.</p>
 </div>
 <div class="paragraph">
+<p>Let&#8217;s say John Doe just joined the team and you want to add him to Athletick so that you are able to track his
+attendance and performance.</p>
+</div>
+<div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
 <p>Type the athlete&#8217;s particulars in the format given below.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p>Format : <code>add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203; [i/IMAGE]</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Take note that if you want to add an image of John when you are adding him to Athletick, make sure that
+the image is in the <code>images</code> folder.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You can include any number of tags (zero tags are also allowed) to an athlete and the addition of an image
+is optional.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Example: <code>add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/backstroke</code></p>
+<p>Example: <code>add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/backstroke i/john.png</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/beforeAdd.png" alt="beforeAdd" width="790">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addcommand.png" alt="addcommand" width="790">
+<img src="images/afterAdd.png" alt="afterAdd" width="790">
 </div>
 </div>
 <div class="paragraph">
 <p>If successfully added, the details of the added athlete will be displayed in the result box.</p>
 </div>
 <div class="paragraph">
-<p>The athlete will be shown in team list.</p>
+<p>The athlete will be shown in the team list.</p>
 </div>
 </div>
 <div class="sect3">
@@ -207,7 +242,7 @@ The index refers to the index number shown in the displayed person list.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-️The index must be a positive integer 1, 2, 3, …​
+The index must be a positive integer 1, 2, 3, …​
 </td>
 </tr>
 </table>
@@ -233,7 +268,7 @@ The index refers to the index number shown in the displayed person list.
 <p>This command edits the details of an existing athlete in Athletick.</p>
 </div>
 <div class="paragraph">
-<p>All the details of an athlete (name, phone number, email, address, tags) can be edited.</p>
+<p>All the details of an athlete (name, phone number, email, address, tags, image) can be edited.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
@@ -242,13 +277,18 @@ The index refers to the index number shown in the displayed person list.
 <p>Type the edit command in the following format, using the relevant prefixes to edit the appropriate details.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>edit INDEX n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] t/[TAGS]</code></p>
+<p>Format: <code>edit INDEX n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] t/[TAGS] i/[IMAGE]</code></p>
 </div>
 <div class="paragraph">
 <p>In order to edit Roy Balakrishnan&#8217;s name to Shawn, type in the following.</p>
 </div>
 <div class="paragraph">
 <p>Example: <code>edit 6 n/Shawn</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/beforeEdit.png" alt="beforeEdit" width="790">
+</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -310,12 +350,24 @@ You can remove all the person’s tags by typing <code>t/</code> without specify
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When editing the image, make sure that the image you are replacing with is in the <code>images</code> folder.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/editcommand.png" alt="editcommand" width="790">
+<img src="images/afterEdit.png" alt="afterEdit" width="790">
 </div>
 </div>
 <div class="paragraph">
@@ -664,7 +716,10 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 <div class="sect3">
 <h4 id="viewing-more-details-of-a-team-member-code-select-code"><a class="link" href="#viewing-more-details-of-a-team-member-code-select-code">4.6.1. Viewing more details of a team member : <code>select</code></a></h4>
 <div class="paragraph">
-<p>This command shows you details of a specific athlete.</p>
+<p>This command shows the profile of the athlete that you have selected.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you want to view David&#8217;s personal information.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
@@ -676,22 +731,46 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 <p>Format : <code>select INDEX</code></p>
 </div>
 <div class="paragraph">
-<p>Example : <code>select 1</code></p>
+<p>Example : <code>select 4</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/beforeSelect.png" alt="beforeSelect" width="790">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
+<div class="paragraph">
+<p>The message “Person selected!” will be displayed in the result box to indicate that you have selected the
+athlete.</p>
+</div>
+<div class="paragraph">
+<p>In the feature box, the personal information of the athlete will be displayed as shown.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="images/select.png" alt="select" width="790">
+<img src="images/afterSelect.png" alt="afterSelect" width="790">
 </div>
 </div>
-<div class="paragraph">
-<p>The message “person selected!” will be displayed in the result box to indicate that you have selected the
-person.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If the image of the selected athlete is not appearing as shown below, take note that the image file is not in the
+<code>images</code> folder. You may refer to <strong>Section 4.1.1. "Adding an athlete"</strong> on where to include the image files which are
+going to be used and <strong>Section 4.1.3. Editing an athlete"</strong> to understand further how to edit the image of an athlete.
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>In the feature box, all the information of the athlete will be displayed as shown.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/emptyImage.png" alt="emptyImage" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1114,6 +1193,48 @@ There is no need to save manually.</p>
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
+<div class="paragraph">
+<p><strong>Q</strong>: How do I add my image files to the <code>images</code> folder?<br>
+<strong>A</strong>: Make sure that the <code>images</code> folder is in the same directory as the Athletick executable jar file. If the
+<code>images</code> folder is not created, the following steps will guide you through the creating of the <code>images</code> folder and
+how to add images into the folder:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a folder named <code>images</code> in the same directory as your executable jar file.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/creatingFile.png" alt="creatingFile" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure that the file name is correct.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/imageFile.png" alt="imageFile" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the image files that you want to use into the folder.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addingPhotos.png" alt="addingPhotos" width="790">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1126,7 +1247,7 @@ There is no need to save manually.</p>
 Add athlete
 </td>
 <td class="hdlist2">
-<p><code>add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p><code>add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203; i/IMAGE</code></p>
 </td>
 </tr>
 <tr>
@@ -1142,7 +1263,7 @@ Delete athlete
 Edit athlete
 </td>
 <td class="hdlist2">
-<p><code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p><code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203; i/IMAGE</code></p>
 </td>
 </tr>
 <tr>
@@ -1252,4 +1373,4 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 14:40:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 14:59:52 UTC</div></div></div></body></html>
