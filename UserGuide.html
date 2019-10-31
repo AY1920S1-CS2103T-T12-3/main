@@ -94,7 +94,7 @@ command line and executed by the application.
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/Gui.PNG" alt="Gui" width="790">
 </div>
 </div>
 </li>
@@ -714,7 +714,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </ol>
 </div>
 <div class="sect3">
-<h4 id="viewing-the-calendar-code-view-calendar-code"><a class="link" href="#viewing-the-calendar-code-view-calendar-code">4.5.1. Viewing the calendar : <code>view calendar</code></a></h4>
+<h4 id="viewing-the-calendar-code-view-calendar-code"><a class="link" href="#viewing-the-calendar-code-view-calendar-code">4.5.1. Viewing the calendar: <code>view calendar</code></a></h4>
 <div class="paragraph">
 <p>This command displays the calendar for the current month.</p>
 </div>
@@ -729,7 +729,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar1.png" alt="calendar1">
+<img src="images/calendar1.PNG" alt="calendar1">
 </div>
 </div>
 <div class="paragraph">
@@ -740,7 +740,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar2.png" alt="calendar2">
+<img src="images/calendar2.PNG" alt="calendar2">
 </div>
 </div>
 <div class="paragraph">
@@ -748,7 +748,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar3.png" alt="calendar3">
+<img src="images/calendar3.PNG" alt="calendar3">
 </div>
 </div>
 <div class="paragraph">
@@ -759,11 +759,14 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar4.png" alt="calendar4">
+<img src="images/calendar4.PNG" alt="calendar4">
 </div>
 </div>
 <div class="paragraph">
-<p>You may use the left and right buttons beside header 2 to navigate to the previous or next month. In the calendar, days with training entries are marked with an orange dot indicator, and days with performance entries are marked with a purple dot indicator. Days with both training and performance entries are marked with both indicators.</p>
+<p>You may use the left and right buttons beside header 2 to navigate to the previous or next month.</p>
+</div>
+<div class="paragraph">
+<p>With reference to the diagram above, days with training entries are marked with a green dot indicator, and days with performance entries are marked with a purple dot indicator. Days with both training and performance entries are marked with both indicators. Today&#8217;s date (e.g. 31 October 2019) is marked with a blue circle.</p>
 </div>
 </div>
 <div class="sect3">
@@ -787,66 +790,116 @@ Instead of clicking the left arrow over 20 times, you can immediately jump to yo
 <div class="paragraph">
 <p>Format: <code>calendar MMYYYY</code></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>MM</code> provided has to be within the range <code>01</code> to <code>12</code> for the command to execute successfully
+<code>MM</code> provided has to be within the range <code>01</code> to <code>12</code> for the command to execute successfully (<code>0</code> must be included in front of single-digit numbers).
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Example: <code>view 102017</code></p>
+<p>Example: <code>calendar 102017</code></p>
 </div>
 <div class="paragraph">
-<p>Type <code>view 102017</code> into the command box, and press <kbd>enter</kbd> to execute it.</p>
+<p>Type <code>calendar 102017</code> into the command box, and press <kbd>enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar1.png" alt="calendar1">
+<img src="images/calendar5.PNG" alt="calendar5">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>The result box will display the message "Viewing your calendar".</p>
+<p>The result box will display the message "Viewing calendar for: October 2017".</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar2.png" alt="calendar2">
+<img src="images/calendar6.PNG" alt="calendar6">
 </div>
 </div>
 <div class="paragraph">
-<p>Additionally, the feature box will display the calendar for the current month (e.g. October).</p>
+<p>Additionally, the feature box will display the calendar for the selected month and year (e.g. October 2017).</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/calendar3.png" alt="calendar3">
+<img src="images/calendar7.PNG" alt="calendar7">
 </div>
-</div>
-<div class="paragraph">
-<p>Header 1 displays today’s day and date.</p>
-</div>
-<div class="paragraph">
-<p>Header 2 displays the month and year you are currently viewing.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/calendar4.png" alt="calendar4">
-</div>
-</div>
-<div class="paragraph">
-<p>You may use the left and right buttons beside header 2 to navigate to the previous or next month. In the calendar, days with training entries are marked with an orange dot indicator, and days with performance entries are marked with a purple dot indicator. Days with both training and performance entries are marked with both indicators.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-training-performance-details-for-a-specific-date"><a class="link" href="#viewing-training-performance-details-for-a-specific-date">4.5.3. Viewing training / performance details for a specific date</a></h4>
-
+<h4 id="viewing-training-performance-details-for-a-specific-date-code-calendar-ddmmyyyy-code"><a class="link" href="#viewing-training-performance-details-for-a-specific-date-code-calendar-ddmmyyyy-code">4.5.3. Viewing training / performance details for a specific date: <code>calendar DDMMYYYY</code></a></h4>
+<div class="paragraph">
+<p>This command displays the training and performance details entered on a specific date.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you have entered both training and performance records into <strong>Athletick</strong> on 31 October 2019, and you would like to view these records.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command <code>calendar</code> followed by the desired date in the format <code>DDMMYYYY</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>calendar DDMMYYYY</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>MM</code> provided has to be within the range <code>01</code> to <code>12</code> for the command to execute successfully (<code>0</code> must be included in front of single-digit numbers).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example: <code>calendar 31102019</code></p>
+</div>
+<div class="paragraph">
+<p>Type <code>calendar 31102019</code> into the command box, and press <kbd>enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/calendar8.png" alt="calendar8">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>The result box will display the message "Viewing details for: 31st October 2019".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/calendar9.PNG" alt="calendar9">
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box will display the training and performance details recorded on 31 October 2019.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/calendar10.PNG" alt="calendar10">
+</div>
+</div>
+<div class="paragraph">
+<p>The blue vertical scrollbar on the right may be used to scroll down if the list of training and performance details is very long.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/calendar11.PNG" alt="calendar11">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -914,16 +967,22 @@ which are going to be used and <strong>Section 4.1.3. "Editing an athlete"</stro
 <div class="sect3">
 <h4 id="sorting-athletes-alphabetically-code-sort-code"><a class="link" href="#sorting-athletes-alphabetically-code-sort-code">4.6.2. Sorting athletes alphabetically : <code>sort</code></a></h4>
 <div class="paragraph">
-<p>This command sorts your athletes alphabetically by their name.</p>
+<p>This command sorts your <strong>Athletick</strong> list alphabetically by the athletes' name.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>sort</code> command is case-insensitive.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong></p>
-</div>
-<div class="paragraph">
-<p>Type in the following command and press enter.</p>
-</div>
-<div class="paragraph">
-<p>Format : <code>sort</code></p>
+<p>Let&#8217;s say you have just added 2 new athletes named Aaron and Bala. These new athletes are added to the bottom of the list. Now you want to sort the list to put these players in their correct positions alphabetically.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -938,22 +997,32 @@ This command will change your athletes’ index numbers.
 </table>
 </div>
 <div class="paragraph">
-<p><strong>What you should see</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/beforesort.png" alt="beforesort" width="790">
-</div>
-<div class="title">Figure 1. Before sorting, notice that John Doe is last in the list.</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/aftersort.png" alt="aftersort" width="790">
-</div>
-<div class="title">Figure 2. After sorting, notice than John is now between Irfan and Roy (ie. names are in alphabetical order).</div>
+<p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>The athlete list in the left sidebar should be alphabetically listed now.</p>
+<p>Type <code>sort</code> into the command box and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>sort</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort1.PNG" alt="sort1">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>The result box will display the message "Sorted your team list in alphabetical order."</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort2.PNG" alt="sort2">
+</div>
+</div>
+<div class="paragraph">
+<p>As seen in the diagram, Aaron and Bala are now in their correct positions and the indexes of all athletes in the list have been updated.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1542,4 +1611,4 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 15:05:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 15:56:51 UTC</div></div></div></body></html>
