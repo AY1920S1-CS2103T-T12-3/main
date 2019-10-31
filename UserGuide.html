@@ -21,12 +21,8 @@
 <li><a href="#calendar">4.5. Calendar</a></li>
 <li><a href="#athlete-management">4.6. Athlete Management</a></li>
 <li><a href="#miscellaneous">4.7. Miscellaneous</a></li>
-<li><a href="#upcoming-features">4.8. Upcoming features</a></li>
-<li><a href="#saving-the-data">4.9. Saving the data</a></li>
 </ul>
 </li>
-<li><a href="#faq">5. FAQ</a></li>
-<li><a href="#command-summary">6. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -1131,25 +1127,7 @@ This command is case-insensitive, so finding by <code>Irfan</code> and <code>irf
 <h4 id="undoing-a-previous-command-code-undo-code"><a class="link" href="#undoing-a-previous-command-code-undo-code">4.7.3. Undoing a previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>This command restores Athletick to the state before the previous command was executed.
-Let’s say you have accidentally deleted an athlete’s contact (Mohamad Ali) from your list.
-Instead of having to re-enter Mohamad Ali’s contact information all over again,
-you can easily restore all of Mohamad Ali’s details by <code>undo</code>-ing the <code>delete</code> command that you have just entered.</p>
-</div>
-<div class="paragraph">
-<p><strong>What you should do</strong></p>
-</div>
-<div class="paragraph">
-<p>Type undo into the command box, and press Enter to execute it.</p>
-</div>
-<div class="paragraph">
-<p>Format : <code>undo</code></p>
-</div>
-<div class="paragraph">
-<p><strong>What you should see</strong></p>
-</div>
-<div class="paragraph">
-<p>The result box will display the message “Undo Command Success!” and you can check that Mohamad Ali’s
-contact information is visible in the list again!</p>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1158,7 +1136,7 @@ contact information is visible in the list again!</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Take note that the undo feature only applies to undoable commands.
+Take note that the <code>undo</code> feature only applies to undoable commands.
 Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code>, <code>attendance</code> and <code>training</code>.
 </td>
 </tr>
@@ -1172,8 +1150,8 @@ Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</co
 </td>
 <td class="content">
 The <code>undo</code> command will not be able to undo commands that cannot be undone.
-Let’s say you have executed a list command to list out all the athletes information in Athletick.
-If you were to execute the <code>undo</code> command now, the <code>undo</code> command will fail because list is not an undoable command,
+Let’s say you have executed a <code>list</code> command to list out all the athletes information in Athletick.
+If you were to execute the <code>undo</code> command now, the <code>undo</code> command will fail because <code>list</code> is not an undoable command,
 and that no doable commands were executed before this.
 </td>
 </tr>
@@ -1208,34 +1186,45 @@ Since <code>list</code> command is not an undoable command, executing <code>undo
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="redoing-an-code-undo-code-command-code-redo-code"><a class="link" href="#redoing-an-code-undo-code-command-code-redo-code">4.7.4. Redoing an <code>undo</code> command : <code>redo</code></a></h4>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
-<p>This command reverses the most recent <code>undo</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Let’s say you have executed the <code>delete</code> command to delete Mohamad Ali from your list.
-You may undo this action and restore Mohamad Ali’s information by executing the <code>undo</code> command. (See Undoing a previous command.)</p>
-</div>
-<div class="paragraph">
-<p>Then, if you decide that you want the contact to remain deleted after all,
-you may very quickly do so by executing the <code>redo</code> command to reverse the <code>undo</code> command that you had just executed.</p>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; e807339e4f59ac3fd67770471a2d271cd9f42b36
+Let’s say you have accidentally deleted an athlete’s contact (Mohamad Ali) from your list.
+Instead of having to re-enter Mohamad Ali’s contact information all over again,
+you can easily restore all of Mohamad Ali’s details by <code>undo</code>-ing the <code>delete</code> command that you have just entered.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type redo into the command box, and press Enter to execute it.</p>
+<p>Type <code>undo</code> into the command box, and press Enter to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>redo</code></p>
+<p>Format : <code>undo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undo.png" alt="undo" width="790">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>The result box will display the message “Redo success!” and Mohamad Ali is once again gone from the list!</p>
+<p>The result box will display the message “Undo Command Success” and you can check that Mohamad Ali’s
+contact information is visible in the list again!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/afterUndo.png" alt="afterUndo" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>==== Redoing an <code>undo</code> command : <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>This command reverses the most recent <code>undo</code> command.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1262,45 +1251,70 @@ The <code>redo</code> command reverses previous <code>undo</code> commands in re
 Let’s say that you have executed the <code>clear</code> command, followed by the <code>add</code> command.
 Executing the <code>undo</code> command now will reverse the <code>add</code> command.
 Executing the <code>undo</code> command again will reverse the <code>clear</code> command as well.
-Following this, executing the <code>redo</code> command will reverse the last <code>undo</code> command and reapply the <code>clear</code> command.
-Executing the <code>redo</code> command again will reverse the second-last <code>undo</code> command and reapply the <code>add</code> command.
+Following this, executing the <code>redo</code> command will reverse the last <code>undo</code> command and re-execute the <code>clear</code> command.
+Executing the <code>redo</code> command again will reverse the second-last <code>undo</code> command and re-execute the <code>add</code> command.
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Let’s say you have executed the <code>delete</code> command to delete Mohamad Ali from your list.
+You may undo this action and restore Mohamad Ali’s information by executing the <code>undo</code> command. (See Undoing a previous command.)</p>
+</div>
+<div class="paragraph">
+<p>Then, if you decide that you want the contact to remain deleted after all,
+you may very quickly do so by executing the <code>redo</code> command to reverse the <code>undo</code> command that you had just executed.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type <code>redo</code> into the command box, and press Enter to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>redo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/redo.png" alt="redo" width="790">
 </div>
 </div>
-<div class="sect2">
-<h3 id="upcoming-features"><a class="link" href="#upcoming-features">4.8. Upcoming features</a></h3>
-<div class="sect3">
-<h4 id="team-roster-coming-in-v2-0"><a class="link" href="#team-roster-coming-in-v2-0">4.8.1. Team roster [coming in v2.0]</a></h4>
-
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
 </div>
-<div class="sect3">
-<h4 id="performance-tracker-coming-in-v2-0"><a class="link" href="#performance-tracker-coming-in-v2-0">4.8.2. Performance tracker [coming in v2.0]</a></h4>
-
+<div class="paragraph">
+<p>The result box will display the message “Redo Command Success” and Mohamad Ali is once again gone from the list!</p>
 </div>
-<div class="sect3">
-<h4 id="importing-data-code-import-code-coming-in-v2-0"><a class="link" href="#importing-data-code-import-code-coming-in-v2-0">4.8.3. Importing data : <code>import</code> [coming in v2.0]</a></h4>
-
-</div>
-<div class="sect3">
-<h4 id="exporting-data-code-export-code-coming-in-v2-0"><a class="link" href="#exporting-data-code-export-code-coming-in-v2-0">4.8.4. Exporting data : <code>export</code> [coming in v2.0]</a></h4>
-
+<div class="imageblock">
+<div class="content">
+<img src="images/afterUndo.png" alt="afterUndo" width="790">
 </div>
 </div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.9. Saving the data</a></h3>
+<div class="paragraph">
+<p>=== Upcoming features</p>
+</div>
+<div class="paragraph">
+<p>==== Team roster [coming in v2.0]</p>
+</div>
+<div class="paragraph">
+<p>==== Performance tracker [coming in v2.0]</p>
+</div>
+<div class="paragraph">
+<p>==== Importing data : <code>import</code> [coming in v2.0]</p>
+</div>
+<div class="paragraph">
+<p>==== Exporting data : <code>export</code> [coming in v2.0]</p>
+</div>
+<div class="paragraph">
+<p>=== Saving the data</p>
+</div>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
+<div class="paragraph">
+<p>== FAQ</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
@@ -1347,11 +1361,9 @@ how to add images into the folder:</p>
 <img src="images/addingPhotos.png" alt="addingPhotos" width="790">
 </div>
 </div>
+<div class="paragraph">
+<p>== Command Summary</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
-<div class="sectionbody">
 <div class="hdlist">
 <table>
 <tr>
@@ -1485,4 +1497,8 @@ Redo
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 20:00:52 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 04:33:49 UTC</div></div></div></body></html>
