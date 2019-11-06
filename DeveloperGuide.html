@@ -28,7 +28,7 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#training-attendance-feature">4.1. Training &amp; Attendance feature</a></li>
+<li><a href="#training-feature">4.1. Training feature</a></li>
 <li><a href="#performance-feature">4.2. Performance feature</a></li>
 <li><a href="#calendar-feature">4.3. Calendar feature</a></li>
 <li><a href="#select-feature">4.4. Select feature</a></li>
@@ -380,52 +380,158 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented. We have included our design considerations for you to understand our decision making processes.</p>
 </div>
 <div class="sect2">
-<h3 id="training-attendance-feature"><a class="link" href="#training-attendance-feature">4.1. Training &amp; Attendance feature</a></h3>
+<h3 id="training-feature"><a class="link" href="#training-feature">4.1. Training feature</a></h3>
 <div class="paragraph">
-<p>To facilitate management of training sessions, the <code>Model</code> stores the <code>Attendance</code> of training sessions.</p>
+<p>Athletick allows users to record training information like date and an athlete&#8217;s attendance. With this information
+recorded, Athletick allows users to get important information like the team&#8217;s overall attendance rate and an overview
+of all training sessions in a month.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">4.1.1. Implementation</a></h4>
+<div class="paragraph">
+<p>To facilitate this, the <code>Model</code> has a <code>TrainingManager</code> that stores all <code>Training</code>
+sessions in Athletick. The class diagram below shows how the different components interact with each other.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/attendance_class_diagram.png" alt="attendance class diagram">
+<img src="images/training_class_diagram.png" alt="training class diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Training</code> class contains a date and a hash map.
+The date in the training class represents the date of training session and the hash map is used to check the
+attendance of a Person. We used a <code>AthletickDate</code> class to  represent a date of training. This class is shared across
+both the <code>Ui</code> and backend, allowing training information to be shown in the <code>view calendar</code> function.
+The hash map uses <code>Person</code> objects as keys and a boolean as it’s value. This is used to check whether a <code>Person</code> has
+attended a training session, indicated by the boolean value attached to  a <code>Person</code> key. If a <code>Person</code> attended a
+training session on that day, the value associated with the key will be  true, and false if he did not attend.</p>
+</div>
+<div class="paragraph">
+<p>A <code>TrainingManager</code> is used to store and manage all <code>Training</code> sessions in Athletick. It has a list
+containing <code>Training</code> sessions. A <code>Training</code> is added to this list whenever a user records a <code>Training</code> session
+using a <code>TrainingCommand</code>. The sequence diagram below shows how <code>TrainingManager</code> stores and manages training records.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/add_training.png" alt="add training">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/delete_training.png" alt="delete training">
+</div>
+</div>
+<div class="paragraph">
+<p><code>TrainingManager</code> provides functions for users to calculate the attendance rate of one individual, or the entire
+team. The sequence diagram below shows a use case of how <code>TrainingManager</code> gets attendance rate.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/to_add.png" alt="to add">
+</div>
+</div>
+<div class="paragraph">
+<p><code>TrainingManager</code> also allows users to view <code>Training</code> information on a specified date. The sequence diagram below
+shows a use case of how <code>TrainingManager</code> gets <code>Training</code> information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/to_add.png" alt="to add">
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="attendance"><a class="link" href="#attendance">4.1.1. Attendance</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="paragraph">
-<p>The attendance of players is managed using an <code>Attendance</code> class.
-<code>Attendance</code> contains a list of training sessions as it is used to calculate the attendance rate of an individual by looking at all trainings.
-Whenever a training is added, the model adds this training to the <code>Attendance</code> using a <code>TrainingCommand</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="training"><a class="link" href="#training">4.1.2. Training</a></h4>
-<div class="paragraph">
-<p>The Training class contains a date, as well as a HashMap.
-The date in the training class represents the date of training session and the HashMap is used to check the attendance of a Person.</p>
-</div>
-<div class="paragraph">
-<p>We used a <code>DateTime</code> class to represent a date of training.
-This class is shared across both the <code>Ui</code> and backend, allowing us to port training data into the <code>view calendar</code> function.</p>
-</div>
-<div class="paragraph">
-<p>The HashMap uses <code>Person</code> objects as keys and a boolean as it’s value.
-This is used to check whether a <code>Person</code> has attended a training session, indicated by the boolean value attached to a <code>Person</code> key.
-If a <code>Person</code> attended a training session on that day, the value associated with the key will be true, and false if he did not attend.
-There were a few design considerations we had in mind for checking attendance of a <code>Person</code> but we ultimately decided that using a HashMap was the best solution due to the following requirements:</p>
+<p>Aspect: Where to store attendance information of an individual.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Our application allows us to check for the attendance rate of a <code>Person</code>. As such, we needed to track both trainings attended and trainings missed.</p>
+<p>Alternative 1: Extend on the <code>AddressBook</code> by storing and tagging each person with number of
+trainings attended and total number of trainings.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>As a person could be added into the team after some trainings have taken place,
-using trainings attended / total trainings would not give an accurate reflection of a <code>Person</code> 's training attendance.</p>
+<p>Cons: Violates Single Responsibility Principle (SRP) and not useful when we want more detailed information
+(attendance on specific date) about a training session.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): Create a separate class to manage Training information.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows storing of specific training information without depending on the <code>AddressBook</code>.</p>
+</li>
+<li>
+<p>Cons: Harder to code and introduces more dependencies to Model.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Also, our <code>select</code> function shows attendance rate of a <code>Person</code> and a HashMap provides the fastest access time to check whether a <code>Person</code> attended a training session.</p>
+<p>Aspect: Which data structure to store training attendance.
+* Alternative 1: Use a linked list to store training attendance.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to maintain.</p>
+</li>
+<li>
+<p>Cons: Accessing training information requires more time (e.g. accessing attendance rate of one person).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2 (current choice): Use a hash map to store training attendance.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Pros: Makes obtaining information much quicker.</p>
+</li>
+<li>
+<p>Cons: Requires more effort to maintain.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aspect: How to edit training information</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Edit by replacing with new training on the same date</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users no need to type lengthy edit commands.</p>
+</li>
+<li>
+<p>Cons: Unable to support multiple trainings on same date.</p>
+</li>
+<li>
+<p>Alternative 2: Create a command to support editing of training.</p>
+</li>
+<li>
+<p>Pros: More intuitive to a user who wants to edit.</p>
+</li>
+<li>
+<p>Cons: Lengthy commands. Users have the option to edit date, attendance and even add a person.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -449,7 +555,7 @@ using trainings attended / total trainings would not give an accurate reflection
 </ol>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">4.3.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">4.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation of the above functions will be described seperately.</p>
 </div>
@@ -523,7 +629,7 @@ using trainings attended / total trainings would not give an accurate reflection
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">4.3.2. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-the-calendar-for-the-current-month-is-displayed"><a class="link" href="#aspect-how-the-calendar-for-the-current-month-is-displayed">Aspect: How the calendar for the current month is displayed</a></h5>
 <div class="ulist">
@@ -555,7 +661,7 @@ using trainings attended / total trainings would not give an accurate reflection
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">4.4. Select feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">4.4.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The select feature is facilitated by <code>SelectCommand</code> class. It extends <code>Command</code> and parses the arguments using
 <code>SelectCommandParser</code>. It implements the one operation:</p>
@@ -607,7 +713,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.4.2. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed"><a class="link" href="#aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed">Aspect: In what way is the personal information of the selected person going to be displayed</a></h5>
 <div class="ulist">
@@ -835,7 +941,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -907,7 +1013,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect2">
 <h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">4.6. Adding/editing photo feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">4.6.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">4.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The sub feature of <code>AddCommand</code> and <code>EditCommand</code> allows the inclusion of photo for a person. The sub feature is
 facilitated by <code>Photo</code>.</p>
@@ -969,7 +1075,7 @@ Currently, only filtering by one tag is supported.
 Filtering by multiple tags will be available by <code>v1.2</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">4.7.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">4.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Filter makes use of a <code>TagMatchesPredicate</code> class to determine if the athlete has tags matching the user input.
 Given below is the Sequence Diagram to show how filter works, with an example input of filter captain.</p>
@@ -992,7 +1098,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-a-tag-match-is-determined"><a class="link" href="#aspect-how-a-tag-match-is-determined">Aspect: How a tag match is determined</a></h5>
 <div class="ulist">
@@ -1067,7 +1173,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <p>The sort command sorts the displayed list of athletes by alphabetical order. As new athletes are added to the bottom of the list, the sort command is used after to reorder the athlete list.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">4.8.1. Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">4.8.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>sort</code> command makes use of a <code>PersonComparator</code> that orders athletes in alphabetical order by comparing their names. The comparison is case-insensitive.</p>
 </div>
@@ -1088,7 +1194,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-should-the-athlete-list-should-be-sorted"><a class="link" href="#aspect-when-should-the-athlete-list-should-be-sorted">Aspect: When should the athlete list should be sorted</a></h5>
 <div class="ulist">
@@ -1860,4 +1966,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 07:42:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 15:27:37 UTC</div></div></div></body></html>
