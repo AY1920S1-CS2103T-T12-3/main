@@ -168,7 +168,7 @@ attendance and performance.</p>
 <p>Type the athlete&#8217;s particulars in the format given below.</p>
 </div>
 <div class="paragraph">
-<p>Format : <code>add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203; [i/IMAGE]</code></p>
+<p>Format : <code>add n/NAME p/PHONE e/EMAIL g/GENDER a/ADDRESS [t/TAG]&#8230;&#8203; [i/IMAGE]</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -190,7 +190,7 @@ is optional.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Example: <code>add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/backstroke i/john.png</code></p>
+<p>Example: <code>add n/John Doe p/98765432 e/johnd@example.com g/male a/311, Clementi Ave 2, #02-25 t/backstroke i/john.png</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1160,7 +1160,7 @@ Notice that the <code>INDEX</code> of the athletes have changed (eg. David has c
 <td class="content">
 <div class="paragraph">
 <p>Take note that the <code>undo</code> feature only applies to undoable commands.
-Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code>, <code>attendance</code> and <code>training</code>.</p>
+Undoable commands include: <code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code> and <code>training</code>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>undo</code> command will not be able to undo commands that cannot be undone.
@@ -1170,14 +1170,15 @@ and that no doable commands were executed before this.</p>
 </div>
 <div class="paragraph">
 <p>The <code>undo</code> command reverses previous commands in reverse chronological order.
-Let’s say you have executed the <code>edit</code> command, followed by the <code>delete</code> command.
-Executing <code>undo</code> now will first reverse the <code>delete</code> command.
-Executing <code>undo</code> again will reverse the <code>edit</code> command.</p>
+Let’s say you have executed the <code>edit</code> command, followed by the <code>delete</code> command. If you were
+to execute <code>undo</code> command now, you will reverse the <code>delete</code> command. Executing <code>undo</code> again
+will then reverse the <code>edit</code> command.</p>
 </div>
 <div class="paragraph">
 <p>The <code>undo</code> command will reverse the latest command that can be undone.
 Let’s say you have executed the <code>delete</code> command, followed by the <code>list</code> command.
-Since <code>list</code> command is not an undoable command, executing <code>undo</code> now will thus reverse the <code>delete</code> command.</p>
+Since <code>list</code> command is not an undoable command, if you were to execute <code>undo</code>
+command now, you will thus reverse the <code>delete</code> command.</p>
 </div>
 </td>
 </tr>
@@ -1186,7 +1187,8 @@ Since <code>list</code> command is not an undoable command, executing <code>undo
 <div class="paragraph">
 <p>Let’s say you have accidentally deleted an athlete’s contact (Mohamad Ali) from your list.
 Instead of having to re-enter Mohamad Ali’s contact information all over again,
-you can easily restore all of Mohamad Ali’s details by <code>undo</code>-ing the <code>delete</code> command that you have just entered.</p>
+you can easily restore all of Mohamad Ali’s details by executing the command <code>undo</code> to
+undo the <code>delete</code> command that you have just entered.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
@@ -1237,8 +1239,12 @@ Executing the <code>redo</code> command now will fail because no <code>undo</cod
 Let’s say that you have executed the <code>clear</code> command, followed by the <code>add</code> command.
 Executing the <code>undo</code> command now will reverse the <code>add</code> command.
 Executing the <code>undo</code> command again will reverse the <code>clear</code> command as well.
-Following this, executing the <code>redo</code> command will reverse the last <code>undo</code> command and re-execute the <code>clear</code> command.
-Executing the <code>redo</code> command again will reverse the second-last <code>undo</code> command and re-execute the <code>add</code> command.</p>
+Following this, executing the <code>redo</code> command will reverse the most recent <code>undo</code> command and re-execute the <code>clear</code>
+command.
+Executing the <code>redo</code> command again will reverse the second most recent <code>undo</code> command and re-execute the <code>add</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The <code>redo</code> command can only be executed immediately after a <code>undo</code> command.</p>
 </div>
 </td>
 </tr>
@@ -1274,7 +1280,7 @@ you may very quickly do so by executing the <code>redo</code> command to reverse
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/afterUndo.png" alt="afterUndo" width="450">
+<img src="images/afterRedo.png" alt="afterRedo" width="450">
 </div>
 </div>
 </div>
@@ -1536,4 +1542,4 @@ View all created events
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 18:37:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 19:10:30 UTC</div></div></div></body></html>
