@@ -557,7 +557,7 @@ trainings attended and total number of trainings.</p>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">4.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the above functions will be described seperately.</p>
+<p>The implementation of the above functions will be described separately.</p>
 </div>
 <div class="paragraph">
 <p>The first function is facilitated by <code>CalendarPanel</code>. It extends <code>UiPart&lt;Region&gt;</code> and represents the calendar via a <code>GridPane</code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
@@ -660,66 +660,98 @@ trainings attended and total number of trainings.</p>
 </div>
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">4.4. Select feature</a></h3>
+<div class="paragraph">
+<p>The <code>select</code> feature allows user to view the profile of a selected athlete.</p>
+</div>
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The select feature is facilitated by <code>SelectCommand</code> class. It extends <code>Command</code> and parses the arguments using
-<code>SelectCommandParser</code>. It implements the one operation:</p>
+<p>The implementation of the <code>select</code> feature consists of two parts, mainly the implementation of the command and the
+implementation of the UI.</p>
+</div>
+<div class="paragraph">
+<p>The implementation of the command is facilitated by <code>SelectCommand</code> class. It extends
+<code>Command</code> and parses the arguments using <code>SelectCommandParser</code>. It implements one operation:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CommandResult#execute()</code>&#8201;&#8212;&#8201;Executes the selectCommand which returns the person selected to be displayed in the UI.</p>
+<p><code>CommandResult#execute()</code>&#8201;&#8212;&#8201;Executes the selectCommand which returns the athlete selected to be displayed in the UI.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Other operations that were implemented to aid the <code>SelectCommand</code> feature are:</p>
+<p>The implementation of the UI portion for the <code>select</code> feature  is facilitated by <code>InformationDisplay</code>. It extends
+<code>UiPart&lt;Region&gt;</code> and displays the personal information of the selected athlete. Additionally, it implements the
+following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#selectPerson()</code>&#8201;&#8212;&#8201;Returns the person that was stored.</p>
+<p><code>InformationDisplay#displayPersonalInfo()</code>&#8201;&#8212;&#8201;Displays the personal information of the selected athlete such as the
+name, email, address, phone number and other personal details.</p>
 </li>
 <li>
-<p><code>Model#storePerson(Person)</code>&#8201;&#8212;&#8201;Stores the person that was selected.</p>
-</li>
-<li>
-<p><code>Logic#getPerson()</code>&#8201;&#8212;&#8201;Retrieves the person that was selected to display their personal information in the UI.</p>
+<p><code>InformationDisplay#performanceDisplay()</code>&#8201;&#8212;&#8201;Displays the performance of the selected athlete, which includes the
+event, best performance and most recent performance.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the Model interface as <code>Model#selectPerson()</code> and <code>Model#storePerson
-(Person)</code> and in the Logic interface as <code>Logic#getPerson()</code>.</p>
+<p>An example usage scenario is given below which elaborates how the <code>select</code> feature behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>An example usage scenario is given below which elaborates how the select command works at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user executes the <code>select 3</code> command to display the personal information of the 3rd person in the address
-book. When the command is executed, the person selected at the specified index will be stored in ModelManager as
+<p>Step 1. The user executes the <code>select 3</code> command. The command is then parsed by <code>SelectCommandParser</code> which creates
+an instance of <code>SelectCommand</code>. <code>SelectCommand</code> retrieves the athlete based on the index of the list panel on the left.
+When the command is executed, the athlete selected at the specified index will be stored in ModelManager as
 <code>selectedPerson</code> using the operation <code>Model#storePerson(Person)</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. After the command has been executed, the selected person is retrieved in the MainWindow class. It checks
-whether a person has been selected and displays the selected person&#8217;s personal information.</p>
+<p>Step 2. After the command has been executed, the selected athlete is retrieved in the MainWindow class. It checks
+whether an athlete has been selected and displays the selected athlete&#8217;s personal information.</p>
+</div>
+<div class="paragraph">
+<p>The diagram below summarises the steps of the example scenario when a user executes the <code>select</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram">
+</div>
+<div class="title">Figure 9. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
-Firstly, the Ui component takes in the input from the user and allows the Logic component to parse the argument.
-After the argument has been parsed, the person is stored in the Model component which houses most of the data of the
-app. The Ui listens for any changes made to the Model data, and updates the Ui to display the selected person.</p>
+Firstly, the Ui component takes in the input from the user and allows <code>SelectCommandParser</code> in Logic component to parse
+the argument.
+After the argument has been parsed, the athlete is stored in the Model component which houses most of the data in the
+app. The Ui listens for any changes made to the Model data, and updates the Ui to display the selected athlete.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the <code>select</code> feature works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectCommandSequenceDiagram.png" alt="SelectCommandSequenceDiagram">
+</div>
+<div class="title">Figure 10. Sequence Diagram of <code>select</code> Command</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design considerations</a></h4>
+<div class="paragraph">
+<p>There were some decisions that I had to make as I was designing the <code>select</code> feature and had to compare which methods
+would better suit the application. The following consists of the design considerations for the <code>select</code> feature.</p>
+</div>
 <div class="sect4">
-<h5 id="aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed"><a class="link" href="#aspect-in-what-way-is-the-personal-information-of-the-selected-person-going-to-be-displayed">Aspect: In what way is the personal information of the selected person going to be displayed</a></h5>
+<h5 id="aspect-how-the-personal-information-of-the-selected-athlete-will-be-displayed"><a class="link" href="#aspect-how-the-personal-information-of-the-selected-athlete-will-be-displayed">Aspect: How the personal information of the selected athlete will be displayed</a></h5>
+<div class="paragraph">
+<p>There were a few ways how the personal information of the selected athlete could be displayed and the following
+alternatives are some of the considerations I had when implementing.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Displaying it in a feature box.</p>
+<p><strong>Alternative 1 (current choice)</strong>: Displaying it in a feature box.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -732,7 +764,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 </div>
 </li>
 <li>
-<p>Alternative 2: Displaying it in a tab form.</p>
+<p><strong>Alternative 2</strong>: Displaying it in a tab form.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -745,7 +777,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 </div>
 </li>
 <li>
-<p>Alternative 3: Displaying via a pop-up.</p>
+<p><strong>Alternative 3</strong>: Displaying via a pop-up.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -759,9 +791,18 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Reason: Alternative 1 was chosen because it utilises more of the command line interface and we wanted to steer away
+from the use of the mouse. Even those the aesthetic might not be as good as alternative 2 and 3, I felt that it was a
+better choice as it was in line with the other features that my group mates were going to implement.</p>
+</div>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-to-select-a-person"><a class="link" href="#aspect-how-to-select-a-person">Aspect: How to select a person</a></h5>
+<h5 id="aspect-how-to-select-an-athlete"><a class="link" href="#aspect-how-to-select-an-athlete">Aspect: How to select an athlete</a></h5>
+<div class="paragraph">
+<p>There were two ways on how an athlete could be selected and it was between choosing by index or by name which I had
+to consider.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -773,7 +814,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 down the list of people.</p>
 </li>
 <li>
-<p>Cons: Additional step of filtering before selecting a person.</p>
+<p>Cons: Additional step of filtering the list to make it shorter before selecting an athlete.</p>
 </li>
 </ul>
 </div>
@@ -783,7 +824,7 @@ down the list of people.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Can omit the filtering step and select the person directly.</p>
+<p>Pros: Can omit the filtering step and select the athlete directly.</p>
 </li>
 <li>
 <p>Cons: There may be 2 people with the same name and thus result in an error.</p>
@@ -792,6 +833,11 @@ down the list of people.</p>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Reason: In the end, I went with alternative 1 because it was more intuitive to use and was in line with some of the
+other functions such as <code>DeleteCommand</code> or <code>FindCommand</code> which also uses index. It also reduces the need to type out
+the full name of the selected athlete.</p>
 </div>
 </div>
 </div>
@@ -925,23 +971,34 @@ go with the first alternative.</p>
 <div class="sect3">
 <h4 id="implementation-5"><a class="link" href="#implementation-5">4.6.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The sub feature of <code>AddCommand</code> and <code>EditCommand</code> allows the inclusion of photo for a person. The sub feature is
+<p>The sub feature of <code>AddCommand</code> and <code>EditCommand</code> allows the inclusion of photo for an athlete. The sub feature is
 facilitated by <code>Photo</code>.</p>
 </div>
 <div class="paragraph">
-<p>This sub feature is similar to the other features such as <code>Name</code> and <code>Phone</code> which has a prefix <code>i/</code> followed by the
-file name (e.g. <code>i/default.png</code>). Prior to adding the photo of a person, the image file that is going to be used has to
-be in the <code>\src\main\resources\images</code> directory. <code>Photo</code> takes in the file name as a <code>String</code> and retrieves the
-photo to be added or edited from the directory that was mentioned previously.</p>
+<p>This sub feature is similar to the other features such as <code>Name</code> and <code>Phone</code> which uses a prefix <code>i/</code> followed by the
+file name (e.g. <code>i/default.png</code>). Prior to adding the photo of an athlete, the image file that is going to be used
+has to be in the <code>images</code> folder which will be generated when the jar file is executed. <code>Photo</code> takes in the file name as a
+<code>String</code> and retrieves the photo to be added or edited from the <code>images</code> folder.</p>
 </div>
-<div class="paragraph">
-<p><strong>File name restriction</strong>
-The file name of the images is restricted to alphanumerics only and the file format that will be used is <code>.png</code>. This
-is done to keep the file name simple.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The file name of the images is restricted to alphanumerics only and the file format that will be used is <code>.png</code>.
+This is done to keep the file name simple.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-consideration"><a class="link" href="#design-consideration">4.6.2. Design Consideration</a></h4>
+<div class="paragraph">
+<p>The following consists of some of the design consideration when I was designing this sub-feature.</p>
+</div>
 <div class="sect4">
 <h5 id="aspect-regular-expression-for-the-file-name"><a class="link" href="#aspect-regular-expression-for-the-file-name">Aspect: Regular expression for the file name</a></h5>
 <div class="ulist">
@@ -953,9 +1010,6 @@ is done to keep the file name simple.</p>
 <li>
 <p>Pros: Keeps it simple without the confusion of special characters.</p>
 </li>
-<li>
-<p>Cons:</p>
-</li>
 </ul>
 </div>
 </li>
@@ -964,15 +1018,16 @@ is done to keep the file name simple.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros</p>
-</li>
-<li>
-<p>Cons</p>
+<p>Cons: These special characters are reserved used by operation systems such as Windows.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Reason: Alternative 1 was chosen because it simplifies the parsing of the filename and reduces the error it might
+have if special characters were included.</p>
 </div>
 </div>
 </div>
@@ -1094,7 +1149,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <div class="content">
 <img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram">
 </div>
-<div class="title">Figure 9. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
+<div class="title">Figure 11. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Upon completion of the above execution, the sorted list of athletes would be displayed immediately thorugh <code>Model#sortByName()</code>.</p>
@@ -1876,4 +1931,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 19:33:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 16:00:25 UTC</div></div></div></body></html>
