@@ -215,7 +215,7 @@ is optional.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-an-athlete-code-delete-code"><a class="link" href="#deleting-an-athlete-code-delete-code">4.1.2. Deleting an athlete : <code>delete</code></a></h4>
+<h4 id="deleting-an-athlete-code-delete-p-code"><a class="link" href="#deleting-an-athlete-code-delete-p-code">4.1.2. Deleting an athlete : <code>delete -p</code></a></h4>
 <div class="paragraph">
 <p>This command deletes an athlete from the list by their index.</p>
 </div>
@@ -223,14 +223,14 @@ is optional.</p>
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say you want to remove Irfan from Athletick as he is no longer in the team. Type the delete command, followed by
-the index of the athlete you wish to delete in the following format and press <code>Enter</code> to execute it.</p>
+<p>Let&#8217;s say you want to remove Sun Yang from Athletick as he is no longer in the team. Type the delete command,
+followed by the index of the athlete you wish to delete in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>delete INDEX</code></p>
+<p>Format: <code>delete -p INDEX</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>delete 5</code></p>
+<p>Example: <code>delete -p 5</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -251,7 +251,7 @@ the index of the athlete you wish to delete in the following format and press <c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/delete_before.png" alt="delete before" width="450">
+<img src="images/deleteperson_wsyd.png" alt="deleteperson wsyd" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -259,8 +259,9 @@ the index of the athlete you wish to delete in the following format and press <c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/delete_after.png" alt="delete after" width="350">
+<img src="images/deleteperson_wsys.png" alt="deleteperson wsys" width="450">
 </div>
+<div class="title">Figure 1. Notice that Sun Yang is no longer in the athlete list on the left sidebar.</div>
 </div>
 <div class="paragraph">
 <p>If successfully removed, the details of the removed athlete will be displayed in the result box.</p>
@@ -504,9 +505,8 @@ attendance rate. Type the attendance command, athlete index and press <code>Ente
 Athletick has a built-in performance tracker for you record and analyse your team&#8217;s performance.</p>
 </div>
 <div class="paragraph">
-<p>All you have to is add an event (see <a href="#adding-an-event-code-event-code">Section 4.4.1, &#8220;Adding an event : <code>event</code>&#8221;</a>),
-and then add records from timed trials under the event
-(see <a href="#recording-an-athlete-s-performance-code-performance-code">Section 4.4.2, &#8220;Recording an athlete’s performance : <code>performance</code>&#8221;</a>).</p>
+<p>First, you will have to add an event.
+After that, you can add records from timed trials under the event to start tracking their performance.</p>
 </div>
 <div class="sect3">
 <h4 id="adding-an-event-code-event-code"><a class="link" href="#adding-an-event-code-event-code">4.4.1. Adding an event : <code>event</code></a></h4>
@@ -517,11 +517,11 @@ and then add records from timed trials under the event
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say that you want to start recording performances for the freestyle 50m.
-You will need to add the freestyle 50m event to <strong>Athletick</strong> first.</p>
+<p>Let&#8217;s say that you want to start recording performances for the <code>freestyle 50m</code> event. You will need to add
+the <code>freestyle 50m</code> event to <strong>Athletick</strong> first.</p>
 </div>
 <div class="paragraph">
-<p>Type the event command in the following format and press <code>Enter</code> to execute it.</p>
+<p>Type the command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>event NAME_OF_EVENT</code></p>
@@ -545,17 +545,58 @@ the same event)
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
+<div class="paragraph">
+<p>If successfully added, the result box will display the added event name as shown below.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/addevent.png" alt="addevent" width="350">
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="deleting-an-event-code-delete-e-code"><a class="link" href="#deleting-an-event-code-delete-e-code">4.4.2. Deleting an event : <code>delete -e</code></a></h4>
 <div class="paragraph">
-<p>If successfully added, the result box will display the event name as shown above.</p>
+<p>This command removes an event from <strong>Athletick</strong>.
+Records stored under this event will be deleted as well.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that your team is no longer participating in the <code>backstroke 100m</code> event, and you want to remove it
+from <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>delete -e NAME_OF_EVENT</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>delete -e backstroke 100m</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/deleteevent_wysd.png" alt="deleteevent wysd" width="250">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully deleted, the result box will display the deleted event name as shown below.
+The event should no longer be in <strong>Athletick</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/deleteevent_wyss.png" alt="deleteevent wyss" width="150">
+</div>
+<div class="title">Figure 2. Notice that the backstroke 100m event is no longer listed.</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="recording-an-athlete-s-performance-code-performance-code"><a class="link" href="#recording-an-athlete-s-performance-code-performance-code">4.4.2. Recording an athlete’s performance : <code>performance</code></a></h4>
+<h4 id="adding-an-athlete-s-record-code-performance-code"><a class="link" href="#adding-an-athlete-s-record-code-performance-code">4.4.3. Adding an athlete&#8217;s record : <code>performance</code></a></h4>
 <div class="paragraph">
 <p>This command records your athlete’s performance for a certain event, on a certain day, to <strong>Athletick</strong>.</p>
 </div>
@@ -611,7 +652,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.4.3. Viewings events : <code>view performance</code></a></h4>
+<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.4.4. Viewings events : <code>view performance</code></a></h4>
 <div class="paragraph">
 <p>This command gives you an overview of what events you have stored in <strong>Athletick</strong>.</p>
 </div>
@@ -1545,4 +1586,4 @@ View all created events
 </table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 17:30:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 18:22:21 UTC</div></div></div></body></html>
