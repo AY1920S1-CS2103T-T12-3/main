@@ -73,11 +73,42 @@
 <div class="paragraph">
 <p>The intended audience of this document includes the developers and software testers of Athletick.</p>
 </div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+NOTE
+</td>
+<td class="hdlist2">
+<p>This symbol indicates important information</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>command</code>
+</td>
+<td class="hdlist2">
+<p>A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code><span class="green">component</span></code>
+</td>
+<td class="hdlist2">
+<p>Green text with grey highlight indicates a component, class, object or method in the architecture of the application.</p>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="design-goals"><a class="link" href="#design-goals">1.2. Design goals</a></h3>
 <div class="paragraph">
-<p>Athletick was developed as part of CS2103T, a software engineering module taken in the National University of Singapore. We were tasked to morph a generic <a href="https://se-education.org/addressbook-level3/">address book application</a> that manages contacts into an application that manages something else. At the end of the project, it should be ready to be continued by future developers.</p>
+<p>Athletick was developed as part of <a href="https://nusmods.com/modules/CS2103T/software-engineering">CS2103T</a>, a software engineering module taken in the National University of Singapore. We were tasked to morph a generic <a href="https://se-education.org/addressbook-level3/">address book application</a> that manages contacts into an application that manages something else. At the end of the project, it should be ready to be continued by future developers.</p>
 </div>
 <div class="paragraph">
 <p>As part of the project constraints, the input to Athletick needs to be primarily Command-Line Interface (CLI). Non-CLI inputs will reduce the suitability of the product to our target users. Taking this into consideration, the following principles guide the design of Athletick:</p>
@@ -85,9 +116,9 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Friendlier Syntax</strong></p>
+<p><strong>Detailed Command Syntax Instructions</strong></p>
 <div class="paragraph">
-<p>In order to cater to beginner and experienced users of Athletick, we have provided shorter aliases for our command words. This helps new users to use intuitive and self-explanatory commands, while advanced users can accomplish their tasks more quickly with a shorter command syntax.</p>
+<p>In order to make Athletick more user-friendly, we have provided detailed command syntax instructions whenever users enter an erroneous command, allowing them to correct their errors on the fly. This helps users to maintain their workflow without having to switch back and forth between the application and the user guide, enabling them to complete their tasks more efficiently.</p>
 </div>
 </li>
 <li>
@@ -318,7 +349,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores the Address Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code><strong>ObservableList&lt;Person&gt;</strong>`</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -332,7 +363,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a Tag list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
@@ -542,50 +573,52 @@ trainings attended and total number of trainings.</p>
 <div class="sect2">
 <h3 id="calendar-feature"><a class="link" href="#calendar-feature">4.3. Calendar feature</a></h3>
 <div class="paragraph">
-<p>The calendar feature serves 2 primary functions:</p>
+<p>To allow users to retrieve training and performance records using the date they were recorded on, Athletick has a calendar feature which provides 2 main functions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Provides an overview of training and performance records in a selected month.</p>
+<p>Displays an overview of training and performance records in a selected month</p>
 </li>
 <li>
-<p>Displays training and performance records entered on a specific date.</p>
+<p>Displays training and performance records entered on a specific date</p>
 </li>
 </ol>
 </div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">4.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the above functions will be described separately.</p>
+<p>The implementation of the above functions will be described separately in this section.</p>
 </div>
+<div class="sect4">
+<h5 id="function-1-displays-an-overview-of-training-and-performance-records-in-a-selected-month"><a class="link" href="#function-1-displays-an-overview-of-training-and-performance-records-in-a-selected-month">Function 1: Displays an overview of training and performance records in a selected month</a></h5>
 <div class="paragraph">
-<p>The first function is facilitated by <code>CalendarPanel</code>. It extends <code>UiPart&lt;Region&gt;</code> and represents the calendar via a <code>GridPane</code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
+<p>Function 1 is facilitated by <code><span class="green">CalendarPanel</span></code>. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and represents the calendar using a <code><span class="green">GridPane</span></code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CalendarPanel#retrieveCurrentDate()</code>&#8201;&#8212;&#8201;Retrieves the details of today&#8217;s date to be used as the title of the calendar feature and for rendering the displayed month on the calendar when the user does not provide a month to view.</p>
+<p><code><span class="green">CalendarPanel#retrieveCurrentDate()</span></code>&#8201;&#8212;&#8201;Retrieves the details of today&#8217;s date to be used as the title of the calendar feature and for rendering the displayed month on the calendar when the user does not provide a month to view.</p>
 </li>
 <li>
-<p><code>CalendarPanel#retrieveProvidedDate()</code>&#8201;&#8212;&#8201;Retrieves the details of the date provided by the user for rendering the displayed month on the calendar.</p>
+<p><code><span class="green">CalendarPanel#retrieveProvidedDate()</span></code>&#8201;&#8212;&#8201;Retrieves the details of the date provided by the user for rendering the displayed month on the calendar.</p>
 </li>
 <li>
-<p><code>CalendarPanel#initialiseSelectedDate()</code>&#8201;&#8212;&#8201;Fills up all 42 cells of the <code>GridPane</code> with the respective days based on the selected date (current / provided date) by the user. Days of the previous and next month used to fill up the remaining cells are marked in a lighter colour.</p>
+<p><code><span class="green">CalendarPanel#initialiseSelectedDate()</span></code>&#8201;&#8212;&#8201;Fills up all 42 cells of the <code>GridPane</code> with the respective days based on the selected date (current / provided date) by the user. Days of the previous and next month used to fill up the remaining cells are marked in a lighter colour.</p>
 <div class="paragraph">
-<p>In addition, days with training or performance records will be marked with a small orange or purple dot indicator respectively.</p>
+<p>In addition, days with training or performance records will be marked with a small green or purple dot indicator respectively.</p>
 </div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are performed when an instance of <code>CalendarPanel</code> is created in the <code>MainWindow</code> class. An instance of <code>CalendarPanel</code> is created when the <code>CommandResult</code> obtained after executing the user&#8217;s command contains a <code>Feature</code> corresponding to a calendar and an optional <code>AthletickDate</code>.</p>
+<p>These operations are performed when an instance of <code><span class="green">CalendarPanel</span></code> is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code><span class="green">CalendarPanel</span></code> is created when the <code><span class="green">CommandResult</span></code> obtained after executing the user&#8217;s command contains a <code><span class="green">Feature</span></code> corresponding to a calendar and an optional <code><span class="green">AthletickDate</span></code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario for the first function and how the operation behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Step 1:. The user either issues the <code>view calendar</code> or <code>calendar [MMYYYY]</code> (e.g. <code>calendar 012019</code>) command. The first command displays the calendar for the current month, while the second command displays the specified the month and year to be displayed.</p>
+<p>Step 1:. The user either issues the <code>view calendar</code> or <code>calendar [MMYYYY]</code> (e.g. <code>calendar 012019</code>) command. The first command displays the calendar for the current month, while the second command displays the calendar for the specified the month and year.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. The issued command</p>
@@ -596,27 +629,30 @@ trainings attended and total number of trainings.</p>
 <div class="paragraph">
 <p>The following activity diagram summarises what happens when a user executes the <code>view calendar</code> or <code>calendar [MMYYYY]</code> command:</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="function-2-displays-training-and-performance-records-entered-on-a-specific-date"><a class="link" href="#function-2-displays-training-and-performance-records-entered-on-a-specific-date">Function 2: Displays training and performance records entered on a specific date</a></h5>
 <div class="paragraph">
-<p>The second function is facilitated by <code>CalendarDetailPanel</code>. It extends <code>UiPart&lt;Region&gt;</code> and displays the attendance and performance records for a specific date in a table. Additionally, it implements the following operations:</p>
+<p>Function 2 is facilitated by <code><span class="green">CalendarDetailPanel</span></code>. It extends <code>UiPart&lt;Region&gt;</code> and displays the attendance and performance records for a specific date in a table. Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CalendarDetailPanel#initialiseAttendanceData</code>&#8201;&#8212;&#8201;Retrieves and displays the attendance of each person on the specified date.</p>
+<p><code><span class="green">CalendarDetailPanel#initialiseAttendanceData</span></code>&#8201;&#8212;&#8201;Retrieves and displays the attendance of each person on the specified date.</p>
 </li>
 <li>
-<p><code>CalendarDetailPanel#initialisePerformanceData</code>&#8201;&#8212;&#8201;Retrieves and displays the performance records on the specified date.</p>
+<p><code><span class="green">CalendarDetailPanel#initialisePerformanceData</span></code>&#8201;&#8212;&#8201;Retrieves and displays the performance records on the specified date.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are performed when an instance of <code>CalendarDetailPanel</code> is created in the <code>MainWindow</code> class. An instance of <code>CalendarDetailPanel</code> is created when the <code>CommandResult</code> obtained after executing the user&#8217;s command contains an <code>AthletickDate</code>.</p>
+<p>These operations are performed when an instance of <code><span class="green">CalendarDetailPanel</span></code> is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code>CalendarDetailPanel</code> is created when the <code><span class="green">CommandResult</span></code> obtained after executing the user&#8217;s command contains an <code><span class="green">AthletickDate</span></code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario for the second function and how the operation behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Step 1:. The user either issues the <code>calendar [DDMMYYYY]</code> (e.g. <code>calendar 01012019</code>) command.</p>
+<p>Step 1: The user either issues the <code>calendar [DDMMYYYY]</code> (e.g. <code>calendar 01012019</code>) command.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. The issued command</p>
@@ -628,30 +664,209 @@ trainings attended and total number of trainings.</p>
 <p>The following activity diagram summarises what happens when a user executes the <code>calendar [DDMMYYYY]</code> command:</p>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.2. Design considerations</a></h4>
+<div class="paragraph">
+<p>This section contains some of our design considerations for the calendar feature.</p>
+</div>
 <div class="sect4">
-<h5 id="aspect-how-the-calendar-for-the-current-month-is-displayed"><a class="link" href="#aspect-how-the-calendar-for-the-current-month-is-displayed">Aspect: How the calendar for the current month is displayed</a></h5>
+<h5 id="aspect-whether-to-display-information-using-a-monthly-calendar-or-a-list-only-containing-dates-in-a-month-with-training-or-performance-records"><a class="link" href="#aspect-whether-to-display-information-using-a-monthly-calendar-or-a-list-only-containing-dates-in-a-month-with-training-or-performance-records">Aspect: Whether to display information using a monthly calendar or a list only containing dates in a month with training or performance records</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Use a monthly calendar</th>
+<th class="tableblock halign-left valign-top">Alternative 2: Use a monthly list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displays information more clearly especially when users have a large number of training and performance records in a month</p>
+</li>
+<li>
+<p>Allows for future expansion of calendar feature with more date-related functionalities (e.g. planning of training programme in advance)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displays information more concisely if users have a small amount of training and performance records in a month</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Increases difficulty of implementation</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displays information in rows and columns which is no better than using Excel</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of alternative 1:</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Displays using a fixed 7 by 6 <code>GridPane</code>, fill up left over days with days from previous and next month.</p>
+<p>Alternative 1 displays information more clearly when users have a large amount of training and performance information, which is a probable scenario in the case of sports teams. In contrast, alternative 2 uses a list similar to Excel which we are trying to improve upon.</p>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Displays using a variable sized <code>GridPane</code> that is populated with days from selected month only.</p>
+<p>Alternative 1 abides by our design principle to keep <strong>Athletick</strong> designer friendly since future developers can expand upon it and implement more date-related functionalities.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-to-display-calendar-for-a-month"><a class="link" href="#aspect-how-to-display-calendar-for-a-month">Aspect: How to display calendar for a month</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Display using a fixed 7 by 6 <code><span class="green">GridPane</span></code>, fill up left over days with days from previous and next month</th>
+<th class="tableblock halign-left valign-top">Alternative 2: Display using a variable sized <code><span class="green">GridPane</span></code> that is populated with days from selected month only</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Makes implementation easier</p>
+</li>
+<li>
+<p>Emulates implementation by other calendar applications (e.g. Google Calendar)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Maximises usage of space in the application window</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displays information of previous and next month which users may not be interested in</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Increases difficulty of implementation</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of alternative 1:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 is easier to implement since the dimensions of the calendar are fixed so we do not have to recalculate it constantly. The ease of implementation is important given the tight deadlines we have to contend with in our software engineering module.</p>
+</li>
+<li>
+<p>Alternative 1 emulates the implementation of other successful calendar applications (e.g. Google Calendar) so we do not have to reinvent the wheel.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect4">
 <h5 id="aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date"><a class="link" href="#aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date">Aspect: How the user can display the attendance and performance data on a specific date</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Use one <code>calendar [DDMMYYYY]</code> command to view <em>both</em> attendance and performance records on the specified date</th>
+<th class="tableblock halign-left valign-top">Alternative 2: Use two separate commands to view attendance and performance records <em>separately</em> on the specified date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Makes access of data more efficient</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Allows users to have more control over what data is displayed</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displays both attendance and performance records on the specified date all the time</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Requires more flags to be added to the command syntax which makes it more complex</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of alternative 1:</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Have one <code>calendar [DDMMYYYY]</code> command to view <em>both</em> attendance and performance data on the specified date.</p>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Have two separate commands to view attendance and performance separately on the specified date.</p>
+<p>Alternative 1 is more user-friendly as it reduces the number of commands users have to remember in order to access the information they want to see. In addition, attendance and performance records are displayed into separate sections in the window so the information will not be cluttered.</p>
 </li>
 </ul>
 </div>
@@ -910,7 +1125,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoSQ.png" alt="UndoSQ" width="450">
+<img src="images/undoSQ.png" alt="undoSQ" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -1192,15 +1407,15 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <div class="sect2">
 <h3 id="sort-command"><a class="link" href="#sort-command">4.8. Sort Command</a></h3>
 <div class="paragraph">
-<p>The sort command sorts the displayed list of athletes by alphabetical order. As new athletes are added to the bottom of the list, the sort command is used after to reorder the athlete list.</p>
+<p>The <code>sort</code> command sorts the displayed list of athletes in alphabetical order. As new athletes are added to the bottom of the list, the <code>sort</code> command is used after to reorder the athlete list.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-7"><a class="link" href="#implementation-7">4.8.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>sort</code> command makes use of a <code>PersonComparator</code> that orders athletes in alphabetical order by comparing their names. The comparison is case-insensitive.</p>
+<p>The <code>sort</code> command makes use of a <code><span class="green">PersonNameComparator</span></code> that orders athletes in alphabetical order by comparing their names. The comparison is case-insensitive.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the sort operation works:</p>
+<p>The following sequence diagram shows how the <code>sort</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1209,43 +1424,85 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <div class="title">Figure 11. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
-<p>Upon completion of the above execution, the sorted list of athletes would be displayed immediately thorugh <code>Model#sortByName()</code>.</p>
+<p>Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
 </div>
 <div class="paragraph">
-<p>To support sorting by more parameters (e.g. by height / weight), you can simply create a new class that implements <code>Comparator</code> that compares athletes by that parameter instead. After which, you have to edit the <code>sort</code> command to support different sort command syntaxes.</p>
+<p>To support sorting by more attributes (e.g. attendance rate/performance) in the future, you can simply create a new class that implements the <code><span class="green">Comparator</span></code> interface which compares athletes by that attribute instead. After which, you have to edit the <code>sort</code> command syntax to allow users to indicate how they want their list to be sorted.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design considerations</a></h4>
+<div class="paragraph">
+<p>This section contains some of our design considerations for the sort command.</p>
+</div>
 <div class="sect4">
 <h5 id="aspect-when-should-the-athlete-list-should-be-sorted"><a class="link" href="#aspect-when-should-the-athlete-list-should-be-sorted">Aspect: When should the athlete list should be sorted</a></h5>
-<div class="ulist">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Sort address book after user issues the <code>sort</code> command</th>
+<th class="tableblock halign-left valign-top">Alternative 2: Sort address book persistently in alphabetical order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Sort address book after user issues the <code>sort</code> command</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Users are able to view their newly added athletes at the bottom of the list which is more user-friendly especially when the list of athletes is very long. Allows future expansion to sort by other methods (e.g. performance scores) easily as we only have to create new comparators to order the athletes.</p>
+<p>Allows users to view their newly added athletes at the bottom of the list which is more user-friendly especially when the list of athletes is very long</p>
 </li>
 <li>
-<p>Cons: Additional overhead required in terms of having to create an additional command for users to issue.</p>
+<p>Allows for future expansion of sorting by other attributes (e.g. performance scores) easily as we only have to create new comparators to order the athletes</p>
 </li>
 </ul>
-</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Automates sorting so users do not have to issue any commands</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Requires additional overhead in terms of having to create an additional command for users to issue</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Restricts users from sorting their list by other methods</p>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Sort address book persistently in alphabetical order</p>
+<p>Limits feature&#8217;s further expansion by future developers</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of alternative 1:</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Sorting is automated</p>
+<p>Alternative 1 allows users to view their newly added athletes to ensure their details are correct before they are sorted into their correct positions alphabetically. This is important especially when the athlete list is very long.</p>
 </li>
 <li>
-<p>Cons: The list is unable to be sorted by other methods (e.g. attendance rate) unless we implement alternative 1 so the alternative 2 is more limited.</p>
-</li>
-</ul>
-</div>
+<p>Alternative 1 abides by our design principle to keep <strong>Athletick</strong> designer friendly since future developers can expand upon it to allow sorting by other attributes. On the other hand, alternative 2 does not provide much room for future expansion.</p>
 </li>
 </ul>
 </div>
@@ -1293,7 +1550,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <div class="sect2">
 <h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.10. Configuration</a></h3>
 <div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code><span class="green">config.json</span></code>).</p>
 </div>
 </div>
 </div>
@@ -1988,4 +2245,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 10:35:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 16:16:06 UTC</div></div></div></body></html>
