@@ -32,12 +32,11 @@
 <li><a href="#performance-feature">4.2. Performance feature</a></li>
 <li><a href="#calendar-feature">4.3. Calendar feature</a></li>
 <li><a href="#select-feature">4.4. Select feature</a></li>
-<li><a href="#undo-redo-feature">4.5. Undo / Redo feature</a></li>
-<li><a href="#adding-editing-photo-feature">4.6. Adding/editing photo feature</a></li>
-<li><a href="#filter-feature">4.7. Filter feature</a></li>
-<li><a href="#sort-command">4.8. Sort Command</a></li>
-<li><a href="#logging">4.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.10. Configuration</a></li>
+<li><a href="#adding-editing-photo-feature">4.5. Adding/editing photo feature</a></li>
+<li><a href="#filter-feature">4.6. Filter feature</a></li>
+<li><a href="#sort-command">4.7. Sort Command</a></li>
+<li><a href="#logging">4.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a></li>
@@ -68,7 +67,9 @@
 <div class="sect2">
 <h3 id="purpose"><a class="link" href="#purpose">1.1. Purpose</a></h3>
 <div class="paragraph">
-<p>This document describes the software architecture and system design of Athletick, a team management desktop application for coaches and team captains of timing-based performance sports. It also includes some of the design considerations for the implementation of Athletick&#8217;s features.</p>
+<p>This document describes the software architecture and system design of Athletick, a team management desktop
+application for coaches and team captains of timing-based performance sports. It also includes some of the design
+considerations for the implementation of Athletick&#8217;s features.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience of this document includes the developers and software testers of Athletick.</p>
@@ -111,7 +112,9 @@ NOTE
 <p>Athletick was developed as part of <a href="https://nusmods.com/modules/CS2103T/software-engineering">CS2103T</a>, a software engineering module taken in the National University of Singapore. We were tasked to morph a generic <a href="https://se-education.org/addressbook-level3/">address book application</a> that manages contacts into an application that manages something else. At the end of the project, it should be ready to be continued by future developers.</p>
 </div>
 <div class="paragraph">
-<p>As part of the project constraints, the input to Athletick needs to be primarily Command-Line Interface (CLI). Non-CLI inputs will reduce the suitability of the product to our target users. Taking this into consideration, the following principles guide the design of Athletick:</p>
+<p>As part of the project constraints, the input to Athletick needs to be primarily Command-Line Interface (CLI).
+Non-CLI inputs will reduce the suitability of the product to our target users. Taking this into consideration,
+the following principles guide the design of Athletick:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -124,13 +127,18 @@ NOTE
 <li>
 <p><strong>Optimised Performance</strong></p>
 <div class="paragraph">
-<p>Athletick should be able to hold up to 1000 athletes, attendance and performance records without a noticeable sluggishness in performance for typical usage. To achieve this, we have used optimal data structures for storing and retrieval of data.</p>
+<p>Athletick should be able to hold up to 1000 athletes, attendance and performance records without a noticeable
+sluggishness in performance for typical usage. To achieve this, we have used optimal data structures for storing
+and retrieval of data.</p>
 </div>
 </li>
 <li>
 <p><strong>Designer Friendly</strong></p>
 <div class="paragraph">
-<p>As Athletick is intended for future student developers like us to make modifications and extensions to its behaviour, adhering to the high-level design architecture strictly was a necessity. This translates to extensive use of abstractions for code clarity. Additionally, we provided Javadoc comments for our classes and methods for developers to understand how they work.</p>
+<p>As Athletick is intended for future student developers like us to make modifications and extensions to its behaviour,
+adhering to the high-level design architecture strictly was a necessity. This translates to extensive use of
+abstractions for code clarity. Additionally, we provided Javadoc comments for our classes and methods for developers to
+understand how they work.</p>
 </div>
 </li>
 </ol>
@@ -150,7 +158,8 @@ NOTE
 <h2 id="system-design"><a class="link" href="#system-design">3. System design</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section introduces the high-level design of Athletick and gives you a basic understanding of how each component operates and interacts with one another.</p>
+<p>This section introduces the high-level design of Athletick and gives you a basic understanding of how each component
+operates and interacts with one another.</p>
 </div>
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
@@ -164,7 +173,8 @@ NOTE
 <p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of Athletick. Given below is a quick overview of each component.</p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code><span class="green">Main</span></code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/Main.java"><code><span class="green">Main</span></code></a> and
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/MainApp.java"><code><span class="green">MainApp</span></code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -177,13 +187,13 @@ NOTE
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components.
+<p><a href="#Design-Commons"><strong><code><span class="green">Commons</span></code></strong></a> represents a collection of classes used by multiple other components.
 The following class plays an important role at the architecture level:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><code><span class="green">LogsCenter</span></code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
 </li>
 </ul>
 </div>
@@ -193,16 +203,16 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: Displays the UI of Athletick.</p>
+<p><a href="#Design-Ui"><strong><code><span class="green">UI</span></code></strong></a>: Displays the UI of Athletick.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: Executes commands from the user.</p>
+<p><a href="#Design-Logic"><strong><code><span class="green">Logic</span></code></strong></a>: Executes commands from the user.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of Athletick in-memory.</p>
+<p><a href="#Design-Model"><strong><code><span class="green">Model</span></code></strong></a>: Holds the data of Athletick in-memory.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#Design-Storage"><strong><code><span class="green">Storage</span></code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
 </li>
 </ul>
 </div>
@@ -212,19 +222,20 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p>Defines its <em>API</em> in an interface with the same name as the Component.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+<p>Exposes its functionality using a <code><span class="green">{Component Name}Manager</span></code> class.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (refer to the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code><span class="green">Logic</span></code> component (refer to the class diagram given below) defines it&#8217;s API in the
+<code><span class="green">Logic.java</span></code> interface and exposes its functionality using the <code><span class="green">LogicManager.java</span></code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
+<img src="images/LogicComponent.png" alt="LogicComponent">
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
@@ -251,24 +262,31 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code><span class="green">Ui.java</span></code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code><span class="green">MainWindow</span></code> that is made up of parts e.g.<code><span class="green">CommandBox</span></code>,
+<code><span class="green">ResultDisplay</span></code>, <code><span class="green">PersonListPanel</span></code>, <code><span class="green">StatusBarFooter</span></code> etc. All these, including the
+<code><span class="green">MainWindow</span></code>, inherit from the abstract
+<code><span class="green">UiPart</span></code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code><span class="green">UI</span></code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code>
+files that
+are in the <code>src/main/resources/view</code> folder. For example, the layout of the
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code><span class="green">MainWindow</span></code></a> is specified in
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/resources/view/MainWindow.fxml"><code><span class="green">MainWindow.fxml</span></code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code><span class="green">UI</span></code> component,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user commands using the <code><span class="green">Logic</span></code> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p>Listens for changes to <code><span class="green">Model</span></code> data so that the UI can be updated with the modified data.</p>
 </li>
 </ul>
 </div>
@@ -277,35 +295,38 @@ The following class plays an important role at the architecture level:</p>
 <h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
+<img src="images/LogicComponent.png" alt="LogicComponent">
 </div>
 <div class="title">Figure 5. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code><span class="green">Logic.java</span></code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code><span class="green">Logic</span></code> uses the <code><span class="green">AthletickParser</span></code> class to parse the user command.</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>This results in a <code><span class="green">Command</span></code> object which is executed by the <code><span class="green">LogicManager</span></code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code><span class="green">Model</span></code> (e.g. adding a person).</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>The result of the command execution is encapsulated as a <code><span class="green">CommandResult</span></code> object which is passed back to the
+<code><span class="green">Ui</span></code>.</p>
 </li>
 <li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p>In addition, the <code><span class="green">CommandResult</span></code> object can also instruct the <code><span class="green">Ui</span></code> to perform certain actions, such
+as displaying help to the user.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code><span class="green">Logic</span></code> component for the <code><span class="green">execute
+("delete 1")</span></code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -320,7 +341,8 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for <code><span class="green">DeleteCommandParser</span></code> should end at the destroy marker (X) but due to a limitation of
+PlantUML, the lifeline reaches the end of diagram.
 </td>
 </tr>
 </table>
@@ -330,26 +352,27 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
+<img src="images/ModelComponent.png" alt="ModelComponent">
 </div>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/model/Model.java"><code><span class="green">Model.java</span></code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The <code><span class="green">Model</span></code>,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p>stores a <code><span class="green">UserPref</span></code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
 <p>stores the Address Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code><strong>ObservableList&lt;Person&gt;</strong>`</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code><span class="green"><strong>ObservableList&lt;Person&gt;</strong></span></code> that can be 'observed' e.g. the UI can be bound to this
+list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -363,7 +386,10 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a Tag list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a Tag list in <code><span class="green">Athletick</span></code>, which <code><span class="green">Person</span></code> can reference. This would
+allow <code><span class="green">Athletick</span></code> to only require one <code><span class="green">Tag</span></code> object per unique <code><span class="green">Tag</span></code>, instead of each
+<code><span class="green">Person</span></code> needing their own <code><span class="green">Tag</span></code>
+object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
@@ -380,15 +406,15 @@ As a more OOP model, we can store a Tag list in <code>Address Book</code>, which
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code><span class="green">Storage.java</span></code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <code><span class="green">Storage</span></code> component,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <code><span class="green">UserPref</span></code> objects in json format and read it back.</p>
 </li>
 <li>
 <p>can save the Athletick data in json format and read it back.</p>
@@ -399,7 +425,7 @@ As a more OOP model, we can store a Tag list in <code>Address Book</code>, which
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code><span class="green">seedu.addressbook.commons</span></code> package.</p>
 </div>
 </div>
 </div>
@@ -420,7 +446,7 @@ of all training sessions in a month.</p>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">4.1.1. Implementation</a></h4>
 <div class="paragraph">
-<p>To facilitate this, the <code>Model</code> has a <code>TrainingManager</code> that stores all <code>Training</code>
+<p>To facilitate this, the <code><span class="green">Model</span></code> has a <code><span class="green">TrainingManager</span></code> that stores all <code><span class="green">Training</span></code>
 sessions in Athletick. The class diagram below shows how the different components interact with each other.</p>
 </div>
 <div class="imageblock">
@@ -429,18 +455,23 @@ sessions in Athletick. The class diagram below shows how the different component
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Training</code> class contains a date and a hash map.
+<p>The <code><span class="green">Training</span></code> class contains a date and a hash map.
 The date in the training class represents the date of training session and the hash map is used to check the
-attendance of a Person. We used a <code>AthletickDate</code> class to  represent a date of training. This class is shared across
-both the <code>Ui</code> and backend, allowing training information to be shown in the <code>view calendar</code> function.
-The hash map uses <code>Person</code> objects as keys and a boolean as it’s value. This is used to check whether a <code>Person</code> has
-attended a training session, indicated by the boolean value attached to  a <code>Person</code> key. If a <code>Person</code> attended a
-training session on that day, the value associated with the key will be  true, and false if he did not attend.</p>
+attendance of a Person. We used a <code><span class="green">AthletickDate</span></code> class to  represent a date of training. This class is shared
+across both the <code><span class="green">Ui</span></code> and backend, allowing training information to be shown in the <code>view calendar</code> function.
+The hash map uses <code><span class="green">Person</span></code> objects as keys and a boolean as it’s value. This is used to check whether a
+<code><span class="green">Person</span></code>
+has
+attended a training session, indicated by the boolean value attached to  a <code><span class="green">Person</span></code> key. If a
+<code><span class="green">Person</span></code> attended a training session on that day, the value associated with the key will be true,
+and false if he did not attend.</p>
 </div>
 <div class="paragraph">
-<p>A <code>TrainingManager</code> is used to store and manage all <code>Training</code> sessions in Athletick. It has a list
-containing <code>Training</code> sessions. A <code>Training</code> is added to this list whenever a user records a <code>Training</code> session
-using a <code>TrainingCommand</code>. The sequence diagram below shows how <code>TrainingManager</code> stores and manages training records.</p>
+<p>A <code><span class="green">TrainingManager</span></code> is used to store and manage all <code><span class="green">Training</span></code> sessions in Athletick. It has a list
+containing <code><span class="green">Training</span></code> sessions. A <code><span class="green">Training</span></code> is added to this list whenever a user records a
+<code><span class="green">Training</span></code> session
+using a <code><span class="green">TrainingCommand</span></code>. The sequence diagram below shows how <code><span class="green">TrainingManager</span></code> stores and manages
+training records.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -453,8 +484,9 @@ using a <code>TrainingCommand</code>. The sequence diagram below shows how <code
 </div>
 </div>
 <div class="paragraph">
-<p><code>TrainingManager</code> provides functions for users to calculate the attendance rate of one individual, or the entire
-team. The sequence diagram below shows a use case of how <code>TrainingManager</code> gets attendance rate.</p>
+<p><code><span class="green">TrainingManager</span></code> provides functions for users to calculate the attendance rate of one individual, or the
+entire
+team. The sequence diagram below shows a use case of how <code><span class="green">TrainingManager</span></code> gets attendance rate.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -462,8 +494,9 @@ team. The sequence diagram below shows a use case of how <code>TrainingManager</
 </div>
 </div>
 <div class="paragraph">
-<p><code>TrainingManager</code> also allows users to view <code>Training</code> information on a specified date. The sequence diagram below
-shows a use case of how <code>TrainingManager</code> gets <code>Training</code> information.</p>
+<p><code><span class="green">TrainingManager</span></code> also allows users to view <code><span class="green">Training</span></code> information on a specified date. The sequence
+diagram below
+shows a use case of how <code><span class="green">TrainingManager</span></code> gets <code><span class="green">Training</span></code> information.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -479,7 +512,7 @@ shows a use case of how <code>TrainingManager</code> gets <code>Training</code> 
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1: Extend on the <code>AddressBook</code> by storing and tagging each person with number of
+<p>Alternative 1: Extend on the <code><span class="green">Athletick</span></code> by storing and tagging each person with number of
 trainings attended and total number of trainings.</p>
 <div class="ulist">
 <ul>
@@ -498,7 +531,7 @@ trainings attended and total number of trainings.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Allows storing of specific training information without depending on the <code>AddressBook</code>.</p>
+<p>Pros: Allows storing of specific training information without depending on the <code><span class="green">Athletick</span></code>.</p>
 </li>
 <li>
 <p>Cons: Harder to code and introduces more dependencies to Model.</p>
@@ -885,30 +918,33 @@ trainings attended and total number of trainings.</p>
 implementation of the UI.</p>
 </div>
 <div class="paragraph">
-<p>The implementation of the command is facilitated by <code>SelectCommand</code> class. It extends
-<code>Command</code> and parses the arguments using <code>SelectCommandParser</code>. It implements one operation:</p>
+<p>The implementation of the command is facilitated by <code><span class="green">SelectCommand</span></code> class. It extends
+<code><span class="green">Command</span></code> and parses the arguments using <code><span class="green">SelectCommandParser</span></code>. It implements one operation:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CommandResult#execute()</code>&#8201;&#8212;&#8201;Executes the selectCommand which returns the athlete selected to be displayed in the UI.</p>
+<p><code><span class="green">CommandResult#execute()</span></code>&#8201;&#8212;&#8201;Executes the selectCommand which returns the athlete selected to be displayed in
+the
+UI.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The implementation of the UI portion for the <code>select</code> feature  is facilitated by <code>InformationDisplay</code>. It extends
-<code>UiPart&lt;Region&gt;</code> and displays the personal information of the selected athlete. Additionally, it implements the
+<p>The implementation of the UI portion for the <code>select</code> feature  is facilitated by <code><span class="green">InformationDisplay</span></code>. It
+extends
+<code><span class="green">UiPart&lt;Region&gt;</span></code> and displays the personal information of the selected athlete. Additionally, it implements the
 following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>InformationDisplay#displayPersonalInfo()</code>&#8201;&#8212;&#8201;Displays the personal information of the selected athlete such as the
-name, email, address, phone number and other personal details.</p>
+<p><code><span class="green">InformationDisplay#displayPersonalInfo()</span></code>&#8201;&#8212;&#8201;Displays the personal information of the selected athlete
+such as the name, email, address, phone number and other personal details.</p>
 </li>
 <li>
-<p><code>InformationDisplay#performanceDisplay()</code>&#8201;&#8212;&#8201;Displays the performance of the selected athlete, which includes the
-event, best performance and most recent performance.</p>
+<p><code><span class="green">InformationDisplay#performanceDisplay()</span></code>&#8201;&#8212;&#8201;Displays the performance of the selected athlete, which includes
+the event, best performance and most recent performance.</p>
 </li>
 </ul>
 </div>
@@ -916,10 +952,12 @@ event, best performance and most recent performance.</p>
 <p>An example usage scenario is given below which elaborates how the <code>select</code> feature behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user executes the <code>select 3</code> command. The command is then parsed by <code>SelectCommandParser</code> which creates
-an instance of <code>SelectCommand</code>. <code>SelectCommand</code> retrieves the athlete based on the index of the list panel on the left.
-When the command is executed, the athlete selected at the specified index will be stored in ModelManager as
-<code>selectedPerson</code> using the operation <code>Model#storePerson(Person)</code>.</p>
+<p>Step 1. The user executes the <code>select 3</code> command. The command is then parsed by <code><span class="green">SelectCommandParser</span></code> which
+creates
+an instance of <code><span class="green">SelectCommand</span></code>. <code><span class="green">SelectCommand</span></code> retrieves the athlete based on the index of the list
+panel on the left.
+When the command is executed, the athlete selected at the specified index will be stored in <code><span class="green">ModelManager</span></code> as
+<code><span class="green">selectedPerson</span></code> using the operation <code><span class="green">Model#storePerson(Person)</span></code>.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. After the command has been executed, the selected athlete is retrieved in the MainWindow class. It checks
@@ -930,14 +968,14 @@ whether an athlete has been selected and displays the selected athlete&#8217;s p
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram">
+<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="400">
 </div>
 <div class="title">Figure 9. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
-Firstly, the Ui component takes in the input from the user and allows <code>SelectCommandParser</code> in Logic component to parse
-the argument.
+Firstly, the Ui component takes in the input from the user and allows <code><span class="green">SelectCommandParser</span></code> in Logic component
+to parse the argument.
 After the argument has been parsed, the athlete is stored in the Model component which houses most of the data in the
 app. The Ui listens for any changes made to the Model data, and updates the Ui to display the selected athlete.</p>
 </div>
@@ -1025,8 +1063,8 @@ to consider.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Intuitive to use and can be used with other commands such as <code>FindCommand</code> and <code>FilterCommand</code> to narrow
-down the list of people.</p>
+<p>Pros: Intuitive to use and can be used with other commands such as <code><span class="green">FindCommand</span></code> and
+<code><span class="green">FilterCommand</span></code> to narrow down the list of people.</p>
 </li>
 <li>
 <p>Cons: Additional step of filtering the list to make it shorter before selecting an athlete.</p>
@@ -1051,20 +1089,16 @@ down the list of people.</p>
 </div>
 <div class="paragraph">
 <p>Reason: In the end, I went with alternative 1 because it was more intuitive to use and was in line with some of the
-other functions such as <code>DeleteCommand</code> or <code>FindCommand</code> which also uses index. It also reduces the need to type out
-the full name of the selected athlete.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.5. Undo / Redo feature</a></h3>
-<div class="paragraph">
-<p>The <code>undo</code> command enables users to undo their previous commands while the <code>redo</code> command enables users to redo their
+other functions such as <code><span class="green">DeleteCommand</span></code> or <code><span class="green">FindCommand</span></code> which also uses index. It also reduces the
+need to type out the full name of the selected athlete.
+=== Undo / Redo feature
+The <code>undo</code> command enables users to undo their previous commands while the <code>redo</code> command enables users to redo their
 undone commands.</p>
 </div>
+</div>
+</div>
 <div class="sect3">
-<h4 id="undo-implementation"><a class="link" href="#undo-implementation">4.5.1. Undo Implementation</a></h4>
+<h4 id="undo-implementation"><a class="link" href="#undo-implementation">4.4.3. Undo Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>undo</code> command is facilitated by the <code><span class="green">HistoryManager</span></code>. <code><span class="green">HistoryManager</span></code> holds the
 states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and <code><span class="green">Performance</span></code>, which are kept in
@@ -1133,7 +1167,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="redo-implementation"><a class="link" href="#redo-implementation">4.5.2. Redo Implementation</a></h4>
+<h4 id="redo-implementation"><a class="link" href="#redo-implementation">4.4.4. Redo Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>redo</code> command is similarly facilitated by the <code><span class="green">HistoryManager</span></code>. <code><span class="green">HistoryManager</span></code>
 also holds the undone states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and <code><span class="green">Performance</span></code>,
@@ -1165,7 +1199,7 @@ Implementation.</a></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.3. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.5. Design Considerations</a></h4>
 <div class="paragraph">
 <p>This section describes the pros and cons of the current and other alternative implementations of the undo and redo features.</p>
 </div>
@@ -1239,18 +1273,19 @@ go with the first alternative.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">4.6. Adding/editing photo feature</a></h3>
+<h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">4.5. Adding/editing photo feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">4.6.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">4.5.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The sub feature of <code>AddCommand</code> and <code>EditCommand</code> allows the inclusion of photo for an athlete. The sub feature is
-facilitated by <code>Photo</code>.</p>
+<p>The sub feature of <code><span class="green">AddCommand</span></code> and <code><span class="green">EditCommand</span></code> allows the inclusion of photo for an athlete. The
+sub feature is
+facilitated by <code><span class="green">Photo</span></code>.</p>
 </div>
 <div class="paragraph">
-<p>This sub feature is similar to the other features such as <code>Name</code> and <code>Phone</code> which uses a prefix <code>i/</code> followed by the
-file name (e.g. <code>i/default.png</code>). Prior to adding the photo of an athlete, the image file that is going to be used
-has to be in the <code>images</code> folder which will be generated when the jar file is executed. <code>Photo</code> takes in the file name as a
-<code>String</code> and retrieves the photo to be added or edited from the <code>images</code> folder.</p>
+<p>This sub feature is similar to the other features such as <code><span class="green">Name</span></code> and <code><span class="green">Phone</span></code> which uses a prefix <code>i/</code>
+followed by the file name (e.g. <code>i/default.png</code>). Prior to adding the photo of an athlete, the image file that is going to be used
+has to be in the <code>images</code> folder which will be generated when the jar file is executed. <code><span class="green">Photo</span></code> takes in the
+file name as a <code><span class="green">String</span></code> and retrieves the photo to be added or edited from the <code>images</code> folder.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1267,7 +1302,7 @@ This is done to keep the file name simple.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">4.6.2. Design Consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">4.5.2. Design Consideration</a></h4>
 <div class="paragraph">
 <p>The following consists of some of the design consideration when I was designing this sub-feature.</p>
 </div>
@@ -1305,16 +1340,16 @@ have if special characters were included.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-feature"><a class="link" href="#filter-feature">4.7. Filter feature</a></h3>
+<h3 id="filter-feature"><a class="link" href="#filter-feature">4.6. Filter feature</a></h3>
 <div class="paragraph">
 <p>The filter command enables filtering of athletes based on their tags.
 Currently, only filtering by one tag is supported.
 Filtering by multiple tags will be available by <code>v1.2</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">4.7.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">4.6.1. Implementation</a></h4>
 <div class="paragraph">
-<p>Filter makes use of a <code>TagMatchesPredicate</code> class to determine if the athlete has tags matching the user input.
+<p>Filter makes use of a <code><span class="green">TagMatchesPredicate</span></code> class to determine if the athlete has tags matching the user input.
 Given below is the Sequence Diagram to show how filter works, with an example input of filter captain.</p>
 </div>
 <div class="imageblock">
@@ -1323,7 +1358,9 @@ Given below is the Sequence Diagram to show how filter works, with an example in
 </div>
 </div>
 <div class="paragraph">
-<p>Once filtering by multiple tags is implemented, the parsing of tag from <code>AddressBookParser</code> to <code>FilterCommandParser</code> will involve splitting them by spaces and storing the tag queries in a list.
+<p>Once filtering by multiple tags is implemented, the parsing of tag from <code><span class="green">AddressBookParser</span></code> to
+<code><span class="green">FilterCommandParser</span></code>
+will involve splitting them by spaces and storing the tag queries in a list.
 Thereafter, each tag query will be compared against every athlete’s tags to determine if the athlete should be filtered.</p>
 </div>
 <div class="paragraph">
@@ -1331,11 +1368,11 @@ Thereafter, each tag query will be compared against every athlete’s tags to de
 the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 <div class="paragraph">
-<p>Finally, the list shown to the user is updated through <code>Model#updateFilteredPersonsList()</code>.</p>
+<p>Finally, the list shown to the user is updated through <code><span class="green">Model#updateFilteredPersonsList()</span></code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-a-tag-match-is-determined"><a class="link" href="#aspect-how-a-tag-match-is-determined">Aspect: How a tag match is determined</a></h5>
 <div class="ulist">
@@ -1405,12 +1442,12 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sort-command"><a class="link" href="#sort-command">4.8. Sort Command</a></h3>
+<h3 id="sort-command"><a class="link" href="#sort-command">4.7. Sort Command</a></h3>
 <div class="paragraph">
 <p>The <code>sort</code> command sorts the displayed list of athletes in alphabetical order. As new athletes are added to the bottom of the list, the <code>sort</code> command is used after to reorder the athlete list.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-7"><a class="link" href="#implementation-7">4.8.1. Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">4.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>sort</code> command makes use of a <code><span class="green">PersonNameComparator</span></code> that orders athletes in alphabetical order by comparing their names. The comparison is case-insensitive.</p>
 </div>
@@ -1431,7 +1468,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>This section contains some of our design considerations for the sort command.</p>
 </div>
@@ -1510,14 +1547,14 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1548,7 +1585,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code><span class="green">config.json</span></code>).</p>
 </div>
@@ -2245,4 +2282,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 16:27:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 17:34:10 UTC</div></div></div></body></html>
