@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Lim Jun Hup - Project Portfolio for Athletick</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Athletick</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T12-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Lim Jun Hup - Project Portfolio for Athletick</h1></div><div id="content"><div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The purpose of this portfolio showcases my contribution to the Athletick project.</p>
+</div>
+<div class="sect2">
+<h3 id="about-the-team"><a class="link" href="#about-the-team">1.1. About the team</a></h3>
+<div class="paragraph">
+<p>We are a team of five year 2 computing students from National University
+of Singapore with diverse backgrounds and specialisations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="about-the-project"><a class="link" href="#about-the-project">1.2. About the project</a></h3>
+<div class="paragraph">
+<p>This project is a 6 weeks long project for our software engineering module. We were given
+an existing address book application and were tasked to either enhance or to morph it. One of
+the main constraints of this project is that the application has to be used as a command line interface.</p>
+</div>
+<div class="paragraph">
+<p>What my team and I decided to do was to morph the existing address book application to a team
+management desktop application called Athletick. Athletick is designed for captains and
+coaches of timing-based performance sports to help take and keep track of attendance
+and performance of their teams. Some of the main features of Athletick include
+taking the team&#8217;s attendance, viewing the team&#8217;s attendance rate and also tracking
+the team&#8217;s performance with a visual graph.</p>
+</div>
+<div class="paragraph">
+<p>This is what users see when they first start Athletick:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/athletick.png" alt="athletick" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1. The graphical user interface for Athletick.</p>
+</div>
+<div class="paragraph">
+<p>My role was to design and implement the code for the <code>undo</code> and <code>redo</code> features.
+The following sections illustrate these enhancements in more detail, as
+well as the relevant documentation I have added to the user and developer guides
+in relation to these enhancements.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+NOTE
+</td>
+<td class="hdlist2">
+<p>This symbol indicates important information</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>command</code>
+</td>
+<td class="hdlist2">
+<p>A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code><span class="green">component</span></code>
+</td>
+<td class="hdlist2">
+<p>Green text with grey highlight indicates a component, class, object or method in the architecture of the application.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">2. Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the team project.</p>
+</div>
+<div class="paragraph">
+<p><strong>Enhancement added</strong>: I added the ability to undo/redo previous commands.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The <code>undo</code> command allows the user to undo a previous command. The user may
+reverse this <code>undo</code> command with the <code>redo</code> command.</p>
+</li>
+<li>
+<p>Justification:
+In the event that users have made a mistake or changed their minds about executing
+a command, the <code>undo</code> command enables them to revert to a version immediately before the mistaken command
+was executed. If they change their minds again and decide to execute the command after all,
+then the <code>redo</code> command enables them to do so easily.</p>
+</li>
+<li>
+<p>Highlights</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This enhancement works with existing as well as future commands.</p>
+</li>
+<li>
+<p>As there were
+a few ways to implement this enhancement, an in-depth analysis of design alternatives was
+necessary to weigh the different alternatives and decide on the implementation for this enhancement.</p>
+</li>
+<li>
+<p>The implementation too was challenging as it required a full understanding of
+the major components of the application and the existing features implementations.
+Also, as the enhancement is able to work with future commands, the implementation of
+this enhancement has to be considerable of the future features implementations and
+allow the future enhancement for such features to be easily integrated into the current implementation.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Other contributions</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+</li>
+<li>
+<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+</li>
+<li>
+<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+</li>
+<li>
+<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
+</li>
+<li>
+<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:03:02 UTC</div></div></div></body></html>
