@@ -151,6 +151,185 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo / Redo feature</a></h3>
+<div class="paragraph">
+<p>The <code>undo</code> command enables users to undo their previous commands while the <code>redo</code> command enables users to redo their
+undone commands.</p>
+</div>
+<div class="sect3">
+<h4 id="undo-implementation"><a class="link" href="#undo-implementation">Undo Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>undo</code> command is facilitated by the <code><span class="green">HistoryManager</span></code>. <code><span class="green">HistoryManager</span></code> holds the
+states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and <code><span class="green">Performance</span></code>, which are kept in
+their respective stacks governed by <code><span class="green">HistoryManager</span></code>. Furthermore, <code><span class="green">HistoryManager</span></code> also
+holds the <code><span class="green">Command</span></code> stack that keeps track of the commands executed by the user.</p>
+</div>
+<div class="paragraph">
+<p>Each time after the user executes a command, the command will be pushed to the
+<code><span class="green">Command</span></code> stack. Also, following the execution of the command,
+changes to either <code><span class="green">Athletick</span></code>,<code><span class="green">Attendance</span></code> or <code><span class="green">Performance</span></code>
+will result in the new state being pushed into their respective stacks.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario on how the undo mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code><span class="green">HistoryManager</span></code> will be
+initialised with the initial <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and
+<code><span class="green">Performance</span></code> state pushed to the respective stacks.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/initialStack.png" alt="initialStack" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
+delete command will be pushed into the <code><span class="green">Command</span></code> stack. After that,
+since the <code>delete -p 3</code> command only alters the <code><span class="green">Athletick</span></code> state, the new <code><span class="green">Athletick</span></code>
+state will then be pushed to the <code><span class="green">Athletick</span></code> stack while the <code><span class="green">Attendance</span></code> and
+<code><span class="green">Performance</span></code> stacks are left untouched as their states remain the same.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/afterUndoStack.png" alt="afterUndoStack" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
+by executing the <code>undo</code> command. The <code>undo</code> command then executes the <code>undo</code> method in the
+<code><span class="green">ModelManager</span></code>. This pops the latest command from the <code><span class="green">Command</span></code>
+stack and the latest <code><span class="green">Athletick</span></code> state from the <code><span class="green">Athletick</span></code> stack.
+It then peeks at the <code><span class="green">Athletick</span></code> stack to retrieve the <code><span class="green">Athletick</span></code> state
+before <code>delete -p 3</code> command was executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/initialStack.png" alt="initialStack" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
+was executed, we then resets the <code><span class="green">Athletick</span></code> state to this retrieved
+<code><span class="green">Athletick</span></code> state. As such, the previous command will then be undone.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the undo operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoSQ.png" alt="undoSQ" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Sequence diagram for undo implementation</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-implementation"><a class="link" href="#redo-implementation">Redo Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>redo</code> command is similarly facilitated by the <code><span class="green">HistoryManager</span></code>. <code><span class="green">HistoryManager</span></code>
+also holds the undone states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and <code><span class="green">Performance</span></code>,
+which are kept in their respective undone stacks governed by <code><span class="green">HistoryManager</span></code>. Furthermore,
+<code><span class="green">HistoryManager</span></code> also holds the undone <code><span class="green">Command</span></code> stack that keeps track of the commands
+undone by the user.</p>
+</div>
+<div class="paragraph">
+<p>Each time an <code>undo</code> command is executed succesfully, the undone <code><span class="green">Command</span></code> will be pushed
+to the undone <code><span class="green">Command</span></code> stack and the respective undone states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code>
+or <code><span class="green">Performance</span></code>, if affected, will be pushed to their respective undone states.</p>
+</div>
+<div class="paragraph">
+<p>Following that, how the <code>redo</code> command works is very similar to how the <code>undo</code> command works.
+As such, you can also refer to the diagrams in the
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/blob/master/docs/DeveloperGuide.adoc#undo-redo-feature">Undo
+Implementation.</a></p>
+</div>
+<div class="paragraph">
+<p>The activity diagram for <code>redo</code> command is as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/redoactivity.png" alt="redoactivity" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Activity diagram for <code>redo</code> command</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p>This section describes the pros and cons of the current and other alternative implementations of the undo and redo features.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alternative 1 (Current Choice): Keep states of <code><span class="green">Athletick</span></code>, <code><span class="green">Attendance</span></code> and
+<code><span class="green">Performance</span></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alternative 2: Individual command knows how to undo/redo by itself</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easy to implement, and easy for developers to understand.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Will use less memory (e.g. for <code>delete -p 1</code>, just save the person being deleted).</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>May have performance issues in terms of memory usage.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>We must ensure that the implementation of each individual command is correct.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect5">
+<h6 id="reason-why-we-chose-alternative-1"><a class="link" href="#reason-why-we-chose-alternative-1">Reason why we chose alternative 1:</a></h6>
+<div class="paragraph">
+<p>Even though the memory usage of Alternative 2 is lesser, we do not feel that this benefit of lesser memory usage
+outweighs the tedious cost of implementing the alternative.</p>
+</div>
+<div class="paragraph">
+<p>Furthermore, as we realise that each time the application starts, the memories of the states
+are cleared.
+This means that the cost of having alternative 1 is significantly lesser, as the memories of the states do not
+accumulate. As such, we decided to go with the first alternative.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -161,4 +340,4 @@
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:03:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:28:42 UTC</div></div></div></body></html>
