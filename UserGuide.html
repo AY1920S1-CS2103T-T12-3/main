@@ -720,7 +720,8 @@ the same event)
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully added, the result box (red box) will display the added event name as shown below.</p>
+<p>If successfully added, the result box will display message "<em>Event created:</em>" followed by the name
+of the event you just added, as shown in the red box in the diagram below.</p>
 </div>
 <div class="paragraph">
 <p>Additionally, the feature box (orange box) will display the list of all your events. The event you just
@@ -743,7 +744,7 @@ Records stored under this event will be deleted as well.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s say that your team is no longer participating in the <code>backstroke 100m</code> event, and you want to remove it
-from <strong>Athletick</strong>.</p>
+from Athletick.</p>
 </div>
 <div class="paragraph">
 <p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
@@ -756,30 +757,50 @@ from <strong>Athletick</strong>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/deleteevent_wysd.png" alt="deleteevent wysd" width="250">
+<img src="images/deleteevent_wysd.png" alt="deleteevent wysd" width="450">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully deleted, the result box will display the deleted event name as shown below.
-The event should no longer be in <strong>Athletick</strong>.</p>
+<p>If successfully deleted, the result box will display the message "<em>Deleted event:</em>" followed by
+the name of the event you just deleted, as shown in the red box in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will show the current list of events you have in Athletick. The
+deleted event should not appear in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/deleteevent_wyss.png" alt="deleteevent wyss" width="150">
+<img src="images/deleteevent_wyss.png" alt="deleteevent wyss" width="450">
 </div>
-<div class="title">Figure 2. Notice that the backstroke 100m event is no longer listed.</div>
+<div class="title">Figure 2. Notice that the backstroke 100m event is not listed.</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="adding-an-athlete-s-record-code-performance-code"><a class="link" href="#adding-an-athlete-s-record-code-performance-code">4.4.3. Adding an athlete&#8217;s record : <code>performance</code></a></h4>
 <div class="paragraph">
-<p>This command records your athlete’s performance for a certain event, on a certain day, to <strong>Athletick</strong>.</p>
+<p>This command records your athlete’s performance for a certain event, on a certain day, to Athletick.</p>
 </div>
 <div class="paragraph">
-<p>You will need the event name, athlete’s index, date of performance and timing of performance.</p>
+<p>You will need the following details to add a record.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Athlete&#8217;s index</p>
+</li>
+<li>
+<p>Event name</p>
+</li>
+<li>
+<p>Date of record</p>
+</li>
+<li>
+<p>Timing of record</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -794,75 +815,174 @@ The event has to be created first. Otherwise, Athletick will prompt you to creat
 </table>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say you took a timed trial for Irfan on 22nd October 2019 under the freestyle 50m event,
-and he took 23.47 seconds to complete it. Now you want to store this record in <strong>Athletick</strong>.</p>
+<p>Let&#8217;s say that you took a timed trial for Tao Li on 2nd November 2019 under the freestyle 50m event,
+and she took 24.01 seconds to complete it. Now you want to store this record in Athletick.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>As seen in the yellow box in the diagram below, Irfan is located at index 5 in the active list.</p>
-</div>
-<div class="paragraph">
-<p>Type in the command below, like so in the red box in the same diagram, and press <code>Enter</code>.</p>
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>performance INDEX e/EVENT_NAME d/DDMMYYYY t/TIMING</code></p>
 </div>
 <div class="paragraph">
-<p>Example : <code>performance 5 e/freestyle 50m d/02102019 t/23.47</code></p>
+<p>Example : <code>performance 3 e/freestyle 50m d/02112019 t/24.01</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addperformance_wysd.png" alt="addperformance wysd" width="450">
+<img src="images/addrecord_wysd.png" alt="addrecord wysd" width="450">
 </div>
+<div class="title">Figure 3. As seen in the orange box, Tao Li has index 3 in the active list. Hence, 3 is used at the INDEX.</div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully added, the performance details will be displayed in the result box (red mark-up).</p>
+<p>If successfully added, the result box will display the details of the record you just added, as shown in
+the diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addperformance_wyss.png" alt="addperformance wyss" width="350">
+<img src="images/addrecord_wyss.png" alt="addrecord wyss" width="450">
 </div>
+<div class="title">Figure 4. Details of Tao Li&#8217;s new record - event, date and timing - are displayed in the result box.</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.4.4. Viewings events : <code>view performance</code></a></h4>
+<h4 id="deleting-an-athlete-s-record-code-delete-r-code"><a class="link" href="#deleting-an-athlete-s-record-code-delete-r-code">4.4.4. Deleting an athlete&#8217;s record : <code>delete -r</code></a></h4>
 <div class="paragraph">
-<p>This command gives you an overview of what events you have stored in <strong>Athletick</strong>.</p>
+<p>This command removes an athlete&#8217;s record for a certain event, on a certain day, from Athletick.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say you want to know what events you have added to <strong>Athletick</strong>.</p>
+<p>You will need the following details to delete a record.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Athlete&#8217;s index</p>
+</li>
+<li>
+<p>Event name</p>
+</li>
+<li>
+<p>Date of record</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to delete Tao Li&#8217;s record for the freestyle 50m event on 2nd November 2019.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type <code>view performance</code> in the command box, and press <code>Enter</code> to execute it.</p>
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>view performance</code></p>
+<p>Format : <code>delete -r INDEX e/EVENT_NAME d/DDMMYYYY</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>delete -r 3 e/freestyle 50m d/02112019</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/viewperformance_wysd.png" alt="viewperformance wysd" width="350">
+<img src="images/deleterecord_wysd.png" alt="deleterecord wysd" width="450">
+</div>
+<div class="title">Figure 5. As seen in the orange box, Tao Li has index 3 in the active list. Hence, 3 is used at the INDEX.</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully deleted, the result box will display the details of the record you just deleted, as shown
+in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/deleterecord_wyss.png" alt="deleterecord wyss" width="450">
+</div>
+<div class="title">Figure 6. Details of Tao Li&#8217;s deleted record - event and date - are displayed in the result box.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">4.4.5. Viewings events : <code>view performance</code></a></h4>
+<div class="paragraph">
+<p>This command shows you what events you have stored in <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to know what events you have added to <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>view performance</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewevents_wysd.png" alt="viewevents wysd" width="450">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully executed, the success message will be displayed in the result box (red box).</p>
+<p>If successfully executed, the result box (red box) will display the message "<em>Here are your events stored
+in Athletick</em>" followed, as shown in the diagram below.</p>
 </div>
 <div class="paragraph">
-<p>The feature box (green box) will display all your events saved in <strong>Athletick</strong>.</p>
+<p>Additionally, the feature box (orange box) will show the list of events you have in Athletick.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/viewperformance_wyss.png" alt="viewperformance wyss" width="450">
+<img src="images/viewevents_wyss.png" alt="viewevents wyss" width="450">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-records-code-view-records-code"><a class="link" href="#viewing-records-code-view-records-code">4.4.6. Viewing records : <code>view records</code></a></h4>
+<div class="paragraph">
+<p>This command shows you the records stored under a particular event in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to see the records under the freestyle 50m event.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>view records EVENT_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>view records freestyle 50m</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewrecords_wysd.png" alt="viewrecords wysd" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully executed, the result box will display the message "<em>Here are the records for</em>"
+followed by the event name you requested, as shown in the red box in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will show the athletes who have records under this event,
+followed by a graph of their progress over time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewrecords_wyss.png" alt="viewrecords wyss" width="450">
 </div>
 </div>
 </div>
@@ -1259,7 +1379,7 @@ by.</p>
 <div class="content">
 <img src="images/filter_wyss.png" alt="filter wyss" width="450">
 </div>
-<div class="title">Figure 3. Note that the index numbers of the athletes in the filtered list may differ from that of the unfiltered list (refer to the diagram below for an explanation).</div>
+<div class="title">Figure 7. Note that the index numbers of the athletes in the filtered list may differ from that of the unfiltered list (refer to the diagram below for an explanation).</div>
 </div>
 <div class="paragraph">
 <p>The diagram below shows the change in the active list (from unfiltered to filtered) when the filter is
@@ -1332,7 +1452,7 @@ contains the given keywords.</p>
 <div class="content">
 <img src="images/find_wyss.png" alt="find wyss" width="400">
 </div>
-<div class="title">Figure 4. Notice that Joseph Tan is also in the result as his name has 'Joseph'.</div>
+<div class="title">Figure 8. Notice that Joseph Tan is also in the result as his name has 'Joseph'.</div>
 </div>
 </div>
 </div>
@@ -1834,4 +1954,4 @@ View all created events
 <div class="sectionbody">
 
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 15:36:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 18:18:31 UTC</div></div></div></body></html>
