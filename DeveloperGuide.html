@@ -426,7 +426,7 @@ interaction of different components to produce the training feature.</p>
 <p>A training session is represented by a <code><span class="green">Training</span></code> class and it contains information like the date of
 training and training attendance. The <code><span class="green">AthletickDate</span></code> class represents the date of a training session in
 <code><span class="green">Training</span></code>. This class is shared across both the frontend and backend of the application, allowing training
-information to be used in other features. A <code><span class="green">HashMap&lt;Person, Boolean&gt;</span></code> represents attendance in
+information to be used in other features that use <code><span class="green">AthletickDate</span></code>. A <code><span class="green">HashMap&lt;Person, Boolean&gt;</span></code> represents attendance in
 <code><span class="green">Training</span></code> and indicates whether a <code><span class="green">Person</span></code> has attended that training session. If a
 <code><span class="green">Person</span></code> attended, the value associated with him in the <code><span class="green">HashMap&lt;Person, Boolean&gt;</span></code> will be true,
 and false if he did not attend.</p>
@@ -558,8 +558,8 @@ implementation allows us to easily do so.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accessing accessing attendance and attendance rate of one person takes more time.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requires more effort to maintain and coding of new functions to edit data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accessing attendance and attendance rate of one person takes more time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires more effort to maintain and requires coding of new functions to edit data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -584,7 +584,7 @@ person and a hash table provides us with the fastest access time to access atten
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users no need to type lengthy edit commands.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users will not need to type lengthy edit commands.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">More intuitive to a user who wants to edit.</p></td>
 </tr>
 <tr>
@@ -595,9 +595,9 @@ person and a hash table provides us with the fastest access time to access atten
 </tbody>
 </table>
 <div class="paragraph">
-<p>Reason for choosing alternative 1: Editing training information would require typing long time-consuming commands
-which defeats the purpose of having a command line interface. Editing training by replacing an old one with the
-<code>training</code> command makes it quicker.</p>
+<p>Reason for choosing alternative 1: Editing training information would require typing long commands which will be very
+time-consuming and this defeats the purpose of having a command line interface. Editing training by replacing an old
+one with the <code>training</code> command makes it editing much quicker.</p>
 </div>
 </div>
 </div>
@@ -2597,4 +2597,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:59:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 20:04:16 UTC</div></div></div></body></html>
