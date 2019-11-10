@@ -601,7 +601,127 @@ trainings attended and total number of trainings.</p>
 </div>
 <div class="sect2">
 <h3 id="performance-feature"><a class="link" href="#performance-feature">4.2. Performance feature</a></h3>
+<div class="paragraph">
+<p>Athletick allows users to record athlete&#8217;s performance details from timed trials.
+With this information recorded, Athletick allows users to get an overview of the team&#8217;s capability and
+progress in specific events.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>To facilitate this, <code><span class="green">ModelManager</span></code> has a <code><span class="green">Performance</span></code>, which has a <code><span class="green">UniqueEventList</span></code>.
+Every <code><span class="green">Event</span></code> in Athletick is stored in this <code><span class="green">UniqueEventList</span></code>.
+The class diagram below shows how the different components mentioned interact with one another.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/performance_classdiagram.png" alt="performance classdiagram" width="250">
+</div>
+<div class="title">Figure 9. Class diagram for showing how Performance is implemented.</div>
+</div>
+<div class="paragraph">
+<p>As the name suggests, all <code><span class="green">Event</span></code> names are unique in <code><span class="green">UniqueEventList</span></code>.
+This is ensured by <code><span class="green">UniqueEventList#contains()</span></code> that checks whether there is an <code><span class="green">Event</span></code>
+with the same name before the <code><span class="green">Event</span></code> is added.</p>
+</div>
+<div class="paragraph">
+<p>Every event has its own <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/HashMap.html">HashMap</a>
+where performances under this event are stored. The key and value of the HashMap are explained below.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Key
+</td>
+<td class="hdlist2">
+<p><code><span class="green">Person</span></code> that the performance records will be under.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Value
+</td>
+<td class="hdlist2">
+<p>List of <code><span class="green">Record</span></code> s under the <code><span class="green">Person</span></code>.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/event_classdiagram.png" alt="event classdiagram" width=""250'">
+</div>
+<div class="title">Figure 10. Class diagram showing how Records are stored in Event.</div>
+</div>
+<div class="paragraph">
+<p>This structure allows each <code><span class="green">Person</span></code> to have multiple <code><span class="green">Record</span></code> s stored in Athletick so
+their progress over time can be analysed using the <code><span class="green">AthletickDate</span></code> and <code><span class="green">Timing</span></code>
+attributes in <code><span class="green">Record</span></code>. Additionally, athlete&#8217;s records can be easily retrieved by calling the
+<code><span class="green">HashMap#get()</span></code> method.</p>
+</div>
+<div class="paragraph">
+<p>A <code><span class="green">Person</span></code> will only be in the HashMap if they have a <code><span class="green">Record</span></code> under the <code><span class="green">Event</span></code>.
+If their only <code><span class="green">Record</span></code> is removed from Athletick (using <code>`<span class="green">DeleteRecordCommand</span></code>), they will
+be removed from the HashMap as well.</p>
+</div>
+<div class="paragraph">
+<p><code><span class="green">Event</span></code> s are added using the <code><span class="green">EventCommand</span></code>, and <code><span class="green">Record</span></code> s are added using the
+ <code><span class="green">PerformanceCommand</span></code>. In these commands, changes to <code><span class="green">UniqueEventList</span></code> are called through
+  <code><span class="green">Model</span></code> in <code><span class="green">EventCommand#execute()</span></code> and <code><span class="green">PerformanceCommand#execute()</span></code> since
+  <code><span class="green">Model</span></code> carries a common copy of all the data stored in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>The <em>Observer Pattern</em> is adopted when displaying <code><span class="green">Performance</span></code> data through the <code><span class="green">UI</span></code>.
+<code><span class="green">Model</span></code> exposes an unmodifiable <code><span class="green">ObservableList&lt;Event&gt;</span></code> through
+<code><span class="green">Model#getPerformance</span></code> that returns a <code><span class="green">ReadOnlyPerformance</span></code>. It can be 'observed'
+and is updated accordingly when data in`<span class="green">Performance</span>` changes.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates what happens in <code><span class="green">Logic</span></code> and <code><span class="green">Model</span></code> when in an
+example scenario when <code>event freestyle 50m</code> is given as a user input.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addevent_sequencediagram.png" alt="addevent sequencediagram" width="700">
+</div>
+<div class="title">Figure 11. Sequence diagram showing the operations in Logic and Model when an event is added.</div>
+</div>
+<div class="paragraph">
+<p>Deleting an event (with <code><span class="green">DeleteEventCommand</span></code>) does the opposite. The input <code>delete -e freestyle
+50m</code> will call <code><span class="green">Model#deleteEvent()</span></code>, after making sure the event exists in Athletick by getting a
+boolean from <code><span class="green">Model#hasEvent()</span></code>.</p>
+</div>
+<div class="paragraph">
+<p>Operations for <code><span class="green">Record</span></code> - adding and deleting - work similarly as well, though there are more
+methods involved as there is a greater degree of nesting.</p>
+</div>
+<div class="paragraph">
+<p>The workflow for adding a record can be illustrated by the Activity Diagram below, with an example input
+<code>performance 1 e/freestyle 50m d/31102019 t/31.20</code> (ie. adding a performance record for the player at index
+1, for the freestyle 50m event in 31.20 seconds on 31st October 2019).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addrecord_activitydiagram.png" alt="addrecord activitydiagram" width="700">
+</div>
+<div class="title">Figure 12. Activity diagram showing how a Record is added to an Event.</div>
+</div>
+<div class="paragraph">
+<p>Users can also view all <code><span class="green">Record</span></code> s under an <code><span class="green">Event</span></code> using <code>view records e/EVENT_NAME</code>.
+The sequence diagram below illustrates how the Ui is involved when <code><span class="green">Record</span></code> viewing is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewrecords_sequencediagram.png" alt="viewrecords sequencediagram" width="700">
+</div>
+<div class="title">Figure 13. Sequence diagram showing how Records are viewed.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 
+</div>
 </div>
 <div class="sect2">
 <h3 id="calendar-feature"><a class="link" href="#calendar-feature">4.3. Calendar feature</a></h3>
@@ -619,7 +739,7 @@ trainings attended and total number of trainings.</p>
 </ol>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">4.3.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation of the above functions will be described separately in this section.</p>
 </div>
@@ -699,7 +819,7 @@ trainings attended and total number of trainings.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.2. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>This section contains some of our design considerations for the calendar feature.</p>
 </div>
@@ -912,7 +1032,7 @@ trainings attended and total number of trainings.</p>
 <p>The <code>select</code> feature allows user to view the profile of a selected athlete.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation of the <code>select</code> feature consists of two parts, mainly the implementation of the command and the
 implementation of the UI.</p>
@@ -970,7 +1090,7 @@ whether an athlete has been selected and displays the selected athlete&#8217;s p
 <div class="content">
 <img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="400">
 </div>
-<div class="title">Figure 9. Activity diagram of <code>select</code> command execution</div>
+<div class="title">Figure 14. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
@@ -986,11 +1106,11 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 <div class="content">
 <img src="images/SelectCommandSequenceDiagram.png" alt="SelectCommandSequenceDiagram">
 </div>
-<div class="title">Figure 10. Sequence Diagram of <code>select</code> Command</div>
+<div class="title">Figure 15. Sequence Diagram of <code>select</code> Command</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>There were some decisions that I had to make as I was designing the <code>select</code> feature and had to compare which methods
 would better suit the application. The following consists of the design considerations for the <code>select</code> feature.</p>
@@ -1199,7 +1319,7 @@ Implementation.</a></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.5. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.4.5. Design Considerations</a></h4>
 <div class="paragraph">
 <p>This section describes the pros and cons of the current and other alternative implementations of the undo and redo features.</p>
 </div>
@@ -1275,7 +1395,7 @@ go with the first alternative.</p>
 <div class="sect2">
 <h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">4.5. Adding/editing photo feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">4.5.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">4.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The sub feature of <code><span class="green">AddCommand</span></code> and <code><span class="green">EditCommand</span></code> allows the inclusion of photo for an athlete. The
 sub feature is
@@ -1347,7 +1467,7 @@ Currently, only filtering by one tag is supported.
 Filtering by multiple tags will be available by <code>v1.2</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">4.6.1. Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">4.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Filter makes use of a <code><span class="green">TagMatchesPredicate</span></code> class to determine if the athlete has tags matching the user input.
 Given below is the Sequence Diagram to show how filter works, with an example input of filter captain.</p>
@@ -1372,7 +1492,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-a-tag-match-is-determined"><a class="link" href="#aspect-how-a-tag-match-is-determined">Aspect: How a tag match is determined</a></h5>
 <div class="ulist">
@@ -1447,7 +1567,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <p>The <code>sort</code> command sorts the displayed list of athletes in alphabetical order. As new athletes are added to the bottom of the list, the <code>sort</code> command is used after to reorder the athlete list.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-7"><a class="link" href="#implementation-7">4.7.1. Implementation</a></h4>
+<h4 id="implementation-8"><a class="link" href="#implementation-8">4.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>sort</code> command makes use of a <code><span class="green">PersonNameComparator</span></code> that orders athletes in alphabetical order by comparing their names. The comparison is case-insensitive.</p>
 </div>
@@ -1458,7 +1578,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 <div class="content">
 <img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram">
 </div>
-<div class="title">Figure 11. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
+<div class="title">Figure 16. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
@@ -1468,7 +1588,7 @@ the parsing of tag simply involves trimming the tag of white spaces.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.7.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>This section contains some of our design considerations for the sort command.</p>
 </div>
@@ -2282,4 +2402,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 17:34:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 03:01:10 UTC</div></div></div></body></html>
