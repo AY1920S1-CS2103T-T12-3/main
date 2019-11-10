@@ -402,7 +402,7 @@ object. An example of how such a model may look like is given below.<br>
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/storage_classdiagram.png" alt="storage classdiagram">
 </div>
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
@@ -410,17 +410,28 @@ object. An example of how such a model may look like is given below.<br>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code><span class="green">Storage.java</span></code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code><span class="green">Storage</span></code> component,</p>
+<p>The <code><span class="green">Storage</span></code> component saves the following data in json format and reads it back as objects when
+a new session of Athletick is started.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code><span class="green">UserPref</span></code> objects in json format and read it back.</p>
+<p><code><span class="green">UserPref</span></code> data</p>
 </li>
 <li>
-<p>can save the Athletick data in json format and read it back.</p>
+<p><code><span class="green">Athletick</span></code> data (athlete list)</p>
+</li>
+<li>
+<p><code><span class="green">Performance</span></code> data (<code><span class="green">Event</span></code> and <code><span class="green">Record</span></code>)</p>
+</li>
+<li>
+<p><code><span class="green">TrainingManager</span></code> data (<code><span class="green">Training</span></code>)</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><code><span class="green">Performance</span></code> and <code><span class="green">TrainingManager</span></code> rely on <code><span class="green">JsonAdaptedPerson</span></code> as well, since a
+performance and training record also stores the athlete it is referring to.</p>
 </div>
 </div>
 <div class="sect2">
@@ -642,6 +653,12 @@ progress in specific events.</p>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
 <div class="paragraph">
+<p>This section explains how <code><span class="green">Performance</span></code> is implemented in Athletick. It is split into x sections:
+x, y, z.</p>
+</div>
+<div class="sect4">
+<h5 id="overview"><a class="link" href="#overview">Overview</a></h5>
+<div class="paragraph">
 <p>To facilitate this, <code><span class="green">ModelManager</span></code> has a <code><span class="green">Performance</span></code>, which has a <code><span class="green">UniqueEventList</span></code>.
 Every <code><span class="green">Event</span></code> in Athletick is stored in this <code><span class="green">UniqueEventList</span></code>.
 The class diagram below shows how the different components mentioned interact with one another.</p>
@@ -694,11 +711,6 @@ attributes in <code><span class="green">Record</span></code>. Additionally, athl
 <code><span class="green">HashMap#get()</span></code> method.</p>
 </div>
 <div class="paragraph">
-<p>A <code><span class="green">Person</span></code> will only be in the HashMap if they have a <code><span class="green">Record</span></code> under the <code><span class="green">Event</span></code>.
-If their only <code><span class="green">Record</span></code> is removed from Athletick (using <code>`<span class="green">DeleteRecordCommand</span></code>), they will
-be removed from the HashMap as well.</p>
-</div>
-<div class="paragraph">
 <p><code><span class="green">Event</span></code> s are added using the <code><span class="green">EventCommand</span></code>, and <code><span class="green">Record</span></code> s are added using the
  <code><span class="green">PerformanceCommand</span></code>. In these commands, changes to <code><span class="green">UniqueEventList</span></code> are called through
   <code><span class="green">Model</span></code> in <code><span class="green">EventCommand#execute()</span></code> and <code><span class="green">PerformanceCommand#execute()</span></code> since
@@ -710,6 +722,9 @@ be removed from the HashMap as well.</p>
 <code><span class="green">Model#getPerformance</span></code> that returns a <code><span class="green">ReadOnlyPerformance</span></code>. It can be 'observed'
 and is updated accordingly when data in`<span class="green">Performance</span>` changes.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="function-1-adding-and-deleting-of-event"><a class="link" href="#function-1-adding-and-deleting-of-event">Function 1: Adding and Deleting of Event</a></h5>
 <div class="paragraph">
 <p>The following sequence diagram illustrates what happens in <code><span class="green">Logic</span></code> and <code><span class="green">Model</span></code> when in an
 example scenario when <code>event freestyle 50m</code> is given as a user input.</p>
@@ -725,6 +740,9 @@ example scenario when <code>event freestyle 50m</code> is given as a user input.
 50m</code> will call <code><span class="green">Model#deleteEvent()</span></code>, after making sure the event exists in Athletick by getting a
 boolean from <code><span class="green">Model#hasEvent()</span></code>.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="function-2-adding-and-deleting-of-record"><a class="link" href="#function-2-adding-and-deleting-of-record">Function 2: Adding and Deleting of Record</a></h5>
 <div class="paragraph">
 <p>Operations for <code><span class="green">Record</span></code> - adding and deleting - work similarly as well, though there are more
 methods involved as there is a greater degree of nesting.</p>
@@ -740,6 +758,9 @@ methods involved as there is a greater degree of nesting.</p>
 </div>
 <div class="title">Figure 16. Activity diagram showing how a Record is added to an Event.</div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="function-3-viewing-of-event-and-record"><a class="link" href="#function-3-viewing-of-event-and-record">Function 3: Viewing of Event and Record</a></h5>
 <div class="paragraph">
 <p>Users can also view all <code><span class="green">Record</span></code> s under an <code><span class="green">Event</span></code> using <code>view records e/EVENT_NAME</code>.
 The sequence diagram below illustrates how the Ui is involved when <code><span class="green">Record</span></code> viewing is executed.</p>
@@ -751,9 +772,163 @@ The sequence diagram below illustrates how the Ui is involved when <code><span c
 <div class="title">Figure 17. Sequence diagram showing how Records are viewed.</div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
-
+<div class="paragraph">
+<p>This section explains the factors that we took into consideration when making decision on how different
+aspects in <code><span class="green">Performance</span></code> should be implemented.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-method-of-storing-performance-records-for-athletes"><a class="link" href="#aspect-method-of-storing-performance-records-for-athletes">Aspect: Method of storing performance records for athletes.</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice): Use a HashMap of Persons as keys and a list of Records as values.</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2: Create a class that has Persons and list of Records as attributes and store instances of
+this class in a list.</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Retrieving athlete&#8217;s individual records is fast - it can be done in O(1) time</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Checking of records can be done with a simple for-loop</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Checking requires using an iterator or a lambda operation (requires variables to be declared as final,
+making retrieval of data troublesome)</p>
+</li>
+<li>
+<p>Retrieving by values (eg. date of record) is difficult as it requires traversing through the HashMap and
+checking the individual records' dates</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Adding of records is susceptible to errors as duplicate persons can be added</p>
+</li>
+<li>
+<p>Creating our own data structure results in overheads in testing and creating our own helper methods</p>
+</li>
+<li>
+<p>Retrieving an athlete&#8217;s individual records in O(1) time requires the athlete&#8217;s index in the list, which
+is not always known</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of Alternative 1:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Retrieving from a HashMap is fast, which fulfils one of our non-functional requirements of being able to support a database of 1000 athletes</p>
+</li>
+<li>
+<p>Using a athlete-records relationship is similar to the key-value relationship in HashMap so the existing
+methods that are in the HashMap API are relevant</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-method-of-displaying-events-and-records-to-users"><a class="link" href="#aspect-method-of-displaying-events-and-records-to-users">Aspect: Method of displaying events and records to users.</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice): Display events and records separately.</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2: Display all records under all events.</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Viewing events, followed by "zooming" in to a particular event&#8217;s records gives users a more immersive
+experience</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Navigating is simple as viewing events and its records requires only one command</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Getting an overview of all events and its respective records is not possible</p>
+</li>
+<li>
+<p>Supporting 2 commands results in overhead in parsing the command and creating the relevant Ui in the
+feature box</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displaying of information will require a lot of scrolling (since the feature box is limited in size) and
+can be difficult when the event of interest is located at the end</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of Alternative 1:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Allowing users to look at the records under their event of interest gives them more control over what they want to see</p>
+</li>
+<li>
+<p>Navigating from event overview to a particular event mimics how people navigate in apps - tapping on a
+chat title (in this case, viewing records for a particular event), to see the whole conversation (record
+details for a particular event)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2436,4 +2611,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:57:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:43:11 UTC</div></div></div></body></html>
