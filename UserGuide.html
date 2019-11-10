@@ -1347,7 +1347,7 @@ Now you want to sort the list to put these players in their correct positions al
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type in the following command and press <code>Enter</code>.</p>
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>filter TAG [TAG]&#8230;&#8203;</code></p>
@@ -1364,38 +1364,33 @@ Now you want to sort the list to put these players in their correct positions al
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully executed,
-the message "x persons listed!" will be displayed in the result box (red box), where x is the number of
-athletes that match the tag you filtered by.</p>
+<p>If successfully filtered, the result box will display the message "<em>x persons listed!</em>", where <em>x</em> is the
+number of athletes that have the tag you filtered by, as shown in the red box in the diagram below.</p>
 </div>
 <div class="paragraph">
-<p>Additionally, the athlete list (orange box) will contain only the athletes that have the tag you filtered
-by.</p>
-</div>
-<div class="paragraph">
-<p>In the example given below, 3 athletes have the <code>butterfly</code> tag.</p>
+<p>Additionally, the athlete list (orange box) will show only the athletes that have the tag you filtered by.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/filter_wyss.png" alt="filter wyss" width="450">
 </div>
-<div class="title">Figure 7. Note that the index numbers of the athletes in the filtered list may differ from that of the unfiltered list (refer to the diagram below for an explanation).</div>
+<div class="title">Figure 7. Note that the index numbers of the athletes in the filtered list may differ from that of the unfiltered list. Refer to the diagram below for an explanation.</div>
 </div>
 <div class="paragraph">
 <p>The diagram below shows the change in the active list (from unfiltered to filtered) when the filter is
-applied.
-Notice that the index of some athletes have changed (eg. Joseph Schooling has changed from 3 to 2).</p>
+applied.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/filter_change.png" alt="filter change" width="395">
+<img src="images/filter_change.png" alt="filter change" width="650">
 </div>
+<div class="title">Figure 8. Notice that the index of some athletes have changed (eg. Joseph Schooling has changed from 3 to 2).</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="finding-athletes-by-their-name-code-find-code"><a class="link" href="#finding-athletes-by-their-name-code-find-code">4.6.4. Finding athletes by their name : <code>find</code></a></h4>
 <div class="paragraph">
-<p>This command find athletes whose name contains any of the given keywords.</p>
+<p>This command find athletes whose name contains any of the keywords you provide.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1405,10 +1400,10 @@ Notice that the index of some athletes have changed (eg. Joseph Schooling has ch
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The <code>find</code> command is case-insensitive.</p>
+<p>This command will change your athletes’ <code>INDEX</code>.</p>
 </div>
 <div class="paragraph">
-<p>This command will change your athletes’ index numbers.</p>
+<p>This command is case-insensitive, so finding by <code>Joseph</code> and <code>joseph</code> will give the same result.</p>
 </div>
 <div class="paragraph">
 <p>Only full keyword matches are accepted (eg. to find <code>Joseph Schooling</code>, you need to search
@@ -1425,7 +1420,7 @@ for <code>Joseph</code> or <code>Schooling</code>, but <strong>not <code>Jo</cod
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type in the find command, followed by the keywords you want to find.</p>
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -1435,24 +1430,36 @@ for <code>Joseph</code> or <code>Schooling</code>, but <strong>not <code>Jo</cod
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find_wysd.png" alt="find wysd" width="400">
+<img src="images/find_wysd.png" alt="find wysd" width="450">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
 <div class="paragraph">
-<p>If successfully executed, he athlete list in the left sidebar should only display athletes whose name
-contains the given keywords.</p>
+<p>If successfully found, the result box will display the message "<em>x persons listed!</em>", where <em>x</em> is the
+number of athletes whose names have the keyword(s) you provided, as shown in the red box in the diagram
+below.</p>
 </div>
 <div class="paragraph">
-<p>The result box should should also show the number of athletes in the results.</p>
+<p>Additionally, the athlete list (orange box) will show only the athletes whose names have the keyword(s) you
+provided.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find_wyss.png" alt="find wyss" width="400">
+<img src="images/find_wyss.png" alt="find wyss" width="450">
 </div>
-<div class="title">Figure 8. Notice that Joseph Tan is also in the result as his name has 'Joseph'.</div>
+<div class="title">Figure 9. Note that the index numbers of the athletes in the searched list may differ from that of the unsearched list. Refer to the diagram below for an explanation.</div>
+</div>
+<div class="paragraph">
+<p>The diagram below shows the change in the active list (from unsearched to searched) when the search term is
+applied.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find_change.png" alt="find change" width="650">
+</div>
+<div class="title">Figure 10. Notice that the index of some athletes have changed (eg. Joseph Schooling has changed from 4 to 1).</div>
 </div>
 </div>
 </div>
@@ -1954,4 +1961,4 @@ View all created events
 <div class="sectionbody">
 
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 18:18:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:02:00 UTC</div></div></div></body></html>
