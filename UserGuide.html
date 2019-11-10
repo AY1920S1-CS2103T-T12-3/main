@@ -366,26 +366,39 @@ in <code>.png</code>.</p>
 <div class="sect2">
 <h3 id="training"><a class="link" href="#training">4.2. Training</a></h3>
 <div class="paragraph">
-<p>Athletick allows you to record your team&#8217;s training sessions, so that you can track your team&#8217;s attendance and look
-at past training records.</p>
+<p><strong>Athletick</strong> allows you to record your team&#8217;s training sessions, so that you can store important information like
+date of training and training attendance. After adding a training session, you can look at past trainings to check
+attendance on that particular date. You can also edit training attendance or delete a training from <strong>Athletick</strong>.</p>
 </div>
-<div class="paragraph">
-<p>Add a training session by indicating members present (see
-<a href="#taking-attendance-of-a-training-session-by-athletes-present-code-training-code">Section 4.2.1, &#8220;Taking attendance of a training session by athletes present : <code>training</code>&#8221;</a>) or by indicating absent members
-(see <a href="#taking-attendance-of-a-training-session-by-members-absent-code-training-a-code">Section 4.2.2, &#8220;Taking attendance of a training session by members absent : <code>training -a</code>&#8221;</a>)</p>
-</div>
-<div class="paragraph">
-<p>After adding a training session, you can look at past trainings to check attendance on that date.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Athletick</strong> does not support recording of multiple trainings on the same date. Recording a training on the same
+date will replace the previous training. (see <a href="#edit-attendance-of-an-existing-training-session-code-training-code-or-code-training-a-code">Section 4.2.3, &#8220;Edit attendance of an existing training session: <code>training</code> or <code>training -a</code>&#8221;</a>)
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
-<h4 id="taking-attendance-of-a-training-session-by-athletes-present-code-training-code"><a class="link" href="#taking-attendance-of-a-training-session-by-athletes-present-code-training-code">4.2.1. Taking attendance of a training session by athletes present : <code>training</code></a></h4>
+<h4 id="record-training-session-by-indicating-athletes-present-code-training-code"><a class="link" href="#record-training-session-by-indicating-athletes-present-code-training-code">4.2.1. Record training session by indicating athletes present : <code>training</code></a></h4>
 <div class="paragraph">
-<p>This command saves a training session to Athletick, and marks the team members indicated as attended.</p>
+<p>This command saves a training session to <strong>Athletick</strong>, and marks the athletes indicated as present. You will need
+the date of training and indexes of athletes who were present.</p>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong>
-Let&#8217;s say you want to record a training session that took place on the 20th of October 2019 and only Alex and David
-attended. Type in the training command, date and the indexes of athletes who attended in the following format and press <code>Enter</code> to execute it.</p>
+<p>Let&#8217;s say you want to record a training session that took place on the 28th of November 2019 and only Michael and Joseph
+were present.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the <code>training</code> command, date and the indexes of athletes who were present in the following format and press
+<code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>training [d/DDMMYYYY] #/INDEX [INDEX] [INDEX ] …</code></p>
@@ -403,7 +416,7 @@ If no date is entered, the training will be recorded under today&#8217;s date.
 </table>
 </div>
 <div class="paragraph">
-<p>Examples : <code>training d/20102019 #/1 4</code> or <code>training #/1 3 4 7</code></p>
+<p>Examples : <code>training d/28112019 #/2 4</code> or <code>training #/1 3 4 7</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -413,30 +426,38 @@ If no date is entered, the training will be recorded under today&#8217;s date.
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
+<div class="paragraph">
+<p>If successfully added, the result box will display the following result in the diagram below. A green dot will
+also appear at the date on the calendar, indicating that the training has been recorded.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/training_without_flag_after.png" alt="training without flag after" width="350">
 </div>
 </div>
-<div class="paragraph">
-<p>If successfully added, the result box will display the following result.</p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="taking-attendance-of-a-training-session-by-members-absent-code-training-a-code"><a class="link" href="#taking-attendance-of-a-training-session-by-members-absent-code-training-a-code">4.2.2. Taking attendance of a training session by members absent : <code>training -a</code></a></h4>
+<h4 id="record-training-session-by-indicating-athletes-absent-code-training-a-code"><a class="link" href="#record-training-session-by-indicating-athletes-absent-code-training-a-code">4.2.2. Record training session by indicating athletes absent : <code>training -a</code></a></h4>
 <div class="paragraph">
-<p>This command saves a training session to Athletick, and marks the team members indicated as absent.</p>
+<p>This command saves a training session to <strong>Athletick</strong>, and marks the athletes indicated as absent. You will need
+the date of training and indexes of athletes who were absent.</p>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong>
-Let&#8217;s say you want to record a training session that took place today and everyone attended except Charlotte. Type in
-the training command, the absent flag, date and the indexes of athletes who were absent in the following format and press <code>Enter</code> to execute it.</p>
+<p>Let&#8217;s say you want to record a training session that took place today and everyone was present except Tao Li.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the <code>training</code> command, the absent flag <code>-a</code>, date and the indexes of athletes who were absent in the following
+format and
+press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>training -a [d/DDMMYYYY] #/INDEX [INDEX] [INDEX ] …</code></p>
 </div>
 <div class="paragraph">
-<p>Examples : <code>training -a d/23112019 #/3 6</code> or <code>training -a #/2</code></p>
+<p>Examples : <code>training -a d/29112019 #/3 6</code> or <code>training -a #/3</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -458,13 +479,107 @@ If no date is entered, the training will be recorded under today&#8217;s date.
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
+<div class="paragraph">
+<p>If successfully added, the result box will display the following result as shown in the diagram below. A green dot
+will appear also at the date on the calendar, indicating that the training has been recorded.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/training_with_flag_after.png" alt="training with flag after" width="350">
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="edit-attendance-of-an-existing-training-session-code-training-code-or-code-training-a-code"><a class="link" href="#edit-attendance-of-an-existing-training-session-code-training-code-or-code-training-a-code">4.2.3. Edit attendance of an existing training session: <code>training</code> or <code>training -a</code></a></h4>
 <div class="paragraph">
-<p>If successfully added, the result box will display the following result.</p>
+<p>This command allows you to edit the attendance of a training session. You will need the date of training and indexes
+of athletes.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you recorded a training session on the 23rd of November and indicated that Amanda and Joseph were absent.
+However, you later realised that Joseph was actually present that day and want to change the attendance for that
+training.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the <code>training</code> command, date and the correct indexes of athletes in the following format and press <code>Enter</code> to
+execute it. This will edit the training on the date by replacing it with the newly entered training session.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In this case, you can type either <code>training</code> or <code>training -a</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format : <code>training [-a] d/DDMMYYYY #/INDEX [INDEX] [INDEX ] …</code></p>
+</div>
+<div class="paragraph">
+<p>Examples : <code>training d/23112019 #/2 3 4 5</code> or <code>training -a d/23112019 #/1</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/edit_training_before.png" alt="edit training before" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully edited, the result box will display the following result as shown in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/edit_training_after.png" alt="edit training after" width="350">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-a-training-session-code-delete-t-code"><a class="link" href="#delete-a-training-session-code-delete-t-code">4.2.4. Delete a training session: <code>delete -t</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to delete a training session. You will need the date of the training session you wish to delete.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you previously recorded a training session on the 29th of November and you wish to delete that training
+session.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the <code>delete</code> command with the training flag <code>-t</code> and the date of training in the following format and press
+<code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>delete -t d/DDMMYYYY</code></p>
+</div>
+<div class="paragraph">
+<p>Examples : <code>delete -t d/29112019</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/delete_training_before.png" alt="delete training before" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully deleted, the result box will display the following result as shown in the diagram below. The green dot
+at the date will also disappear, indicating that it has been removed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/delete_training_after.png" alt="delete training after" width="350">
+</div>
 </div>
 </div>
 </div>
@@ -476,45 +591,79 @@ checks your team&#8217;s overall attendance rate as you record trainings.</p>
 </div>
 <div class="paragraph">
 <p>After recording a training, you can check the attendance of an athlete
-(see <a href="#check-attendance-of-an-athlete-code-attendance-code">Section 4.3.1, &#8220;Check attendance of an athlete : <code>attendance</code>&#8221;</a>)
-or check overall team attendance (see: <a href="#Check overall attendance of team : ` view attendance` <code>Coming in v1.4</code>">[Check overall attendance of team : ` view attendance` <code>Coming in v1.4</code>]</a>)</p>
+(see <a href="#check-attendance-of-an-athlete-code-attendance-code">Section 4.3.1, &#8220;Check attendance of an athlete : <code>attendance</code>&#8221;</a>) or check overall team attendance (see: <a href="#check-overall-attendance-of-your-team-code-view-attendance-code">Section 4.3.2, &#8220;Check overall attendance of your team : <code>view attendance</code>&#8221;</a>)</p>
 </div>
 <div class="sect3">
 <h4 id="check-attendance-of-an-athlete-code-attendance-code"><a class="link" href="#check-attendance-of-an-athlete-code-attendance-code">4.3.1. Check attendance of an athlete : <code>attendance</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to check the attendance of an Athlete.</p>
+<p>This command allows you to check the attendance of an athlete.</p>
 </div>
 <div class="paragraph">
-<p><strong>What you should do</strong>
-Let&#8217;s say you notice that Alex hasn&#8217;t been attending recent trainings and would like to check on his overall
-attendance rate. Type the attendance command, athlete index and press <code>Enter</code> to execute it.</p>
+<p>Let&#8217;s say you notice that Michael hasn&#8217;t been attending recent trainings and would like to check on his overall
+attendance rate.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type the <code>attendance</code> command and the athlete&#8217;s index. Press <code>Enter</code> to execute it.</p>
 </div>
 <div class="paragraph">
 <p>Format : <code>attendance INDEX</code></p>
 </div>
 <div class="paragraph">
-<p>Examples: <code>attendance 1</code></p>
+<p>Examples: <code>attendance 2</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/attendance_before.png" alt="attendance before" width="350">
+<img src="images/attendance_command_before.png" alt="attendance command before" width="350">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>What you should see</strong></p>
 </div>
+<div class="paragraph">
+<p>If the command is successful, the athlete&#8217;s name and attendance rate will be displayed in the result box as shown in
+the diagram below.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="images/attendance_after.png" alt="attendance after" width="350">
+<img src="images/attendance_command_after.png" alt="attendance command after" width="350">
 </div>
-</div>
-<div class="paragraph">
-<p>If the command is successful, the athlete&#8217;s name and attendance will be displayed in the result box.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="check-overall-attendance-of-team-view-attendance-coming-in-v1-4"><a class="link" href="#check-overall-attendance-of-team-view-attendance-coming-in-v1-4">4.3.2. Check overall attendance of team : ` view attendance` [Coming in v1.4]</a></h4>
-
+<h4 id="check-overall-attendance-of-your-team-code-view-attendance-code"><a class="link" href="#check-overall-attendance-of-your-team-code-view-attendance-code">4.3.2. Check overall attendance of your team : <code>view attendance</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to check the overall attendance of your team.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you would like to track your team&#8217;s overall attendance rate but don&#8217;t want to manually type the attendance
+command multiple times.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type the <code>view attendance</code> command and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/view_attendance_before.png" alt="view attendance before" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If the command is successful, the result box will display the following result as shown in the diagram below. The
+feature box will show you your team&#8217;s overall attendance rate.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/view_attendance_after.png" alt="view attendance after" width="350">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -744,7 +893,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 <p><strong>What you should do</strong></p>
 </div>
 <div class="paragraph">
-<p>Type <code>view calender</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<p>Type <code>view calendar</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -937,7 +1086,7 @@ and he took 23.47 seconds to complete it. Now you want to store this record in <
 <p>This command shows the profile of the athlete that you have selected.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say you want to view David&#8217;s personal information.</p>
+<p>Let&#8217;s say you want to view Michael&#8217;s personal information.</p>
 </div>
 <div class="paragraph">
 <p><strong>What you should do</strong></p>
@@ -1660,4 +1809,4 @@ View all created events
 <div class="sectionbody">
 
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 03:01:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 03:05:56 UTC</div></div></div></body></html>
