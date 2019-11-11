@@ -53,10 +53,19 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#adding-an-event">G.3. Adding an event</a></li>
-<li><a href="#deleting-an-event">G.4. Deleting an event</a></li>
-<li><a href="#undoing-a-previous-command">G.5. Undoing a previous command</a></li>
-<li><a href="#redoing-a-previous-command">G.6. Redoing a previous command</a></li>
+<li><a href="#selecting-an-athlete">G.3. Selecting an athlete</a></li>
+<li><a href="#adding-editing-an-image-of-an-athlete">G.4. Adding/editing an image of an athlete</a></li>
+<li><a href="#adding-a-training-using-athletes-present">G.5. Adding a training using athletes present</a></li>
+<li><a href="#adding-a-training-using-athletes-absent">G.6. Adding a training using athletes absent</a></li>
+<li><a href="#editing-a-training">G.7. Editing a training</a></li>
+<li><a href="#deleting-a-training">G.8. Deleting a training</a></li>
+<li><a href="#viewing-attendance-of-one-athlete">G.9. Viewing attendance of one athlete</a></li>
+<li><a href="#viewing-overall-attendance">G.10. Viewing overall attendance</a></li>
+<li><a href="#saving-data">G.11. Saving data</a></li>
+<li><a href="#adding-an-event">G.12. Adding an event</a></li>
+<li><a href="#deleting-an-event">G.13. Deleting an event</a></li>
+<li><a href="#undoing-a-previous-command">G.14. Undoing a previous command</a></li>
+<li><a href="#redoing-a-previous-command">G.15. Redoing a previous command</a></li>
 </ul>
 </li>
 </ul>
@@ -2673,9 +2682,270 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-event"><a class="link" href="#adding-an-event">G.3. Adding an event</a></h3>
+<h3 id="selecting-an-athlete"><a class="link" href="#selecting-an-athlete">G.3. Selecting an athlete</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selecting an athlete while all athletes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all athletes using the <code>list</code> command. Multiple athletes in the list.</p>
+</li>
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: First athlete is selected from the list. Details of the selected athlete shown in the feature box.</p>
+</li>
+<li>
+<p>Test case: <code>select 0</code><br>
+Expected: No person is deleted. Error details shown in result box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-editing-an-image-of-an-athlete"><a class="link" href="#adding-editing-an-image-of-an-athlete">G.4. Adding/editing an image of an athlete</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding or editing an image of an athlete</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Move the image files to be used into the <code>images</code> folder.</p>
+</li>
+<li>
+<p>Test case: <code>add n/John Doe p/98765432 e/johnd@example.com g/male a/311, Clementi Ave 2, #02-25 t/backstroke i/john.png</code>
+Expected: Athlete is added with the image john.png set as the profile picture.</p>
+</li>
+<li>
+<p>Test case: <code>edit 2 i/john.png</code>
+Expected: Athlete&#8217;s profile image is set as john.png.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 i/bobby.png</code>
+Expected: Error message : Image file does not exist. Make sure image file is in the <code>images</code> folder.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-training-using-athletes-present"><a class="link" href="#adding-a-training-using-athletes-present">G.5. Adding a training using athletes present</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a training by indicating athletes present</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There must be at least one person in the list. Use the <code>list</code>, <code>filter</code> or <code>find</code> commands.</p>
+</li>
+<li>
+<p>Test case: <code>training d/11112019 #/1</code><br>
+Expected: Result box indicates that training is successfully added. A green dot will appear on calendar at the date
+11th of November 2019 indicating successful adding of training. Running the <code>calendar 11112019</code> command will show that
+the first person attended training and everyone else will be displayed as absent.</p>
+</li>
+<li>
+<p>Test case: <code>training #/1</code><br>
+Expected: Result box indicates that training is successfully added. A green dot will appear on calendar at today&#8217;s
+date indicating successful adding of training. Running the <code>calendar</code> command with today&#8217;s date will show that the
+first
+person attended training and everyone else will be displayed as absent.</p>
+</li>
+<li>
+<p>Test case: <code>training d/11112019 #/0</code><br>
+Expected: No training added. Error details shown in the result box.</p>
+</li>
+<li>
+<p>Other incorrect commands: <code>training d/1234567890 #/1</code>, <code>training</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-training-using-athletes-absent"><a class="link" href="#adding-a-training-using-athletes-absent">G.6. Adding a training using athletes absent</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a training by indicating athletes absent</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There must be at least one person in the list. Use the <code>list</code>, <code>filter</code> or <code>find</code> commands.</p>
+</li>
+<li>
+<p>Test case: <code>training -a d/11112019 #/1</code><br>
+Expected: Result box indicates that training is successfully added. A green dot will appear on calendar at the date
+11th of November 2019 indicating successful adding of training. Running the <code>calendar 11112019</code> command will show that
+the first person was absent from training and everyone else will be displayed as present.</p>
+</li>
+<li>
+<p>Test case: <code>training -a #/1</code><br>
+Expected: Result box indicates that training is successfully added. A green dot will appear on calendar at today&#8217;s
+date indicating successful adding of training. Running the <code>calendar</code> command with today&#8217;s date will show that the first
+person was absent from training and everyone else will be displayed as present.</p>
+</li>
+<li>
+<p>Test case: <code>training -a d/11112019 #/0</code><br>
+Expected: No training added. Error details shown in the result box.</p>
+</li>
+<li>
+<p>Other incorrect commands: <code>training d/1234567890 #/1</code>, <code>training</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-training"><a class="link" href="#editing-a-training">G.7. Editing a training</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edit a training attendance</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There must exist a training on the input date.</p>
+</li>
+<li>
+<p>Test case: <code>training d/11112019 #/1</code><br>
+Expected: Result box indicates that training was successfully replaced. Green dot that was previously on the calendar
+at 11th November 2019 remains there. Running the <code>calendar 11112019</code> command shows the new attendance of training.</p>
+</li>
+<li>
+<p>Test case: <code>training d/11112019 #/0</code><br>
+Expected: Training is not replaced. Error details shown in the result box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-training"><a class="link" href="#deleting-a-training">G.8. Deleting a training</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a training at date</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There must exist a training on the input date.</p>
+</li>
+<li>
+<p>Test case: <code>delete -t d/11112019</code><br>
+Expected: Result box indicates that training was successfully deleted. Green dot that was previously on the calendar
+at 11th November 2019 disappears. Running the <code>calendar 11112019</code> command shows the new attendance of training.</p>
+</li>
+<li>
+<p>Test case: <code>training d/11112019 #/0</code><br>
+Expected: Training is not replaced. Error details shown in the result box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-attendance-of-one-athlete"><a class="link" href="#viewing-attendance-of-one-athlete">G.9. Viewing attendance of one athlete</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>View attendance of one athlete</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There must be at least one person in the list. Use the <code>list</code>, <code>filter</code> or <code>find</code> commands.</p>
+</li>
+<li>
+<p>Test case: <code>attendance 1</code><br>
+Expected: Result box indicates the attendance of specified athlete.</p>
+</li>
+<li>
+<p>Test case: <code>attendance 0</code><br>
+Expected: Attendance is not shown. Error details shown in the result box.</p>
+</li>
+<li>
+<p>Other incorrect attendance commands to try: <code>attendance</code>, <code>attendance x</code> (where x is larger than the list size)
+<em>{give more}</em><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-overall-attendance"><a class="link" href="#viewing-overall-attendance">G.10. Viewing overall attendance</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>View attendance of all athletes</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: None.</p>
+</li>
+<li>
+<p>Test case: <code>view attendance</code><br>
+Expected: Result box indicates the team&#8217;s attendance is being displayed. Also, display in the application will show u
+a list of your athletes and their attendance beside their names.</p>
+</li>
+<li>
+<p>Other incorrect view attendance commands to try: <code>view</code>, <code>view everyones attendance</code> (where x is larger than the
+list size) <em>{give more}</em><br>
+Expected: Error details shown in result box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.11. Saving data</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Dealing with missing/corrupted data files</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-event"><a class="link" href="#adding-an-event">G.12. Adding an event</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2706,7 +2976,7 @@ general unknown command error message.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-event"><a class="link" href="#deleting-an-event">G.4. Deleting an event</a></h3>
+<h3 id="deleting-an-event"><a class="link" href="#deleting-an-event">G.13. Deleting an event</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2736,7 +3006,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-previous-command"><a class="link" href="#undoing-a-previous-command">G.5. Undoing a previous command</a></h3>
+<h3 id="undoing-a-previous-command"><a class="link" href="#undoing-a-previous-command">G.14. Undoing a previous command</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2762,7 +3032,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-a-previous-command"><a class="link" href="#redoing-a-previous-command">G.6. Redoing a previous command</a></h3>
+<h3 id="redoing-a-previous-command"><a class="link" href="#redoing-a-previous-command">G.15. Redoing a previous command</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2789,4 +3059,4 @@ List of people remains the same.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:29:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:37:20 UTC</div></div></div></body></html>
