@@ -9,56 +9,24 @@
 <div class="sect2">
 <h3 id="about-the-team"><a class="link" href="#about-the-team">1.1. About the team</a></h3>
 <div class="paragraph">
-<p>We are a team of five year 2 computing students from National University
-of Singapore with diverse backgrounds. Four of us are majoring in Computer
-Science with different specialisations and one of us is majoring in Information
-Security.</p>
+<p>Our team comprises of five year 2 computing undergraduates from
+the National University of Singapore.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="about-the-project"><a class="link" href="#about-the-project">1.2. About the project</a></h3>
 <div class="paragraph">
 <p>This project is a 6 weeks long project for our software engineering module.
-We were tasked to either enhance or morph a basic command line interface desktop
-Address Book application and one of the main constraints of this project is that
-the application has to remain as a command line interface application.</p>
+We were tasked to either enhance or morph a command line interface
+Address Book application and one of the main constraints for this project is that
+it has to remain as a command line interface application.</p>
 </div>
 <div class="paragraph">
-<p>What my team and I decided to do was to morph the existing address book application to a team
+<p>What we decided to do was to morph the existing address book application to a team
 management application called Athletick. Athletick is designed for captains and
 coaches of timing-based performance sports to help take and keep track of attendance
-and performance of their teams.</p>
-</div>
-<div class="paragraph">
-<p>Some of the main features of Athletick include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Taking and tracking of team&#8217;s attendance.</p>
-</li>
-<li>
-<p>Recording and tracking of team&#8217;s performance.</p>
-</li>
-<li>
-<p>Viewing of training calendar and performance graph.</p>
-</li>
-<li>
-<p>Viewing of an athlete&#8217;s profile.</p>
-</li>
-<li>
-<p>Undoing and redoing of commands.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This is what users see when they first launch Athletick:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/athletick.png" alt="athletick">
-</div>
-<div class="title">Figure 1. The graphical user interface for Athletick.</div>
+and performance of their teams. Other main features of Athletick include viewing of the training calendar
+and performance graph.</p>
 </div>
 <div class="paragraph">
 <p>My role was to design and implement the code for the <code>undo</code> and <code>redo</code> features.
@@ -116,15 +84,28 @@ This symbol indicates important information
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: The <code>undo</code> command allows the user to undo a previous command. The user may
+<p>What it does</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>undo</code> command allows the user to undo a previous command. The user may
 reverse this <code>undo</code> command with the <code>redo</code> command.</p>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>Justification:
-In the event that users have made a mistake or changed their minds about executing
+<p>Justification</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In the event that users have made a mistake or changed their minds about executing
 a command, the <code>undo</code> command enables them to revert to a version immediately before the mistaken command
 was executed. If they change their minds again and decide to execute the command after all,
 then the <code>redo</code> command enables them to do so easily.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Highlights</p>
@@ -430,7 +411,7 @@ initialised with the initial <code><span class="green">Athletick</span></code>, 
 <div class="content">
 <img src="../images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 2. Initial stacks of states</div>
+<div class="title">Figure 1. Initial stacks of states</div>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
@@ -443,7 +424,7 @@ state will then be pushed to the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="../images/afterUndoStack.png" alt="afterUndoStack" width="450">
 </div>
-<div class="title">Figure 3. Stacks of states after <code>delete -p 3</code> command</div>
+<div class="title">Figure 2. Stacks of states after <code>delete -p 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
@@ -457,7 +438,7 @@ before <code>delete -p 3</code> command was executed.</p>
 <div class="content">
 <img src="../images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 4. Stacks of states after <code>undo</code> command</div>
+<div class="title">Figure 3. Stacks of states after <code>undo</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
@@ -471,7 +452,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="../images/undoSQ.png" alt="undoSQ" width="450">
 </div>
-<div class="title">Figure 5. Sequence diagram for undo implementation</div>
+<div class="title">Figure 4. Sequence diagram for undo implementation</div>
 </div>
 </div>
 <div class="sect3">
@@ -501,7 +482,7 @@ Implementation.</a></p>
 <div class="content">
 <img src="../images/redoactivity.png" alt="redoactivity" width="450">
 </div>
-<div class="title">Figure 6. Activity diagram for <code>redo</code> command</div>
+<div class="title">Figure 5. Activity diagram for <code>redo</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -580,4 +561,4 @@ accumulate. As such, we decided to go with the first alternative.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:01:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:13:15 UTC</div></div></div></body></html>
