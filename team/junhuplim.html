@@ -29,15 +29,6 @@ and performance of their teams. Other main features of Athletick include viewing
 and performance graph.</p>
 </div>
 <div class="paragraph">
-<p>This is what users see when they first launch Athletick:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/athletick.png" alt="athletick" width="400">
-</div>
-<div class="title">Figure 1. The graphical user interface for Athletick.</div>
-</div>
-<div class="paragraph">
 <p>My role was to design and implement the code for the <code>undo</code> and <code>redo</code> features.
 The following sections illustrate these enhancements in more detail, as
 well as the relevant documentation I have added to the user and developer guides
@@ -420,7 +411,7 @@ initialised with the initial <code><span class="green">Athletick</span></code>, 
 <div class="content">
 <img src="../images/initialStack.png" alt="initialStack" width="350">
 </div>
-<div class="title">Figure 2. Initial stacks of states</div>
+<div class="title">Figure 1. Initial stacks of states</div>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
@@ -433,7 +424,7 @@ state will then be pushed to the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="../images/afterUndoStack.png" alt="afterUndoStack" width="350">
 </div>
-<div class="title">Figure 3. Stacks of states after <code>delete -p 3</code> command</div>
+<div class="title">Figure 2. Stacks of states after <code>delete -p 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
@@ -447,7 +438,7 @@ before <code>delete -p 3</code> command was executed.</p>
 <div class="content">
 <img src="../images/initialStack.png" alt="initialStack" width="350">
 </div>
-<div class="title">Figure 4. Stacks of states after <code>undo</code> command</div>
+<div class="title">Figure 3. Stacks of states after <code>undo</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
@@ -461,7 +452,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="../images/undoSQ.png" alt="undoSQ" width="400">
 </div>
-<div class="title">Figure 5. Sequence diagram for undo implementation</div>
+<div class="title">Figure 4. Sequence diagram for undo implementation</div>
 </div>
 </div>
 <div class="sect3">
@@ -491,7 +482,7 @@ Implementation.</a></p>
 <div class="content">
 <img src="../images/redoactivity.png" alt="redoactivity" width="400">
 </div>
-<div class="title">Figure 6. Activity diagram for <code>redo</code> command</div>
+<div class="title">Figure 5. Activity diagram for <code>redo</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -570,4 +561,4 @@ accumulate. As such, we decided to go with the first alternative.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:40:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:44:55 UTC</div></div></div></body></html>
