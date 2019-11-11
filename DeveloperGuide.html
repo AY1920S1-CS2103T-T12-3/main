@@ -53,7 +53,9 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#undoing-a-previous-command">G.3. Undoing a previous command</a></li>
+<li><a href="#redoing-a-previous-command">G.4. Redoing a previous command</a></li>
+<li><a href="#saving-data">G.5. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2681,7 +2683,60 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="undoing-a-previous-command"><a class="link" href="#undoing-a-previous-command">G.3. Undoing a previous command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Undoing a previous command after user executes <code>list</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Previous command is <code>list</code>.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+    Expected: Error details shown in the status message. Status bar remains
+the same. List of people remains the same.</p>
+</li>
+<li>
+<p>Other incorrect undo commands to try: <code>undo x</code> (where x is any word)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-a-previous-command"><a class="link" href="#redoing-a-previous-command">G.4. Redoing a previous command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Redoing a previous command after user executes <code>undo</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Previous command is <code>undo</code>.</p>
+</li>
+<li>
+<p>Test case: <code>redo</code><br>
+    Expected: <code>undo</code> command reversed. Details of the redone command shown
+in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>redo undo</code><br>
+Expected: Error details shown in status message. Status bar remains the same.
+List of people remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2701,4 +2756,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:06:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:08:49 UTC</div></div></div></body></html>
