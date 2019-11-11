@@ -1420,7 +1420,7 @@ After the argument has been parsed, the athlete is stored in the Model component
 app. The Ui listens for any changes made to the Model data, and updates the Ui to display the selected athlete.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows the <code>select</code> feature works:</p>
+<p>The following sequence diagram shows how the <code>select</code> feature works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1441,49 +1441,76 @@ would better suit the application. The following consists of the design consider
 <p>There were a few ways how the personal information of the selected athlete could be displayed and the following
 alternatives are some of the considerations I had when implementing.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 6.25%;">
+<col style="width: 31.25%;">
+<col style="width: 31.25%;">
+<col style="width: 31.25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><strong>Alternative 1 (current choice)</strong>: Displaying it in a feature box.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Minimises the use of mouse and is in line with the other features that is utilizing the feature box.</p>
-</li>
-<li>
-<p>Cons: Aesthetic is not as good compared to the other alternatives.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><strong>Alternative 2</strong>: Displaying it in a tab form.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Looks more organised compared to the other alternatives</p>
-</li>
-<li>
-<p>Cons: Not as intuitive to use as mouse has to be used to switch around tabs.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><strong>Alternative 3</strong>: Displaying via a pop-up.</p>
-<div class="ulist">
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Pros: Looks neater and organised.</p>
+<p>Minimises the use of mouse and is in line with the other features that is utilizing the feature box.</p>
 </li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
 <li>
-<p>Cons: Increase the use of mouse to close the window and may be distracting to user.</p>
+<p>Looks more organised compared to the other alternatives.</p>
 </li>
 </ul>
-</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Looks neater and organised.</p>
 </li>
 </ul>
-</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Aesthetic is not as good compared to the other alternatives.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Not as intuitive to use as mouse has to be used to switch around tabs.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Increase the use of mouse to close the window and may be distracting to user.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Reason: Alternative 1 was chosen because it utilises more of the command line interface and we wanted to steer away
 from the use of the mouse. Even those the aesthetic might not be as good as alternative 2 and 3, I felt that it was a
@@ -1496,37 +1523,59 @@ better choice as it was in line with the other features that my group mates were
 <p>There were two ways on how an athlete could be selected and it was between choosing by index or by name which I had
 to consider.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Alternative 1 (current choice): Choosing by the index number.</p>
-<div class="ulist">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Alternative 2: Choosing by name.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
 <p>Pros: Intuitive to use and can be used with other commands such as <code><span class="green">FindCommand</span></code> and
 <code><span class="green">FilterCommand</span></code> to narrow down the list of people.</p>
 </li>
-<li>
-<p>Cons: Additional step of filtering the list to make it shorter before selecting an athlete.</p>
-</li>
 </ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Choosing by name.</p>
-<div class="ulist">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
 <p>Pros: Can omit the filtering step and select the athlete directly.</p>
 </li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Cons: Additional step of filtering the list to make it shorter before selecting an athlete.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
 <li>
 <p>Cons: There may be 2 people with the same name and thus result in an error.</p>
 </li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Reason: In the end, I went with alternative 1 because it was more intuitive to use and was in line with some of the
 other functions such as <code><span class="green">DeleteCommand</span></code> or <code><span class="green">FindCommand</span></code> which also uses index. It also reduces the
@@ -1715,18 +1764,17 @@ accumulate. As such, we decided to go with the first alternative.</p>
 </div>
 <div class="sect2">
 <h3 id="adding-editing-photo-feature"><a class="link" href="#adding-editing-photo-feature">4.6. Adding/editing photo feature</a></h3>
+<div class="paragraph">
+<p>The sub feature of <code><span class="green">AddCommand</span></code> and <code><span class="green">EditCommand</span></code> allows the inclusion of photo for an athlete.</p>
+</div>
 <div class="sect3">
 <h4 id="implementation-6"><a class="link" href="#implementation-6">4.6.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The sub feature of <code><span class="green">AddCommand</span></code> and <code><span class="green">EditCommand</span></code> allows the inclusion of photo for an athlete. The
-sub feature is
-facilitated by <code><span class="green">Photo</span></code>.</p>
-</div>
-<div class="paragraph">
-<p>This sub feature is similar to the other features such as <code><span class="green">Name</span></code> and <code><span class="green">Phone</span></code> which uses a prefix <code>i/</code>
-followed by the file name (e.g. <code>i/default.png</code>). Prior to adding the photo of an athlete, the image file that is going to be used
-has to be in the <code>images</code> folder which will be generated when the jar file is executed. <code><span class="green">Photo</span></code> takes in the
-file name as a <code><span class="green">String</span></code> and retrieves the photo to be added or edited from the <code>images</code> folder.</p>
+<p>The sub feature is facilitated by <code><span class="green">Photo</span></code>. It is similar to the other features such as <code><span class="green">Name</span></code> and
+<code><span class="green">Phone</span></code> which uses a prefix <code>i/</code> followed by the file name (e.g. <code>i/default.png</code>). Prior to adding the photo
+of an athlete, the image file that is going to be used has to be in the <code>images</code> folder which will be generated when the
+jar file is executed. <code><span class="green">Photo</span></code> takes in the file name as a <code><span class="green">String</span></code> and retrieves the photo to be added
+or edited from the <code>images</code> folder.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1749,30 +1797,26 @@ This is done to keep the file name simple.
 </div>
 <div class="sect4">
 <h5 id="aspect-regular-expression-for-the-file-name"><a class="link" href="#aspect-regular-expression-for-the-file-name">Aspect: Regular expression for the file name</a></h5>
-<div class="ulist">
-<ul>
-<li>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><strong>Alternative 1 (current choice):</strong> To use alphanumerics only.</p>
-<div class="ulist">
-<ul>
-<li>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Pros: Keeps it simple without the confusion of special characters.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Alphanumerics and special characters.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Cons: These special characters are reserved used by operation systems such as Windows.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Reason: Alternative 1 was chosen because it simplifies the parsing of the filename and reduces the error it might
 have if special characters were included.</p>
@@ -2764,4 +2808,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:12:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:22:04 UTC</div></div></div></body></html>
