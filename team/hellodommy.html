@@ -1,0 +1,924 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Dominique Ng Wenyi - Project Portfolio for Athletick</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Athletick</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T12-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Dominique Ng Wenyi - Project Portfolio for Athletick</h1></div><div id="content"><div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document details my contributions to the team project, Athletick.</p>
+</div>
+<div class="sect2">
+<h3 id="about-the-team"><a class="link" href="#about-the-team">1.1. About the Team</a></h3>
+<div class="paragraph">
+<p>The team consists of five Year 2 Computer Science undergraduates, including myself.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="about-the-project"><a class="link" href="#about-the-project">1.2. About the Project</a></h3>
+<div class="paragraph">
+<p>The project was completed as part of a CS2103T Software Engineering module offered by the National
+University of Singapore&#8217;s School of Computing.</p>
+</div>
+<div class="paragraph">
+<p>We were given six weeks to to either <em>morph</em> or <em>enhance</em> an existing Java product,
+<a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book (Level 3)</a>. We chose to morph the
+product into <strong>Athletick</strong>, a tool for coaches and captains to use to keep track of their
+team&#8217;s attendance and performance. <strong>Athletick</strong> also features a calendar for coaches and captains to plan
+ahead, and supports the sorting, filtering, and finding of athletes their database.</p>
+</div>
+<div class="paragraph">
+<p>Like Address Book, Athletick uses the command-line as its main method of input and a JavaFX Graphical User
+Interface for display. Some constraints of the project were that it should have a command-line input, and
+it should be used by a single user only. The full list of constraints can be found
+<a href="https://nus-cs2103-ay1920s1.github.io/website/admin/project-constraints.html">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>My role was to build the <em>Performance</em> feature, which encompasses the adding, deleting and viewing of
+events and records. Additionally, I acted as the Team Lead, where I managed milestone requirements and
+delegated roles for the team.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>undo</code>
+</td>
+<td class="hdlist2">
+<p>Black test with a grey highlight (called a mark-up) indicates that this is a command and can be
+inputted into the command-line and executed by the application.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code><span class="green">Performance</span></code>
+</td>
+<td class="hdlist2">
+<p>Green text with a grey highlight indicates a component, class, or object in the
+architecture of the application.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">2. Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Enhancement addded (major):</strong>  I added the ability to <em>add</em>, <em>delete</em>, and <em>view</em> events and records.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It allows coaches and captains to log records that an athlete completed for a certain
+event, on a certain day, into Athletick. An event can store multiple records over time for the same athlete in
+order to track their progress, which can be visualised with a line chart provided.</p>
+</li>
+<li>
+<p>Justification: It is crucial for coaches and captains to track the progress of their team over time,
+hence the ability to add records. There are also different types of recordings to take in a sports team&#8201;&#8212;&#8201;2.4km run, static jump, etc.&#8201;&#8212;&#8201; hence the ability to add records <em>under different events</em>.</p>
+<div class="paragraph">
+<p>The ability to delete records and events was also necessary, as teams may no longer participate in certain
+events, or records can be entered incorrectly.</p>
+</div>
+<div class="paragraph">
+<p>Viewing</p>
+</div>
+</li>
+<li>
+<p>Highlights: This enhancement works well with future extensions to further analyse and present the records
+data as the required framework has been built.</p>
+<div class="paragraph">
+<p>An in-depth analysis of design alternatives was necessary due to complex structure of the records data
+which required efficient storage and retrieval. There was up to 4 levels of nesting  - a list of events,
+each event with a list of athletes paired with their own list of records, each record having a date and
+timing. This also made the implementation exceptionally challenging.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Enhancement added (minor):</strong> I added the ability to <em>filter</em> athletes by their tags.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It allows captains and coaches to find athletes through their tags. Filtering by multiple
+tags is supported.</p>
+</li>
+<li>
+<p>Justification: When there are many athletes in a team, tags are a useful way of remembering certain
+details about a particular athlete. This function enhances the existing tag feature by allowing users with
+certin tags to be filtered out of the general athlete list.</p>
+</li>
+<li>
+<p>Highlights: This enhancement provides the necessary framework for further types of filtering, such as by
+gender or location.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed:</strong> Please click these links to see a sample of my code:
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/blob/master/src/main/java/seedu/address/model/performance/Event.java">[Functional code</a>]
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/blob/master/src/test/java/seedu/address/logic/commands/EventCommandTest.java">[Test Code</a>]</p>
+</div>
+<div class="paragraph">
+<p>A compilation of all the code I contributed can be found
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=hellodommy&amp;tabRepo=AY1920S1-CS2103T-T12-3%2Fmain%5Bmaster%5D">here</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Other contributions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed the deliverables for all 4 milestones -
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/1">v1.1</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/2">v1.2</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/3">v1.3</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/4">v1.4</a></p>
+</li>
+<li>
+<p>Released <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/releases/tag/v1.3.3">v1.3.3</a>
+of the product</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancement to existing feature</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Extended the existing <em>find by name</em> feature to allow users to <em>find by tags</em> (Pull requests
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/64">#64</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/84">#84</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modified the colour scheme of the documentation for consistency with <strong>Athletick</strong>'s dark blue (Pull
+request
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/79/files">#79</a>)</p>
+</li>
+<li>
+<p>Added Developer Guide documentation for <code>filter</code>, <code><span class="green">Performance</span></code> and <code><span class="green">Storage</span></code> (Pull requests
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/83">#83</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/226">#226</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/232">#232</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/238">#238</a>)</p>
+</li>
+<li>
+<p>Added User Guide documentation for <code>filter</code>, <code>find</code>, <code>delete</code> and <code><span class="green">Performance</span></code>-related
+commands (Pull
+requests
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/79">#79</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/117">#117</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/206">#206</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/239">#239</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/241">#241</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Created helper methods for team members to integrate <code><span class="green">Performance</span></code> into their respective
+features (Pull requests
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/98">#98</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/128">#128</a>)</p>
+</li>
+<li>
+<p>Reviewed Pull Requests with non-trivial review comments (Pull requests
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/65">#65</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/91">#91</a>,
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/pull/188">#188</a>)</p>
+</li>
+<li>
+<p>Reported bugs and offered suggestions to other teams in the class (Issues
+<a href="https://github.com/AY1920S1-CS2103T-F11-4/main/issues/129">#129</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F11-4/main/issues/131">#131</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated a new GitHub plugin (Coveralls) to the team repo</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide.
+They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>[Start of extract from User Guide]</em></p>
+</div>
+<div class="sect2">
+<h3 id="performance"><a class="link" href="#performance">3.1. Performance</a></h3>
+<div class="paragraph">
+<p>To help you keep track of your team&#8217;s performance,
+Athletick has a built-in performance tracker for you record and analyse your team&#8217;s performance.</p>
+</div>
+<div class="paragraph">
+<p>First, you will have to add an event.
+After that, you can add records from timed trials under the event to start tracking their performance.</p>
+</div>
+<div class="sect3">
+<h4 id="adding-an-event-code-event-code"><a class="link" href="#adding-an-event-code-event-code">3.1.1. Adding an event : <code>event</code></a></h4>
+<div class="paragraph">
+<p>This command adds an event to <strong>Athletick</strong>, and will be used for storing your athletes’ performances.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to start recording performances for the <code>freestyle 50m</code> event. You will need to add
+the <code>freestyle 50m</code> event to <strong>Athletick</strong> first.</p>
+</div>
+<div class="paragraph">
+<p>Type the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>event NAME_OF_EVENT</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Event names are case-insensitive (eg. <code>50<strong>m</strong> freestyle</code> and <code>50<strong>M</strong> freestyle</code> are considered
+the same event)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example: <code>event freestyle 50m</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addevent_wysd.png" alt="addevent wysd" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully added, the result box will display message "<em>Event created:</em>" followed by the name
+of the event you just added, as shown in the red box in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will display the list of all your events. The event you just
+added should be included in the list. In the example below, <code>freestyle 50m</code> appears at the bottom of the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addevent_wyss.png" alt="addevent wyss" width="450">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-an-event-code-delete-e-code"><a class="link" href="#deleting-an-event-code-delete-e-code">3.1.2. Deleting an event : <code>delete -e</code></a></h4>
+<div class="paragraph">
+<p>This command removes an event from <strong>Athletick</strong>.
+Records stored under this event will be deleted as well.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that your team is no longer participating in the <code>backstroke 100m</code> event, and you want to remove it
+from Athletick.</p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>delete -e NAME_OF_EVENT</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>delete -e backstroke 100m</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/deleteevent_wysd.png" alt="deleteevent wysd" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully deleted, the result box will display the message "<em>Deleted event:</em>" followed by
+the name of the event you just deleted, as shown in the red box in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will show the current list of events you have in Athletick. The
+deleted event should not appear in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/deleteevent_wyss.png" alt="deleteevent wyss" width="450">
+</div>
+<div class="title">Figure 1. Notice that the backstroke 100m event is not listed.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-an-athlete-s-record-code-performance-code"><a class="link" href="#adding-an-athlete-s-record-code-performance-code">3.1.3. Adding an athlete&#8217;s record : <code>performance</code></a></h4>
+<div class="paragraph">
+<p>This command records your athlete’s performance for a certain event, on a certain day, to Athletick.</p>
+</div>
+<div class="paragraph">
+<p>You will need the following details to add a record.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Athlete&#8217;s index</p>
+</li>
+<li>
+<p>Event name</p>
+</li>
+<li>
+<p>Date of record</p>
+</li>
+<li>
+<p>Timing of record</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The event has to be created first. Otherwise, Athletick will prompt you to create that event.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you took a timed trial for Tao Li on 2nd November 2019 under the freestyle 50m event,
+and she took 24.01 seconds to complete it. Now you want to store this record in Athletick.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>performance INDEX e/EVENT_NAME d/DDMMYYYY t/TIMING</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>performance 3 e/freestyle 50m d/02112019 t/24.01</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addrecord_wysd.png" alt="addrecord wysd" width="450">
+</div>
+<div class="title">Figure 2. As seen in the orange box, Tao Li has index 3 in the active list. Hence, 3 is used at the INDEX.</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully added, the result box will display the details of the record you just added, as shown in
+the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addrecord_wyss.png" alt="addrecord wyss" width="450">
+</div>
+<div class="title">Figure 3. Details of Tao Li&#8217;s new record - event, date and timing - are displayed in the result box.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-an-athlete-s-record-code-delete-r-code"><a class="link" href="#deleting-an-athlete-s-record-code-delete-r-code">3.1.4. Deleting an athlete&#8217;s record : <code>delete -r</code></a></h4>
+<div class="paragraph">
+<p>This command removes an athlete&#8217;s record for a certain event, on a certain day, from Athletick.</p>
+</div>
+<div class="paragraph">
+<p>You will need the following details to delete a record.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Athlete&#8217;s index</p>
+</li>
+<li>
+<p>Event name</p>
+</li>
+<li>
+<p>Date of record</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to delete Tao Li&#8217;s record for the freestyle 50m event on 2nd November 2019.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>delete -r INDEX e/EVENT_NAME d/DDMMYYYY</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>delete -r 3 e/freestyle 50m d/02112019</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/deleterecord_wysd.png" alt="deleterecord wysd" width="450">
+</div>
+<div class="title">Figure 4. As seen in the orange box, Tao Li has index 3 in the active list. Hence, 3 is used at the INDEX.</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully deleted, the result box will display the details of the record you just deleted, as shown
+in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/deleterecord_wyss.png" alt="deleterecord wyss" width="450">
+</div>
+<div class="title">Figure 5. Details of Tao Li&#8217;s deleted record - event and date - are displayed in the result box.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewings-events-code-view-performance-code"><a class="link" href="#viewings-events-code-view-performance-code">3.1.5. Viewings events : <code>view performance</code></a></h4>
+<div class="paragraph">
+<p>This command shows you what events you have stored in <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to know what events you have added to <strong>Athletick</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>view performance</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewevents_wysd.png" alt="viewevents wysd" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully executed, the result box (red box) will display the message "<em>Here are your events stored
+in Athletick</em>" followed, as shown in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will show the list of events you have in Athletick.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewevents_wyss.png" alt="viewevents wyss" width="450">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-records-code-view-records-code"><a class="link" href="#viewing-records-code-view-records-code">3.1.6. Viewing records : <code>view records</code></a></h4>
+<div class="paragraph">
+<p>This command shows you the records stored under a particular event in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say that you want to see the records under the freestyle 50m event.</p>
+</div>
+<div class="paragraph">
+<p><strong>What you should do</strong></p>
+</div>
+<div class="paragraph">
+<p>Type in the command in the following format and press <code>Enter</code> to execute it.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>view records EVENT_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Example : <code>view records freestyle 50m</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewrecords_wysd.png" alt="viewrecords wysd" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What you should see</strong></p>
+</div>
+<div class="paragraph">
+<p>If successfully executed, the result box will display the message "<em>Here are the records for</em>"
+followed by the event name you requested, as shown in the red box in the diagram below.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the feature box (orange box) will show the athletes who have records under this event,
+followed by a graph of their progress over time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewrecords_wyss.png" alt="viewrecords wyss" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>[End of extract from User Guide]</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.
+They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>[Start of extract from Developer Guide]</em></p>
+</div>
+<div class="sect2">
+<h3 id="performance-feature"><a class="link" href="#performance-feature">4.1. Performance feature</a></h3>
+<div class="paragraph">
+<p>Athletick allows users to record athlete&#8217;s performance details from timed trials.
+With this information recorded, Athletick allows users to get an overview of the team&#8217;s capability and
+progress in specific events.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">4.1.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This section explains how <code><span class="green">Performance</span></code> is implemented in Athletick. It is split into 4 sections.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Overview</p>
+</li>
+<li>
+<p>Adding and deleting of  <code><span class="green">Event</span></code></p>
+</li>
+<li>
+<p>Adding and deleting of  <code><span class="green">Record</span></code></p>
+</li>
+<li>
+<p>Viewing of  <code><span class="green">Event</span></code> and  <code><span class="green">Record</span></code></p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="overview"><a class="link" href="#overview">Overview</a></h5>
+<div class="paragraph">
+<p><code><span class="green">ModelManager</span></code> has a <code><span class="green">Performance</span></code>, which has a <code><span class="green">UniqueEventList</span></code>.
+Every <code><span class="green">Event</span></code> in Athletick is stored in this <code><span class="green">UniqueEventList</span></code>.
+The class diagram below shows how the different components mentioned interact with one another.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/performance_classdiagram.png" alt="performance classdiagram" width="250">
+</div>
+<div class="title">Figure 6. Class diagram for showing how Performance is implemented.</div>
+</div>
+<div class="paragraph">
+<p>As the name suggests, all <code><span class="green">Event</span></code> names are unique in <code><span class="green">UniqueEventList</span></code>.
+This is ensured by <code><span class="green">UniqueEventList#contains()</span></code> that checks whether there is an <code><span class="green">Event</span></code>
+with the same name before the <code><span class="green">Event</span></code> is added.</p>
+</div>
+<div class="paragraph">
+<p>Every event has its own <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/HashMap.html">HashMap</a>
+where performances under this event are stored. The key and value of the HashMap are explained below.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Key
+</td>
+<td class="hdlist2">
+<p><code><span class="green">Person</span></code> that the performance records will be under.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Value
+</td>
+<td class="hdlist2">
+<p>List of <code><span class="green">Record</span></code> s under the <code><span class="green">Person</span></code>.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/event_classdiagram.png" alt="event classdiagram" width=""250'">
+</div>
+<div class="title">Figure 7. Class diagram showing how Records are stored in Event.</div>
+</div>
+<div class="paragraph">
+<p>This structure allows each <code><span class="green">Person</span></code> to have multiple <code><span class="green">Record</span></code> s stored in Athletick so
+their progress over time can be analysed using the <code><span class="green">AthletickDate</span></code> and <code><span class="green">Timing</span></code>
+attributes in <code><span class="green">Record</span></code>. Additionally, athlete&#8217;s records can be easily retrieved by calling the
+<code><span class="green">HashMap#get()</span></code> method.</p>
+</div>
+<div class="paragraph">
+<p><code><span class="green">Event</span></code> s are added using the <code><span class="green">EventCommand</span></code>, and <code><span class="green">Record</span></code> s are added using the
+ <code><span class="green">PerformanceCommand</span></code>. In these commands, changes to <code><span class="green">UniqueEventList</span></code> are called through
+  <code><span class="green">Model</span></code> in <code><span class="green">EventCommand#execute()</span></code> and <code><span class="green">PerformanceCommand#execute()</span></code> since
+  <code><span class="green">Model</span></code> carries a common copy of all the data stored in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>The <em>Observer Pattern</em> is adopted when displaying <code><span class="green">Performance</span></code> data through the <code><span class="green">UI</span></code>.
+<code><span class="green">Model</span></code> exposes an unmodifiable <code><span class="green">ObservableList&lt;Event&gt;</span></code> through
+<code><span class="green">Model#getPerformance</span></code> that returns a <code><span class="green">ReadOnlyPerformance</span></code>. It can be 'observed'
+and is updated accordingly when data in <code><span class="green">Performance</span></code> changes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="function-1-adding-and-deleting-of-event"><a class="link" href="#function-1-adding-and-deleting-of-event">Function 1: Adding and Deleting of Event</a></h5>
+<div class="paragraph">
+<p>The following sequence diagram illustrates what happens in <code><span class="green">Logic</span></code> and <code><span class="green">Model</span></code> when in an
+example scenario when <code>event freestyle 50m</code> is given as a user input (ie. when the user adds the <code>freestyle
+50m</code> event).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addevent_sequencediagram.png" alt="addevent sequencediagram" width="700">
+</div>
+<div class="title">Figure 8. Sequence diagram showing the operations in Logic and Model when an event is added.</div>
+</div>
+<div class="paragraph">
+<p>Deleting an event (with <code><span class="green">DeleteEventCommand</span></code>) does the opposite. The input <code>delete -e freestyle
+50m</code> will call <code><span class="green">Model#deleteEvent()</span></code>, after making sure the event exists in Athletick by getting a
+boolean from <code><span class="green">Model#hasEvent()</span></code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="function-2-adding-and-deleting-of-record"><a class="link" href="#function-2-adding-and-deleting-of-record">Function 2: Adding and Deleting of Record</a></h5>
+<div class="paragraph">
+<p>Operations for <code><span class="green">Record</span></code> - adding and deleting - work similarly to that of <code><span class="green">Event</span></code> as well,
+except there are more methods involved as there is a greater degree of nesting.</p>
+</div>
+<div class="paragraph">
+<p>The workflow for adding a record can be illustrated by the Activity Diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addrecord_activitydiagram.png" alt="addrecord activitydiagram" width="700">
+</div>
+<div class="title">Figure 9. Activity diagram showing how a Record is added to an Event.</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="function-3-viewing-of-event-and-record"><a class="link" href="#function-3-viewing-of-event-and-record">Function 3: Viewing of Event and Record</a></h5>
+<div class="paragraph">
+<p>Users can also view all <code><span class="green">Record</span></code> s under an <code><span class="green">Event</span></code> using <code>view records e/EVENT_NAME</code>.
+The following sequence diagrams illustrate how the <code><span class="green">Logic</span></code>, <code><span class="green">Ui</span></code> and
+<code><span class="green">Model</span></code> work together when <code><span class="green">Record</span></code> viewing is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewrecords_sequencediagram.png" alt="viewrecords sequencediagram" width="700">
+</div>
+<div class="title">Figure 10. Sequence diagram showing how Records are viewed. Interactions in the RecordsPanel are omitted and shown in a separate sequence diagram below.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/recordspanel_sequencediagram.png" alt="recordspanel sequencediagram" width="700">
+</div>
+<div class="title">Figure 11. Reference frame for interactions in the RecordsPanel in the previous sequence diagram.</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>This section explains the factors that we took into consideration when making decision on how different
+aspects in <code><span class="green">Performance</span></code> should be implemented.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-method-of-storing-performance-records-for-athletes"><a class="link" href="#aspect-method-of-storing-performance-records-for-athletes">Aspect: Method of storing performance records for athletes.</a></h5>
+<div class="paragraph">
+<p>Performance records are currently stored in a list for each athlete. Each list is saved as a value for the
+athlete key in a Performance HashMap.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice): Use a HashMap of Persons as keys and a list of Records as values.</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2: Create a class that has Persons and list of Records as attributes and store instances of
+this class in a list.</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Retrieving athlete&#8217;s individual records is fast - it can be done in O(1) time</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Checking of records can be done with a simple for-loop</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Checking requires using an iterator or a lambda operation (requires variables to be declared as final,
+making retrieval of data troublesome)</p>
+</li>
+<li>
+<p>Retrieving by values (eg. date of record) is difficult as it requires traversing through the HashMap and
+checking the individual records' dates</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Adding of records is susceptible to errors as duplicate persons can be added</p>
+</li>
+<li>
+<p>Creating our own data structure results in overheads in testing and creating our own helper methods</p>
+</li>
+<li>
+<p>Retrieving an athlete&#8217;s individual records in O(1) time requires the athlete&#8217;s index in the list, which
+is not always known</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of Alternative 1:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Retrieving from a HashMap is fast, which fulfils one of our non-functional requirements of being able to support a database of 1000 athletes</p>
+</li>
+<li>
+<p>Using a athlete-records relationship is similar to the key-value relationship in HashMap so the existing
+methods that are in the HashMap API are relevant</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-method-of-displaying-events-and-records-to-users"><a class="link" href="#aspect-method-of-displaying-events-and-records-to-users">Aspect: Method of displaying events and records to users.</a></h5>
+<div class="paragraph">
+<p>Viewing events and records are separate commands in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>To view events, the command is <code>view performance</code>. Users will be shown a list of all the events they have
+in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>To view records under a certain event, the command is <code>view records EVENT_NAME</code>. Users will be shown a
+graph on each athlete&#8217;s records under this event.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 45.4545%;">
+<col style="width: 45.4546%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice): Display events and records separately.</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2: Display all records under all events.</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Viewing events, followed by "zooming" in to a particular event&#8217;s records gives users a more immersive
+experience</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Navigating is simple as viewing events and its records requires only one command</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Getting an overview of all events and its respective records is not possible</p>
+</li>
+<li>
+<p>Supporting 2 commands results in overhead in parsing the command and creating the relevant Ui in the
+feature box</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Displaying of information will require a lot of scrolling (since the feature box is limited in size) and
+can be difficult when the event of interest is located at the end</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Reason for choice of Alternative 1:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Allowing users to look at the records under their event of interest gives them more control over what they want to see</p>
+</li>
+<li>
+<p>Navigating from event overview to a particular event mimics how people navigate in apps - tapping on a
+chat title (in this case, viewing records for a particular event), to see the whole conversation (record
+details for a particular event)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>[End of extract from User Guide]</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:35:01 UTC</div></div></div></body></html>
