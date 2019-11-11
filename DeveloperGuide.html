@@ -263,7 +263,7 @@ The following class plays an important role at the architecture level:</p>
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram">
+<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="700">
 </div>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
@@ -1000,18 +1000,55 @@ details for a particular event)</p>
 <div class="sect4">
 <h5 id="function-1-displays-an-overview-of-training-and-performance-records-in-a-selected-month"><a class="link" href="#function-1-displays-an-overview-of-training-and-performance-records-in-a-selected-month">Function 1: Displays an overview of training and performance records in a selected month</a></h5>
 <div class="paragraph">
-<p>Function 1 is facilitated by <code><span class="green">CalendarPanel</span></code>. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and represents the calendar using a <code><span class="green">GridPane</span></code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
+<p>There are 2 commands that users can issue to perform function 1:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>view calendar</code>: Displays calendar for the current month.</p>
+</li>
+<li>
+<p><code>calendar MMYYYY</code>: Displays calendar for the month specified by the user.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows you how the <code>calendar MMYYYY</code> (e.g. <code>calendar 012019</code> where <code>012019</code> corresponds to January 2019) command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="700">
+</div>
+<div class="title">Figure 19. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 012019</code> Command</div>
+</div>
+<div class="paragraph">
+<p>Upon completion of the above execution, the calendar for January 2019 will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>The <code>view calendar</code> command is similar except that <code><span class="green">displayCalendar(CommandResult)</span></code> is called instead of <code><span class="green">displayCalendarWithDate(CommandResult)</span></code> and the <code><span class="green">CalendarPanel</span></code> class is instantiated <em>without</em> an <code><span class="green">AthletickDate</span></code> specified by the user. The calendar displayed to the user will reflect the current month and year since date is not specified by the user.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user wants to perform function 1.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="300">
+</div>
+<div class="title">Figure 20. Activity diagram showing what happens when a user wants to  perform function 1</div>
+</div>
+<div class="paragraph">
+<p>Function 1 is facilitated by the <code><span class="green">CalendarPanel</span></code> class. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and represents the calendar using a <code><span class="green">GridPane</span></code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code><span class="green">CalendarPanel#retrieveCurrentDate()</span></code>&#8201;&#8212;&#8201;Retrieves the details of today&#8217;s date to be used as the title of the calendar feature and for rendering the displayed month on the calendar when the user does not provide a month to view.</p>
+<p><code><span class="green">CalendarPanel#retrieveCurrentDate()</span></code>&#8201;&#8212;&#8201;Retrieves the details of today&#8217;s date to be used as the title of the calendar feature and for rendering the displayed month on the calendar when the user does not provide a specific month to view.</p>
 </li>
 <li>
-<p><code><span class="green">CalendarPanel#retrieveProvidedDate()</span></code>&#8201;&#8212;&#8201;Retrieves the details of the date provided by the user for rendering the displayed month on the calendar.</p>
+<p><code><span class="green">CalendarPanel#retrieveProvidedDate(AthletickDate)</span></code>&#8201;&#8212;&#8201;Retrieves the details of the date provided by the user for rendering the displayed month on the calendar.</p>
 </li>
 <li>
-<p><code><span class="green">CalendarPanel#initialiseSelectedDate()</span></code>&#8201;&#8212;&#8201;Fills up all 42 cells of the <code>GridPane</code> with the respective days based on the selected date (current / provided date) by the user. Days of the previous and next month used to fill up the remaining cells are marked in a lighter colour.</p>
+<p><code><span class="green">CalendarPanel#initialiseSelectedDate()</span></code>&#8201;&#8212;&#8201;Fills up all the 42 cells of the <code><span class="green">GridPane</span></code> with their respective days based on the selected month by the user. Days of the previous and next month used to fill up the remaining cells are marked in a lighter colour.</p>
 <div class="paragraph">
 <p>In addition, days with training or performance records will be marked with a small green or purple dot indicator respectively.</p>
 </div>
@@ -1019,56 +1056,79 @@ details for a particular event)</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are performed when an instance of <code><span class="green">CalendarPanel</span></code> is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code><span class="green">CalendarPanel</span></code> is created when the <code><span class="green">CommandResult</span></code> obtained after executing the user&#8217;s command contains a <code><span class="green">Feature</span></code> corresponding to a calendar and an optional <code><span class="green">AthletickDate</span></code>.</p>
+<p>These operations are performed when an instance of the <code><span class="green">CalendarPanel</span></code> class is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code><span class="green">CalendarPanel</span></code> is created when the <code><span class="green">CommandResult</span></code> obtained in <code><span class="green">MainWindow</span></code> after the execution of the user&#8217;s command contains a <code><span class="green">Feature</span></code> corresponding to a calendar and an <em>optional</em> <code><span class="green">AthletickDate</span></code>.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario for the first function and how the operation behaves at each step:</p>
+<p>The sequence diagram below shows you what happens when the <code><span class="green">CalendarPanel</span></code> class is instantiated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="700">
+</div>
+<div class="title">Figure 21. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
 </div>
 <div class="paragraph">
-<p>Step 1:. The user either issues the <code>view calendar</code> or <code>calendar [MMYYYY]</code> (e.g. <code>calendar 012019</code>) command. The first command displays the calendar for the current month, while the second command displays the calendar for the specified the month and year.</p>
+<p>With reference to the above diagram, if <code><span class="green">hasTrainingOn(AthletickDate)</span></code> returns true, a green dot indicator will be added to the cell of the <code><span class="green">GridPane</span></code>. Similarly, if <code><span class="green">hasPerformanceOn(AthletickDate)</span></code> returns true, a purple dot indicator will be added.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The issued command</p>
+<p>Upon completion of the above execution, all 42 cells <code><span class="green">GridPane</span></code> will be filled with a number corresponding to the day of the month. Days with training or performance records will be marked with a green or purple dot indicator respectively. The following diagram depicts how each individual cell will look like.</p>
 </div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the <code>calendar [MMYYYY]</code> operation works:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/CellResult.png" alt="CellResult" width="400">
 </div>
-<div class="paragraph">
-<p>The following activity diagram summarises what happens when a user executes the <code>view calendar</code> or <code>calendar [MMYYYY]</code> command:</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="function-2-displays-training-and-performance-records-entered-on-a-specific-date"><a class="link" href="#function-2-displays-training-and-performance-records-entered-on-a-specific-date">Function 2: Displays training and performance records entered on a specific date</a></h5>
 <div class="paragraph">
-<p>Function 2 is facilitated by <code><span class="green">CalendarDetailPanel</span></code>. It extends <code>UiPart&lt;Region&gt;</code> and displays the attendance and performance records for a specific date in a table. Additionally, it implements the following operations:</p>
+<p>In order to perform function 2, the user issues the <code>calendar DDMMYYYY</code> command (e.g. <code>calendar 01012019</code> where <code>01012019</code> corresponds to 1st January 2019).</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows you how the <code>calendar DDMMYYYY</code> (e.g. <code>calendar 01012019</code>) operation works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="700">
+</div>
+<div class="title">Figure 22. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 01012019</code> command</div>
+</div>
+<div class="paragraph">
+<p>Upon completion of the above execution, the attendance and performance records for 1st January 2019 will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user issues the <code>calendar DDMMYYYY</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram">
+</div>
+<div class="title">Figure 23. Activity diagram showing what happens when a user issues the <code>calendar DDMMYYYY</code> command</div>
+</div>
+<div class="paragraph">
+<p>Function 2 is facilitated by <code><span class="green">CalendarDetailPanel</span></code>. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and displays the attendance and performance records for a date specified by the user. Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code><span class="green">CalendarDetailPanel#initialiseAttendanceData</span></code>&#8201;&#8212;&#8201;Retrieves and displays the attendance of each person on the specified date.</p>
+<p><code><span class="green">CalendarDetailPanel#displayAttendanceChart()</span></code>&#8201;&#8212;&#8201;Calculates and displays a pie chart showing overall team attendance percentage for the specified date.</p>
 </li>
 <li>
-<p><code><span class="green">CalendarDetailPanel#initialisePerformanceData</span></code>&#8201;&#8212;&#8201;Retrieves and displays the performance records on the specified date.</p>
+<p><code><span class="green">CalendarDetailPanel#displayAttendanceTable()</span></code>&#8201;&#8212;&#8201;Retrieves and displays a table with the athletes' names in the first column and their attendance (marked with a tick or cross) in the second column.</p>
+</li>
+<li>
+<p><code><span class="green">CalendarDetailPanel#displayPerformanceStats()</span></code>&#8201;&#8212;&#8201;Displays the total number of performance records recorded on the specified date.</p>
+</li>
+<li>
+<p><code><span class="green">CalendarDetailPanel#displayPerformanceTable()</span></code>&#8201;&#8212;&#8201;Retrieves and displays the performance records recorded on the specified date. Records are grouped according to the event they belong to.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are performed when an instance of <code><span class="green">CalendarDetailPanel</span></code> is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code>CalendarDetailPanel</code> is created when the <code><span class="green">CommandResult</span></code> obtained after executing the user&#8217;s command contains an <code><span class="green">AthletickDate</span></code>.</p>
+<p>These operations are performed when an instance of <code><span class="green">CalendarDetailPanel</span></code> is created in the <code><span class="green">MainWindow</span></code> class. An instance of <code>CalendarDetailPanel</code> is created when the <code><span class="green">CommandResult</span></code> obtained after executing the user&#8217;s command contains a <code><span class="green">Feature</span></code> corresponding to a calendar and an <code><span class="green">AthletickDate</span></code>.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario for the second function and how the operation behaves at each step:</p>
-</div>
-<div class="paragraph">
-<p>Step 1: The user either issues the <code>calendar [DDMMYYYY]</code> (e.g. <code>calendar 01012019</code>) command.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The issued command</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the <code>calendar [DDMMYYYY]</code> operation works:</p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarises what happens when a user executes the <code>calendar [DDMMYYYY]</code> command:</p>
+<p>The sequence diagram below shows you what happens when the <code><span class="green">CalendarDetailPanel</span></code> class is instantiated.</p>
 </div>
 </div>
 </div>
@@ -1085,14 +1145,16 @@ details for a particular event)</p>
 <col style="width: 45.4545%;">
 <col style="width: 45.4546%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Use a monthly calendar</th>
-<th class="tableblock halign-left valign-top">Alternative 2: Use a monthly list</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 1 (Current Choice)</strong>: Use a monthly calendar</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 2</strong>: Use a monthly list</p>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
@@ -1133,7 +1195,7 @@ details for a particular event)</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Reason for choice of alternative 1:</strong></p>
+<p><strong>Reasons for choice of alternative 1:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1154,14 +1216,16 @@ details for a particular event)</p>
 <col style="width: 45.4545%;">
 <col style="width: 45.4546%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Display using a fixed 7 by 6 <code><span class="green">GridPane</span></code>, fill up left over days with days from previous and next month</th>
-<th class="tableblock halign-left valign-top">Alternative 2: Display using a variable sized <code><span class="green">GridPane</span></code> that is populated with days from selected month only</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 1 (Current Choice)</strong>: Display using a fixed 7 by 6 <code><span class="green">GridPane</span></code>, fill up left over days with days from previous and next month</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 2</strong>: Display using a variable sized <code><span class="green">GridPane</span></code> that is populated with days from selected month only</p>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
@@ -1202,7 +1266,7 @@ details for a particular event)</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Reason for choice of alternative 1:</strong></p>
+<p><strong>Reasons for choice of alternative 1:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1223,14 +1287,16 @@ details for a particular event)</p>
 <col style="width: 45.4545%;">
 <col style="width: 45.4546%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Use one <code>calendar [DDMMYYYY]</code> command to view <em>both</em> attendance and performance records on the specified date</th>
-<th class="tableblock halign-left valign-top">Alternative 2: Use two separate commands to view attendance and performance records <em>separately</em> on the specified date</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 1 (Current Choice)</strong>: Use one <code>calendar DDMMYYYY</code> command to view <em>both</em> attendance and performance records on the specified date</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 2</strong>: Use two separate commands to view attendance and performance records <em>separately</em> on the specified date</p>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
@@ -1268,7 +1334,7 @@ details for a particular event)</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><strong>Reason for choice of alternative 1:</strong></p>
+<p><strong>Reasons for choice of alternative 1:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1344,7 +1410,7 @@ whether an athlete has been selected and displays the selected athlete&#8217;s p
 <div class="content">
 <img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="400">
 </div>
-<div class="title">Figure 19. Activity diagram of <code>select</code> command execution</div>
+<div class="title">Figure 24. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
@@ -1360,7 +1426,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 <div class="content">
 <img src="images/SelectCommandSequenceDiagram.png" alt="SelectCommandSequenceDiagram">
 </div>
-<div class="title">Figure 20. Sequence Diagram of <code>select</code> Command</div>
+<div class="title">Figure 25. Sequence Diagram of <code>select</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1501,7 +1567,7 @@ initialised with the initial <code><span class="green">Athletick</span></code>, 
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 21. Initial stacks of states</div>
+<div class="title">Figure 26. Initial stacks of states</div>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
@@ -1514,7 +1580,7 @@ state will then be pushed to the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/afterUndoStack.png" alt="afterUndoStack" width="450">
 </div>
-<div class="title">Figure 22. Stacks of states after <code>delete -p 3</code> command</div>
+<div class="title">Figure 27. Stacks of states after <code>delete -p 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
@@ -1528,7 +1594,7 @@ before <code>delete -p 3</code> command was executed.</p>
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 23. Stacks of states after <code>undo</code> command</div>
+<div class="title">Figure 28. Stacks of states after <code>undo</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
@@ -1542,7 +1608,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/undoSQ.png" alt="undoSQ" width="450">
 </div>
-<div class="title">Figure 24. Sequence diagram for undo implementation</div>
+<div class="title">Figure 29. Sequence diagram for undo implementation</div>
 </div>
 </div>
 <div class="sect3">
@@ -1572,7 +1638,7 @@ Implementation.</a></p>
 <div class="content">
 <img src="images/redoactivity.png" alt="redoactivity" width="450">
 </div>
-<div class="title">Figure 25. Activity diagram for <code>redo</code> command</div>
+<div class="title">Figure 30. Activity diagram for <code>redo</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1731,7 +1797,7 @@ example input of <code>filter captain freestyle</code> is called.</p>
 <div class="content">
 <img src="images/filter_sequencediagram.png" alt="filter sequencediagram" width="700">
 </div>
-<div class="title">Figure 26. Sequence diagram for execution of FilterCommand.</div>
+<div class="title">Figure 31. Sequence diagram for execution of FilterCommand.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1824,10 +1890,10 @@ specific athletes can be found from this filtered list.</p>
 <div class="content">
 <img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram">
 </div>
-<div class="title">Figure 27. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
+<div class="title">Figure 32. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
-<p>Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
+<p>With reference to the diagram above, when the user issues the <code>sort</code> command, a <code><span class="green">SortCommand</span></code> object <code><span class="green">s</span></code> is created. <code><span class="green">s</span></code> is then executed by <code><span class="green">LogicManager</span></code>, which calls the <code><span class="green">sortByName()</span></code> method in <code><span class="green">LogicManager</span></code>. An instance of <code><span class="green">PersonNameComparator</span></code> is then created and is used by the <code><span class="green">sortByName(PersonNameComparator)</span></code> method in <code><span class="green">Athletick</span></code> to sort the observable <code><span class="green">internalList</span></code> in <code><span class="green">UniquePersonList</span></code>. Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
 </div>
 <div class="paragraph">
 <p>To support sorting by more attributes (e.g. attendance rate/performance) in the future, you can simply create a new class that implements the <code><span class="green">Comparator</span></code> interface which compares athletes by that attribute instead. After which, you have to edit the <code>sort</code> command syntax to allow users to indicate how they want their list to be sorted.</p>
@@ -1846,14 +1912,16 @@ specific athletes can be found from this filtered list.</p>
 <col style="width: 45.4545%;">
 <col style="width: 45.4546%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice): Sort address book after user issues the <code>sort</code> command</th>
-<th class="tableblock halign-left valign-top">Alternative 2: Sort address book persistently in alphabetical order</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 1 (Current Choice)</strong>: Sort address book after user issues the <code>sort</code> command</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Alternative 2</strong>: Sort address book persistently in alphabetical order</p>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
@@ -2039,9 +2107,15 @@ specific athletes can be found from this filtered list.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Team coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Team coach who values commitment</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input attendance of my team</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keep track of their attendance rate and commitment level</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efficient team coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Take attendance quickly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Focus on coaching my team</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2051,12 +2125,36 @@ specific athletes can be found from this filtered list.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motivational Team coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance data analysis of the performance of my team</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide detailed feedback to my athletes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detailed team coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieve past training and performance records on a specific date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Know what happened on a specific date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Team coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View profile of specific members</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monitor their individual progress</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Careless user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Undo my previous commands</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Redo any mistakes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Know the available commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Be able to use all the app functionalities</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Team coach</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Assign tags to my team members</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Differentiate roles of team members</p></td>
@@ -2064,8 +2162,26 @@ specific athletes can be found from this filtered list.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Team coach</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">See all past and scheduled training sessions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Plan better to prepare for competitions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filter out my best performers for each event</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plan my team to send for competitions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Coach who is in-charge of multiple teams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add multiple teams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage my teams separately</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Forgetful coach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See past commands issued</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Know what changes I have made</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User who wants customisation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change the app’s colour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Customise the app according to my preference</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2648,4 +2764,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:02:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:10:07 UTC</div></div></div></body></html>
