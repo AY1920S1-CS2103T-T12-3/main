@@ -12,13 +12,13 @@
 </div>
 <div class="paragraph">
 <p>The project was completed as part of a CS2103T Software Engineering module offered by the NUS School of Computing.
-We were given six weeks to to either <em>morph</em> or <em>enhance</em> an existing Java project,
-<a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book (Level 3)</a>.</p>
+We were given six weeks to either <em>morph</em> or <em>enhance</em> an existing Java project,
+<a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book</a>.</p>
 </div>
 <div class="paragraph">
 <p>We chose to morph the project into <strong>Athletick</strong>, a tool for coaches and captains to use to keep track of their
-team&#8217;s attendance and performance. <strong>Athletick</strong> also features a calendar for coaches and captains to plan
-ahead, and supports the sorting, filtering, and finding of athletes in their database.</p>
+team&#8217;s <em>attendance</em> and <em>performance</em>. <strong>Athletick</strong> also features a calendar for coaches and captains to plan
+their schedules, and supports the sorting, filtering, and searching of athletes in their database.</p>
 </div>
 <div class="paragraph">
 <p>Like Address Book, <strong>Athletick</strong> uses the command-line as its main method of input and a JavaFX Graphical User
@@ -75,14 +75,14 @@ line and executed by the application.</p>
 <p>This section shows a summary of my coding, documentation, and other helpful contributions to <strong>Athletick</strong>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Enhancement addded (major):</strong>  I added the ability to <em>add</em>, <em>delete</em>, and <em>view</em> events and records.</p>
+<p><strong>Major enhancement added:</strong>  I added the ability to <em>add</em>, <em>delete</em>, and <em>view</em> events and records.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>What it does: It allows coaches and captains to log records that an athlete completed for a certain
-event, on a certain day, into <strong>Athletick</strong>. An event can store multiple records over time for the same athlete in
-order to track their progress, which can be visualised with a line chart provided.</p>
+event, on a certain day, into <strong>Athletick</strong>. An event can store multiple records over time for the same athlete
+to track their progress, which can be visualised with a line chart provided.</p>
 </li>
 <li>
 <p>Justification: It is crucial for coaches and captains to track the progress of their team over time,
@@ -93,23 +93,23 @@ events, or records can be entered incorrectly.</p>
 </div>
 <div class="paragraph">
 <p>The presentation of record progress over a line chart was meant to give coaches and captains a quick
-overview on their athlete&#8217;s fitness status.</p>
+overview of their athlete&#8217;s fitness status.</p>
 </div>
 </li>
 <li>
 <p>Highlights: This enhancement works well with future extensions to further analyse and present the records
 data as the required framework has been built.</p>
 <div class="paragraph">
-<p>An in-depth analysis of design alternatives was necessary due to complex structure of the records data
+<p>An in-depth analysis of design alternatives was necessary due to the complex structure of the records data
 which required efficient storage and retrieval. There was up to 4 levels of nesting  - a list of events,
-each event with a list of athletes paired with their own list of records, each record having a date and
+each event with a list of athletes paired with their personal list of records, each record having a date and
 timing. This also made the implementation exceptionally challenging.</p>
 </div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Enhancement added (minor):</strong> I added the ability to <em>filter</em> athletes by their tags.</p>
+<p><strong>Minor enhancement added:</strong> I added the ability to <em>filter</em> athletes by their tags.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -143,10 +143,10 @@ gender or location.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Acted as the Team Lead and assigned GitHub issues to team members</p>
+<p>Acted as the <strong>Team Lead</strong> and assigned GitHub issues to team members</p>
 </li>
 <li>
-<p>Managed the deliverables for all 4 milestones -
+<p>Managed the deliverables for all 4 milestones:
 <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/1">v1.1</a>,
 <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/2">v1.2</a>,
 <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/milestone/3">v1.3</a>,
@@ -154,13 +154,13 @@ gender or location.</p>
 </li>
 <li>
 <p>Released <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/releases/tag/v1.3.3">v1.3.3</a>
-of the product, prior to the final v1.4 release</p>
+of the product, before the final v1.4 release</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Enhancement to existing feature</p>
+<p>Enhancement to an existing feature</p>
 <div class="ulist">
 <ul>
 <li>
@@ -249,7 +249,15 @@ features (Pull requests
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are extracts of sections I contributed to in the User Guide.
 They showcase my ability to write documentation targeting end-users.
-The full User Guide can be found <a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html">here</a>.</em></p></td>
+The full User Guide can be found
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html">here</a>.</p>
+<p class="tableblock">My key contributions include the documentation for
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html#deleting-an-athlete-code-delete-p-code">deleting an athlete</a>,
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html#performance">performance-related commands</a>,
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html#filtering-athletes-by-their-tags-code-filter-code">filtering</a>
+and
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/UserGuide.html#finding-athletes-by-their-name-code-find-code">finding</a>
+athletes.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -385,7 +393,14 @@ followed by a graph of their progress over time.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are extracts of sections I contributed to in the Developer Guide.
-They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
+The full Developer Guide can be found
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/DeveloperGuide.html">here</a>.</p>
+<p class="tableblock">My key contributions include the documentation for the
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/DeveloperGuide.html#Design-Storage">Storage component</a>,
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/DeveloperGuide.html#performance-feature">Performance
+implementation</a> and
+<a href="https://ay1920s1-cs2103t-t12-3.github.io/main/DeveloperGuide.html#filter-feature">Filter implementation</a>.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +410,7 @@ They showcase my ability to write technical documentation and the technical dept
 <div class="sect2">
 <h3 id="performance-feature"><a class="link" href="#performance-feature">4.1. Performance feature</a></h3>
 <div class="paragraph">
-<p>Athletick allows users to record athlete&#8217;s performance details from timed trials.
+<p>Athletick allows users to record an athlete&#8217;s performance details from timed trials.
 With this information recorded, Athletick allows users to get an overview of the team&#8217;s capability and
 progress in specific events.</p>
 </div>
@@ -429,7 +444,7 @@ of the HashMap is a list of <code><span class="green">Record</span></code> s und
 <div class="paragraph">
 <p>This structure allows each <code><span class="green">Person</span></code> to have multiple <code><span class="green">Record</span></code> s stored in Athletick so
 their progress over time can be analysed using the <code><span class="green">AthletickDate</span></code> and <code><span class="green">Timing</span></code>
-attributes in <code><span class="green">Record</span></code>. Additionally, athlete&#8217;s records can be easily retrieved by calling the
+attributes in <code><span class="green">Record</span></code>. Additionally, an athlete&#8217;s records can be easily retrieved by calling the
 <code><span class="green">HashMap#get()</span></code> method.</p>
 </div>
 <div class="paragraph">
@@ -451,7 +466,7 @@ example scenario when <code>event freestyle 50m</code> is given as a user input 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/addevent_sequencediagram.png" alt="addevent sequencediagram" width="700">
+<img src="../images/addevent_sequencediagram.png" alt="addevent sequencediagram" width="600">
 </div>
 <div class="title">Figure 4. Sequence diagram showing the operations in Logic and Model when an event is added.</div>
 </div>
@@ -480,13 +495,13 @@ The following sequence diagrams illustrate how the <code><span class="green">Log
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/viewrecords_sequencediagram.png" alt="viewrecords sequencediagram" width="600">
+<img src="../images/viewrecords_sequencediagram.png" alt="viewrecords sequencediagram" width="500">
 </div>
 <div class="title">Figure 6. Sequence diagram showing how Records are viewed. Interactions in the RecordsPanel are omitted and shown in a separate sequence diagram below.</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/recordspanel_sequencediagram.png" alt="recordspanel sequencediagram" width="400">
+<img src="../images/recordspanel_sequencediagram.png" alt="recordspanel sequencediagram" width="350">
 </div>
 <div class="title">Figure 7. Reference frame for interactions in the RecordsPanel in the previous sequence diagram.</div>
 </div>
@@ -494,8 +509,8 @@ The following sequence diagrams illustrate how the <code><span class="green">Log
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="paragraph">
-<p>This section explains the factors that we took into consideration when making decision on how different
-aspects in <code><span class="green">Performance</span></code> should be implemented.</p>
+<p>This section explains the factors that we took into consideration when deciding on how different
+aspects of <code><span class="green">Performance</span></code> should be implemented.</p>
 </div>
 <div class="sect4">
 <h5 id="aspect-method-of-storing-performance-records-for-athletes"><a class="link" href="#aspect-method-of-storing-performance-records-for-athletes">Aspect: Method of storing performance records for athletes.</a></h5>
@@ -573,8 +588,8 @@ is not always known</p>
 <p>Retrieving from a HashMap is fast, which fulfils one of our non-functional requirements of being able to support a database of 1000 athletes</p>
 </li>
 <li>
-<p>Using a athlete-records relationship is similar to the key-value relationship in HashMap so the existing
-methods that are in the HashMap API are relevant</p>
+<p>Using an <em>athlete-records</em> relationship is similar to the <em>key-value</em> relationship in HashMap so the
+existing methods that are in the HashMap API are relevant</p>
 </li>
 </ul>
 </div>
@@ -586,11 +601,8 @@ methods that are in the HashMap API are relevant</p>
 </div>
 <div class="paragraph">
 <p>To view events, the command is <code>view performance</code>. Users will be shown a list of all the events they have
-in Athletick.</p>
-</div>
-<div class="paragraph">
-<p>To view records under a certain event, the command is <code>view records EVENT_NAME</code>. Users will be shown a
-graph on each athlete&#8217;s records under this event.</p>
+in Athletick. To view records under a certain event, the command is <code>view records EVENT_NAME</code>. Users will
+be shown a graph on each athlete&#8217;s records under this event.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -609,7 +621,7 @@ graph on each athlete&#8217;s records under this event.</p>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Viewing events, followed by "zooming" in to a particular event&#8217;s records gives users a more immersive
+<p>Viewing events, followed by "zooming" into a particular event&#8217;s records gives users a more immersive
 experience</p>
 </li>
 </ul>
@@ -617,7 +629,7 @@ experience</p>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Navigating is simple as viewing events and its records requires only one command</p>
+<p>Navigating is simple as viewing events and its records require only one command</p>
 </li>
 </ul>
 </div></div></td>
@@ -630,8 +642,8 @@ experience</p>
 <p>Getting an overview of all events and its respective records is not possible</p>
 </li>
 <li>
-<p>Supporting 2 commands results in overhead in parsing the command and creating the relevant Ui in the
-feature box</p>
+<p>Supporting 2 commands results in overhead in parsing the command and creating the relevant <code><span class="green">Ui</span></code>
+in the feature box</p>
 </li>
 </ul>
 </div></div></td>
@@ -668,4 +680,4 @@ details for a particular event)</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:38:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:40:50 UTC</div></div></div></body></html>
