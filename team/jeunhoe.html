@@ -9,10 +9,10 @@
 <div class="sect2">
 <h3 id="about-the-project"><a class="link" href="#about-the-project">1.1. About the project</a></h3>
 <div class="paragraph">
-<p><strong>Athletick</strong> is a desktop team-management application designed for coaches and captains who manage teams of time-based
-sports. <strong>Athletick</strong> allows users to manage athlete information, record training sessions and save competition results.
-<strong>Athletick</strong> also allows users to monitor their training schedule and track an athlete’s attendance, performance and
-sporting progress. This enables users to better manage their team, plan for trainings and prepare for upcoming
+<p><strong>Athletick</strong> is a desktop team-management application designed for coaches and captains who manage time-based sports
+(e.g. swimming, racing) teams. <strong>Athletick</strong> allows users to manage athlete information, record training sessions and
+save competition results. <strong>Athletick</strong> also allows users to monitor their training schedule and track an athlete’s
+attendance, performance and sporting progress. This enables users to better manage their team, plan for trainings and prepare for upcoming
 competitions.</p>
 </div>
 </div>
@@ -105,7 +105,7 @@ session.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Classes in the training feature were designed to function as a standalone unit and do not rely on any other
+<p>The training feature was designed to function as a standalone unit and does not rely on any other
 components. This allows for easy extension of the feature to cater to different users. We have plans to extend the
 training feature to include more information, like type of training (e.g. gym training, sprints training) and athlete
 performance.</p>
@@ -113,8 +113,18 @@ performance.</p>
 <li>
 <p>There are 2 variations of the <code>training</code> command. This allows users to indicate attendance of a training
 by listing members present, or by members absent. We understand that keying player attendance can be very tedious for
-big teams. Giving the option to coaches to mark attendance by entering players absent will reduce the amount of
-typing which will save time.</p>
+big teams. Giving the option to coaches and captains to mark attendance by entering players absent will reduce the
+amount of typing which will save time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Credits:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Saving of training data into .json files is done with the use of the Jackson library.</p>
 </li>
 </ul>
 </div>
@@ -131,8 +141,8 @@ typing which will save time.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A built-in attendance tracker allows users to track their team’s attendance using the <code>attendance</code>, <code>select</code>, <code>view
-attendance</code> and <code>calendar</code> commands.</p>
+<p>A built-in attendance tracker allows coaches and captains to track their team’s attendance using the <code>attendance</code>,
+<code>select</code>, <code>view attendance</code> and <code>calendar</code> commands.</p>
 </li>
 </ul>
 </div>
@@ -144,8 +154,8 @@ attendance</code> and <code>calendar</code> commands.</p>
 <li>
 <p>Coaches are concerned about their team’s overall attendance rate as it is a good indicator an
 athlete’s commitment and how prepared an athlete is for a competition. Providing an automatic attendance tracker
-removes the need for manual calculation as it can be tedious for coaches, especially if he has to go through many
-training sessions.</p>
+removes the need for manual calculation as it can be tedious for coaches and captains, especially if they have to go
+through many training sessions.</p>
 </li>
 </ul>
 </div>
@@ -166,8 +176,8 @@ training information and attendance rate.</p>
 </div>
 <div class="paragraph">
 <p><strong>Code contributed:</strong> The links provided show my code contribution for the project.
-<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=jeunhoe">(RepoSense)</a>
-<a href="https://github.com/jeunhoe/main">(GitHub repository)</a></p>
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=jeunhoe&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">(RepoSense)</a>
+<a href="https://github.com/AY1920S1-CS2103T-T12-3/main/commits?author=jeunhoe">(All commits)</a></p>
 </div>
 <div class="paragraph">
 <p><strong>Other contributions:</strong></p>
@@ -183,7 +193,7 @@ training information and attendance rate.</p>
 <a href="https://github.com/AY1920S1-CS2103T-T12-3/main/releases/tag/v1.3">(v1.3)</a></p>
 </li>
 <li>
-<p>Performed manual testing of application to detect bugs that were not covered by test classes.</p>
+<p>Performed manual testing of application before every release to detect bugs that were not covered by test classes.</p>
 </li>
 <li>
 <p>Served as the team&#8217;s Quality Assurance Engineer&#8201;&#8212;&#8201;reviewed code quality and documentation of every pull request
@@ -251,8 +261,7 @@ reader friendly. (Pull request <a href="https://github.com/AY1920S1-CS2103T-T12-
 </li>
 <li>
 <p>Stress tested applications from other teams, reported bugs and gave suggestions.
-(<a href="https://github.com/jeunhoe/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.FunctionalityBug">Bug reports</a>,
-<a href="https://github.com/jeunhoe/ped/issues?q=is%3Aopen+is%3Aissue+-label%3Atype.FunctionalityBug">Suggestions</a>)</p>
+(<a href="https://github.com/jeunhoe/ped/issues?q=is%3Aissue+is%3Aopen">Bug reports and suggestions</a>)</p>
 </li>
 <li>
 <p>Reviewed and commented on pull requests. (Pull requests
@@ -464,6 +473,27 @@ shows how the <code>TrainingManager</code> provides other components with attend
 </div>
 <div class="title">Figure 3. Sequence diagram showing how <code>view attendance</code> command gets attendance rate</div>
 </div>
+<div class="paragraph">
+<p><code><span class="green">TrainingManager</span></code> also allows users to get the attendance of one particular training using the following
+operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><span class="green">TrainingManager#getTrainingAttendanceListOnDate</span></code>&#8201;&#8212;&#8201;Returns training attendance on the specified date.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows a use case of how training attendance is obtained from <code><span class="green">TrainingManager</span></code>
+when a <code>calendar</code> command is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/calendar_sequence_diagram.png" alt="calendar sequence diagram">
+</div>
+<div class="title">Figure 4. Sequence diagram showing how <code>calendar</code> command gets training attendance</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
@@ -574,4 +604,4 @@ one with the <code>training</code> command makes it editing much quicker.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:03:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:17:05 UTC</div></div></div></body></html>
