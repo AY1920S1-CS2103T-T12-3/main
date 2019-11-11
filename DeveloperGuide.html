@@ -996,7 +996,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="700">
+<img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="550">
 </div>
 <div class="title">Figure 18. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 012019</code> Command</div>
 </div>
@@ -1011,7 +1011,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="300">
+<img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="200">
 </div>
 <div class="title">Figure 19. Activity diagram showing what happens when a user wants to  perform function 1</div>
 </div>
@@ -1042,7 +1042,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="700">
+<img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="550">
 </div>
 <div class="title">Figure 20. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
 </div>
@@ -1054,7 +1054,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CellResult.png" alt="CellResult" width="400">
+<img src="images/CellResult.png" alt="CellResult" width="300">
 </div>
 </div>
 </div>
@@ -1068,7 +1068,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="700">
+<img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="550">
 </div>
 <div class="title">Figure 21. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 01012019</code> command</div>
 </div>
@@ -1080,7 +1080,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram">
+<img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram" width="500">
 </div>
 <div class="title">Figure 22. Activity diagram showing what happens when a user issues the <code>calendar DDMMYYYY</code> command</div>
 </div>
@@ -1108,6 +1108,15 @@ details for a particular event)</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows you what happens when the <code><span class="green">CalendarDetailPanel</span></code> class is instantiated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarDetailConstructor.png" alt="CalendarDetailConstructor">
+</div>
+<div class="title">Figure 23. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
+</div>
+<div class="paragraph">
+<p>Upon completion of the above execution, training and performance records recorded on the specified date will be displayed to the user.</p>
 </div>
 </div>
 </div>
@@ -1253,13 +1262,11 @@ details for a particular event)</p>
 <p>Alternative 1 is easier to implement since the dimensions of the calendar are fixed so we do not have to recalculate it constantly. The ease of implementation is important given the tight deadlines we have to contend with in our software engineering module.</p>
 </li>
 <li>
-<p>Alternative 1 emulates the implementation of other successful calendar applications (e.g. Google Calendar) so we do not have to reinvent the wheel.</p>
+<p>Alternative 1 emulates the implementation of other successful calendar applications (e.g. Google Calendar) so we do not have to reinvent the wheel.
+===== Aspect: How the user can display the attendance and performance data on a specific date</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date"><a class="link" href="#aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date">Aspect: How the user can display the attendance and performance data on a specific date</a></h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 9.0909%;">
@@ -1389,7 +1396,7 @@ whether an athlete has been selected and displays the selected athlete&#8217;s p
 <div class="content">
 <img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="400">
 </div>
-<div class="title">Figure 23. Activity diagram of <code>select</code> command execution</div>
+<div class="title">Figure 24. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
@@ -1405,7 +1412,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 <div class="content">
 <img src="images/SelectCommandSequenceDiagram.png" alt="SelectCommandSequenceDiagram">
 </div>
-<div class="title">Figure 24. Sequence Diagram of <code>select</code> Command</div>
+<div class="title">Figure 25. Sequence Diagram of <code>select</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1595,7 +1602,7 @@ initialised with the initial <code><span class="green">Athletick</span></code>, 
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 25. Initial stacks of states</div>
+<div class="title">Figure 26. Initial stacks of states</div>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
@@ -1608,7 +1615,7 @@ state will then be pushed to the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/afterUndoStack.png" alt="afterUndoStack" width="450">
 </div>
-<div class="title">Figure 26. Stacks of states after <code>delete -p 3</code> command</div>
+<div class="title">Figure 27. Stacks of states after <code>delete -p 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
@@ -1622,7 +1629,7 @@ before <code>delete -p 3</code> command was executed.</p>
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 27. Stacks of states after <code>undo</code> command</div>
+<div class="title">Figure 28. Stacks of states after <code>undo</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
@@ -1636,7 +1643,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/undoSQ.png" alt="undoSQ" width="450">
 </div>
-<div class="title">Figure 28. Sequence diagram for undo implementation</div>
+<div class="title">Figure 29. Sequence diagram for undo implementation</div>
 </div>
 </div>
 <div class="sect3">
@@ -1666,7 +1673,7 @@ Implementation.</a></p>
 <div class="content">
 <img src="images/redoactivity.png" alt="redoactivity" width="450">
 </div>
-<div class="title">Figure 29. Activity diagram for <code>redo</code> command</div>
+<div class="title">Figure 30. Activity diagram for <code>redo</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1820,7 +1827,7 @@ example input of <code>filter captain freestyle</code> is called.</p>
 <div class="content">
 <img src="images/filter_sequencediagram.png" alt="filter sequencediagram" width="700">
 </div>
-<div class="title">Figure 30. Sequence diagram for execution of FilterCommand.</div>
+<div class="title">Figure 31. Sequence diagram for execution of FilterCommand.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1913,7 +1920,7 @@ specific athletes can be found from this filtered list.</p>
 <div class="content">
 <img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram">
 </div>
-<div class="title">Figure 31. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
+<div class="title">Figure 32. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
 <p>With reference to the diagram above, when the user issues the <code>sort</code> command, a <code><span class="green">SortCommand</span></code> object <code><span class="green">s</span></code> is created. <code><span class="green">s</span></code> is then executed by <code><span class="green">LogicManager</span></code>, which calls the <code><span class="green">sortByName()</span></code> method in <code><span class="green">LogicManager</span></code>. An instance of <code><span class="green">PersonNameComparator</span></code> is then created and is used by the <code><span class="green">sortByName(PersonNameComparator)</span></code> method in <code><span class="green">Athletick</span></code> to sort the observable <code><span class="green">internalList</span></code> in <code><span class="green">UniquePersonList</span></code>. Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
@@ -2787,4 +2794,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:17:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:30:31 UTC</div></div></div></body></html>
