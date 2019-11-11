@@ -993,7 +993,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="550">
+<img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="700">
 </div>
 <div class="title">Figure 18. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 012019</code> Command</div>
 </div>
@@ -1008,7 +1008,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="200">
+<img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="500">
 </div>
 <div class="title">Figure 19. Activity diagram showing what happens when a user wants to  perform function 1</div>
 </div>
@@ -1039,7 +1039,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="550">
+<img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="650">
 </div>
 <div class="title">Figure 20. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
 </div>
@@ -1065,7 +1065,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="550">
+<img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="700">
 </div>
 <div class="title">Figure 21. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 01012019</code> command</div>
 </div>
@@ -1077,7 +1077,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram" width="500">
+<img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram" width="700">
 </div>
 <div class="title">Figure 22. Activity diagram showing what happens when a user issues the <code>calendar DDMMYYYY</code> command</div>
 </div>
@@ -1087,16 +1087,12 @@ details for a particular event)</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><span class="green">CalendarDetailPanel#displayAttendanceChart()</span></code>&#8201;&#8212;&#8201;Calculates and displays a pie chart showing overall team attendance percentage for the specified date.</p>
+<p><code><span class="green">CalendarDetailPanel#initialiseAttendanceData()</span></code>&#8201;&#8212;&#8201;Retrieves and displays attendance
+records recorded on the specified date.</p>
 </li>
 <li>
-<p><code><span class="green">CalendarDetailPanel#displayAttendanceTable()</span></code>&#8201;&#8212;&#8201;Retrieves and displays a table with the athletes' names in the first column and their attendance (marked with a tick or cross) in the second column.</p>
-</li>
-<li>
-<p><code><span class="green">CalendarDetailPanel#displayPerformanceStats()</span></code>&#8201;&#8212;&#8201;Displays the total number of performance records recorded on the specified date.</p>
-</li>
-<li>
-<p><code><span class="green">CalendarDetailPanel#displayPerformanceTable()</span></code>&#8201;&#8212;&#8201;Retrieves and displays the performance records recorded on the specified date. Records are grouped according to the event they belong to.</p>
+<p><code><span class="green">CalendarDetailPanel#initialisePerformanceData()</span></code>&#8201;&#8212;&#8201;Retrieves and displays the
+performance records recorded on the specified date.</p>
 </li>
 </ul>
 </div>
@@ -1108,7 +1104,7 @@ details for a particular event)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CalendarDetailConstructor.png" alt="CalendarDetailConstructor">
+<img src="images/CalendarDetailConstructor.png" alt="CalendarDetailConstructor" width="650">
 </div>
 <div class="title">Figure 23. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
 </div>
@@ -1133,49 +1129,18 @@ details for a particular event)</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 1 (Current Choice)</strong>: Use a monthly calendar</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 2</strong>: Use a monthly list</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice)</strong>: Use a monthly calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2</strong>: Use a monthly list</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Displays information more clearly especially when users have a large number of training and performance records in a month</p>
-</li>
-<li>
-<p>Allows for future expansion of calendar feature with more date-related functionalities (e.g. planning of training programme in advance)</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Displays information more concisely if users have a small amount of training and performance records in a month</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays information more clearly especially when users have a large number of training and performance records in a month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays information more concisely if users have a small amount of training and performance records in a month</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Increases difficulty of implementation</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Displays information in rows and columns which is no better than using Excel</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increases difficulty of implementation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays information in rows and columns which is no better than using Excel</p></td>
 </tr>
 </tbody>
 </table>
@@ -1204,49 +1169,19 @@ details for a particular event)</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 1 (Current Choice)</strong>: Display using a fixed 7 by 6 <code><span class="green">GridPane</span></code>, fill up left over days with days from previous and next month</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 2</strong>: Display using a variable sized <code><span class="green">GridPane</span></code> that is populated with days from selected month only</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice)</strong>: Display using a fixed 7 by 6 <code><span class="green">GridPane</span></code>, fill up left over days with days from previous and next month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2</strong>: Display using a variable sized <code><span class="green">GridPane</span></code> that is populated with days from selected month only</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Makes implementation easier</p>
-</li>
-<li>
-<p>Emulates implementation by other calendar applications (e.g. Google Calendar)</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Maximises usage of space in the application window</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Emulates implementation by other calendar applications and easier to implement (e.g. Google
+Calendar)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximises usage of space in the application window</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Displays information of previous and next month which users may not be interested in</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Increases difficulty of implementation</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays information of previous and next month which users may not be interested in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increases difficulty of implementation</p></td>
 </tr>
 </tbody>
 </table>
@@ -1259,11 +1194,13 @@ details for a particular event)</p>
 <p>Alternative 1 is easier to implement since the dimensions of the calendar are fixed so we do not have to recalculate it constantly. The ease of implementation is important given the tight deadlines we have to contend with in our software engineering module.</p>
 </li>
 <li>
-<p>Alternative 1 emulates the implementation of other successful calendar applications (e.g. Google Calendar) so we do not have to reinvent the wheel.
-===== Aspect: How the user can display the attendance and performance data on a specific date</p>
+<p>Alternative 1 emulates the implementation of other successful calendar applications (e.g. Google Calendar) so we do not have to reinvent the wheel.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date"><a class="link" href="#aspect-how-the-user-can-display-the-attendance-and-performance-data-on-a-specific-date">Aspect: How the user can display the attendance and performance data on a specific date</a></h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 9.0909%;">
@@ -1273,46 +1210,18 @@ details for a particular event)</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 1 (Current Choice)</strong>: Use one <code>calendar DDMMYYYY</code> command to view <em>both</em> attendance and performance records on the specified date</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Alternative 2</strong>: Use two separate commands to view attendance and performance records <em>separately</em> on the specified date</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 1 (Current Choice)</strong>: Use one <code>calendar DDMMYYYY</code> command to view <em>both</em> attendance and performance records on the specified date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Alternative 2</strong>: Use two separate commands to view attendance and performance records <em>separately</em> on the specified date</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pros</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Makes access of data more efficient</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Allows users to have more control over what data is displayed</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Makes access of data more efficient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to have more control over what data is displayed</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Cons</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Displays both attendance and performance records on the specified date all the time</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Requires more flags to be added to the command syntax which makes it more complex</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays both attendance and performance records on the specified date all the time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires more flags to be added to the command syntax which makes it more complex</p></td>
 </tr>
 </tbody>
 </table>
@@ -2791,4 +2700,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:44:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:50:00 UTC</div></div></div></body></html>
