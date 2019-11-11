@@ -663,7 +663,10 @@ progress in specific events.</p>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
 <div class="paragraph">
-<p>This section explains how <code><span class="green">Performance</span></code> is implemented in Athletick. It is split into 4 sections.</p>
+<p>This section explains how <code><span class="green">Performance</span></code> is implemented in Athletick.</p>
+</div>
+<div class="paragraph">
+<p>It is split into 4 sections.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -690,9 +693,9 @@ The class diagram below shows how the different components mentioned interact wi
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/performance_classdiagram.png" alt="performance classdiagram" width="250">
+<img src="images/performance_classdiagram.png" alt="performance classdiagram" width="500">
 </div>
-<div class="title">Figure 13. Class diagram for showing how Performance is implemented.</div>
+<div class="title">Figure 13. Class diagram for showing how Performance is implemented with Model and Logic.</div>
 </div>
 <div class="paragraph">
 <p>As the name suggests, all <code><span class="green">Event</span></code> names are unique in <code><span class="green">UniqueEventList</span></code>.
@@ -701,33 +704,9 @@ with the same name before the <code><span class="green">Event</span></code> is a
 </div>
 <div class="paragraph">
 <p>Every event has its own <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/HashMap.html">HashMap</a>
-where performances under this event are stored. The key and value of the HashMap are explained below.</p>
-</div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Key
-</td>
-<td class="hdlist2">
-<p><code><span class="green">Person</span></code> that the performance records will be under.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Value
-</td>
-<td class="hdlist2">
-<p>List of <code><span class="green">Record</span></code> s under the <code><span class="green">Person</span></code>.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/event_classdiagram.png" alt="event classdiagram" width=""250'">
-</div>
-<div class="title">Figure 14. Class diagram showing how Records are stored in Event.</div>
+where performances under this event are stored.
+The <em>key</em> of the HashMap is the <code><span class="green">Person</span></code> that the performance records will be under, while the <em>value</em>
+of the HashMap is a list of <code><span class="green">Record</span></code> s under the <code><span class="green">Person</span></code>.</p>
 </div>
 <div class="paragraph">
 <p>This structure allows each <code><span class="green">Person</span></code> to have multiple <code><span class="green">Record</span></code> s stored in Athletick so
@@ -759,7 +738,7 @@ example scenario when <code>event freestyle 50m</code> is given as a user input 
 <div class="content">
 <img src="images/addevent_sequencediagram.png" alt="addevent sequencediagram" width="700">
 </div>
-<div class="title">Figure 15. Sequence diagram showing the operations in Logic and Model when an event is added.</div>
+<div class="title">Figure 14. Sequence diagram showing the operations in Logic and Model when an event is added.</div>
 </div>
 <div class="paragraph">
 <p>Deleting an event (with <code><span class="green">DeleteEventCommand</span></code>) does the opposite. The input <code>delete -e freestyle
@@ -778,9 +757,9 @@ except there are more methods involved as there is a greater degree of nesting.<
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addrecord_activitydiagram.png" alt="addrecord activitydiagram" width="700">
+<img src="images/addrecord_activitydiagram.png" alt="addrecord activitydiagram" width="500">
 </div>
-<div class="title">Figure 16. Activity diagram showing how a Record is added to an Event.</div>
+<div class="title">Figure 15. Activity diagram showing how a Record is added to an Event.</div>
 </div>
 </div>
 <div class="sect4">
@@ -794,13 +773,13 @@ The following sequence diagrams illustrate how the <code><span class="green">Log
 <div class="content">
 <img src="images/viewrecords_sequencediagram.png" alt="viewrecords sequencediagram" width="700">
 </div>
-<div class="title">Figure 17. Sequence diagram showing how Records are viewed. Interactions in the RecordsPanel are omitted and shown in a separate sequence diagram below.</div>
+<div class="title">Figure 16. Sequence diagram showing how Records are viewed. Interactions in the RecordsPanel are omitted and shown in a separate sequence diagram below.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recordspanel_sequencediagram.png" alt="recordspanel sequencediagram" width="700">
 </div>
-<div class="title">Figure 18. Reference frame for interactions in the RecordsPanel in the previous sequence diagram.</div>
+<div class="title">Figure 17. Reference frame for interactions in the RecordsPanel in the previous sequence diagram.</div>
 </div>
 </div>
 </div>
@@ -1019,7 +998,7 @@ details for a particular event)</p>
 <div class="content">
 <img src="images/CalendarCommandSequenceDiagram1.png" alt="CalendarCommandSequenceDiagram1" width="700">
 </div>
-<div class="title">Figure 19. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 012019</code> Command</div>
+<div class="title">Figure 18. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 012019</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Upon completion of the above execution, the calendar for January 2019 will be displayed to the user.</p>
@@ -1034,7 +1013,7 @@ details for a particular event)</p>
 <div class="content">
 <img src="images/Function1ActivityDiagram.png" alt="Function1ActivityDiagram" width="300">
 </div>
-<div class="title">Figure 20. Activity diagram showing what happens when a user wants to  perform function 1</div>
+<div class="title">Figure 19. Activity diagram showing what happens when a user wants to  perform function 1</div>
 </div>
 <div class="paragraph">
 <p>Function 1 is facilitated by the <code><span class="green">CalendarPanel</span></code> class. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and represents the calendar using a <code><span class="green">GridPane</span></code> with dimensions of 7 by 6 (42 cells). Additionally, it implements the following operations:</p>
@@ -1065,7 +1044,7 @@ details for a particular event)</p>
 <div class="content">
 <img src="images/CalendarConstructorSequenceDiagram.png" alt="CalendarConstructorSequenceDiagram" width="700">
 </div>
-<div class="title">Figure 21. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
+<div class="title">Figure 20. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Model</span></code> components when <code><span class="green">CalendarPanel</span></code> is instantiated</div>
 </div>
 <div class="paragraph">
 <p>With reference to the above diagram, if <code><span class="green">hasTrainingOn(AthletickDate)</span></code> returns true, a green dot indicator will be added to the cell of the <code><span class="green">GridPane</span></code>. Similarly, if <code><span class="green">hasPerformanceOn(AthletickDate)</span></code> returns true, a purple dot indicator will be added.</p>
@@ -1091,7 +1070,7 @@ details for a particular event)</p>
 <div class="content">
 <img src="images/CalendarCommandSequenceDiagram2.png" alt="CalendarCommandSequenceDiagram2" width="700">
 </div>
-<div class="title">Figure 22. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 01012019</code> command</div>
+<div class="title">Figure 21. Interactions inside the <code><span class="green">UI</span></code> and <code><span class="green">Logic</span></code> components for the <code>calendar 01012019</code> command</div>
 </div>
 <div class="paragraph">
 <p>Upon completion of the above execution, the attendance and performance records for 1st January 2019 will be displayed to the user.</p>
@@ -1103,7 +1082,7 @@ details for a particular event)</p>
 <div class="content">
 <img src="images/Function2ActivityDiagram.png" alt="Function2ActivityDiagram">
 </div>
-<div class="title">Figure 23. Activity diagram showing what happens when a user issues the <code>calendar DDMMYYYY</code> command</div>
+<div class="title">Figure 22. Activity diagram showing what happens when a user issues the <code>calendar DDMMYYYY</code> command</div>
 </div>
 <div class="paragraph">
 <p>Function 2 is facilitated by <code><span class="green">CalendarDetailPanel</span></code>. It extends <code><span class="green">UiPart&lt;Region&gt;</span></code> and displays the attendance and performance records for a date specified by the user. Additionally, it implements the following operations:</p>
@@ -1410,7 +1389,7 @@ whether an athlete has been selected and displays the selected athlete&#8217;s p
 <div class="content">
 <img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="400">
 </div>
-<div class="title">Figure 24. Activity diagram of <code>select</code> command execution</div>
+<div class="title">Figure 23. Activity diagram of <code>select</code> command execution</div>
 </div>
 <div class="paragraph">
 <p>The implementation was done this way because the Ui component interacts with both the Logic and Model component.
@@ -1426,7 +1405,7 @@ app. The Ui listens for any changes made to the Model data, and updates the Ui t
 <div class="content">
 <img src="images/SelectCommandSequenceDiagram.png" alt="SelectCommandSequenceDiagram">
 </div>
-<div class="title">Figure 25. Sequence Diagram of <code>select</code> Command</div>
+<div class="title">Figure 24. Sequence Diagram of <code>select</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1616,7 +1595,7 @@ initialised with the initial <code><span class="green">Athletick</span></code>, 
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 26. Initial stacks of states</div>
+<div class="title">Figure 25. Initial stacks of states</div>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes the <code>delete -p 3</code> command to delete the 3rd person in the <code><span class="green">Athletick</span></code> list. The
@@ -1629,7 +1608,7 @@ state will then be pushed to the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/afterUndoStack.png" alt="afterUndoStack" width="450">
 </div>
-<div class="title">Figure 27. Stacks of states after <code>delete -p 3</code> command</div>
+<div class="title">Figure 26. Stacks of states after <code>delete -p 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user now decides that deleting the 3rd person in the list was a mistake, and decides to undo the action
@@ -1643,7 +1622,7 @@ before <code>delete -p 3</code> command was executed.</p>
 <div class="content">
 <img src="images/initialStack.png" alt="initialStack" width="450">
 </div>
-<div class="title">Figure 28. Stacks of states after <code>undo</code> command</div>
+<div class="title">Figure 27. Stacks of states after <code>undo</code> command</div>
 </div>
 <div class="paragraph">
 <p>Step 4. After retrieving the <code><span class="green">Athletick</span></code> state before <code>delete -p 3</code> command
@@ -1657,7 +1636,7 @@ was executed, we then resets the <code><span class="green">Athletick</span></cod
 <div class="content">
 <img src="images/undoSQ.png" alt="undoSQ" width="450">
 </div>
-<div class="title">Figure 29. Sequence diagram for undo implementation</div>
+<div class="title">Figure 28. Sequence diagram for undo implementation</div>
 </div>
 </div>
 <div class="sect3">
@@ -1687,7 +1666,7 @@ Implementation.</a></p>
 <div class="content">
 <img src="images/redoactivity.png" alt="redoactivity" width="450">
 </div>
-<div class="title">Figure 30. Activity diagram for <code>redo</code> command</div>
+<div class="title">Figure 29. Activity diagram for <code>redo</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1841,7 +1820,7 @@ example input of <code>filter captain freestyle</code> is called.</p>
 <div class="content">
 <img src="images/filter_sequencediagram.png" alt="filter sequencediagram" width="700">
 </div>
-<div class="title">Figure 31. Sequence diagram for execution of FilterCommand.</div>
+<div class="title">Figure 30. Sequence diagram for execution of FilterCommand.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1934,7 +1913,7 @@ specific athletes can be found from this filtered list.</p>
 <div class="content">
 <img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram">
 </div>
-<div class="title">Figure 32. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
+<div class="title">Figure 31. Interactions Inside the Logic and Model Components for the <code>sort</code> Command</div>
 </div>
 <div class="paragraph">
 <p>With reference to the diagram above, when the user issues the <code>sort</code> command, a <code><span class="green">SortCommand</span></code> object <code><span class="green">s</span></code> is created. <code><span class="green">s</span></code> is then executed by <code><span class="green">LogicManager</span></code>, which calls the <code><span class="green">sortByName()</span></code> method in <code><span class="green">LogicManager</span></code>. An instance of <code><span class="green">PersonNameComparator</span></code> is then created and is used by the <code><span class="green">sortByName(PersonNameComparator)</span></code> method in <code><span class="green">Athletick</span></code> to sort the observable <code><span class="green">internalList</span></code> in <code><span class="green">UniquePersonList</span></code>. Upon completion of the above execution, the sorted list of athletes would be displayed immediately to the user.</p>
@@ -2808,4 +2787,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:10:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:57:53 UTC</div></div></div></body></html>
